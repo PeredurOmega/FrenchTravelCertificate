@@ -14,4 +14,4 @@ You can store a profile on the app in order to not re-fill the form each time yo
 
 ### License and copyrights
 
-Please keep in mind that this app is provided for free in order to support and help people during the coronavirus crisis, but the work on this app should not be reused by anyone without authorizations from the owner.
+Please keep in mind that this app is provided for free in order to support and help people during the coronavirus crisis, but the work on this app is under a license. For more information, please read https://github.com/PeredurOmega/FrenchTravelCertificate/blob/master/LICENSE.
