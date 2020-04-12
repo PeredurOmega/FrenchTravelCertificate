@@ -24,6 +24,4 @@ read https://github.com/PeredurOmega/FrenchTravelCertificate/blob/master/LICENSE
 
 ## Screenshot
 
-![Screenshot 1](/screenshots/screenshot_1.png)
-
-![Screenshot 2](/screenshots/screenshot_2.png)
+<img src="/screenshots/screenshot_1.png" alt="Screenshot 1" width="376" height="800"> <img src="/screenshots/screenshot_2.png" alt="Screenshot 2" width="376" height="800">
