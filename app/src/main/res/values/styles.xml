@@ -1,0 +1,47 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary ">@color/colorAccent</item>
+        <item name="colorOnSecondary ">@color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MaterialTextField" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <!--<item name="counterTextColor">@color/t</item>
+        <item name="endIconTint">@color/whiteText</item>
+        <item name="startIconTint">@color/whiteText</item>
+        <item name="helperTextTextColor">@color/whiteText</item>-->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <!--<item name="android:textColor">@color/colorText</item>-->
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="boxBackgroundMode">none</item>
+        <!--<item name="hintTextAppearance">@style/HintTextView</item>
+        <item name="android:textColorHint">@color/hintColor</item>-->
+    </style>
+
+    <style name="EditText" parent="@style/Widget.AppCompat.EditText">
+        <!--<item name="android:textColor">@color/colorText</item>-->
+        <item name="android:background">@drawable/rounded_text_field</item>
+        <item name="android:padding">17dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>

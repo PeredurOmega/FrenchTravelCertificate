@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/firstNameField"
+            android:hint="@string/first_name"
+            style="@style/MaterialTextField"
+            android:layout_marginTop="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditText"
+                android:id="@+id/firstNameEditText"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:autofillHints="personGivenName"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lastNameField"
+            android:hint="@string/last_name"
+            style="@style/MaterialTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditText"
+                android:id="@+id/lastNameEditText"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:autofillHints="personFamilyName"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/birthDateField"
+            android:hint="@string/birth_date"
+            app:endIconDrawable="@drawable/calendar_icon"
+            app:endIconMode="custom"
+            style="@style/MaterialTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditText"
+                android:id="@+id/birthDateEditText"
+                android:inputType="date"
+                android:maxLines="1"
+                android:autofillHints="birthDateFull"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/birthPlaceField"
+            android:hint="@string/birth_place"
+            style="@style/MaterialTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditText"
+                android:id="@+id/birthPlaceEditText"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:autofillHints="birthPlace"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addressField"
+            android:hint="@string/address"
+            style="@style/MaterialTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditText"
+                android:id="@+id/addressEditText"
+                android:gravity="top|start"
+                android:minLines="2"
+                android:autofillHints="postalAddress"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cityField"
+            android:hint="@string/city"
+            style="@style/MaterialTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditText"
+                android:id="@+id/cityEditText"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:autofillHints="addressLocality"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/postalCodeField"
+            android:hint="@string/postal_code"
+            style="@style/MaterialTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditText"
+                android:id="@+id/postalCodeEditText"
+                android:inputType="number"
+                android:maxLines="1"
+                android:autofillHints="postalCode"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/createCertificateButton"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_certificate"/>
+    </LinearLayout>
+</ScrollView>
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/exitDateField"
+            android:hint="@string/exit_date"
+            app:endIconDrawable="@drawable/calendar_icon"
+            app:endIconMode="custom"
+            style="@style/MaterialTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditText"
+                android:id="@+id/exitDateEditText"
+                android:inputType="date"
+                android:maxLines="1"
+                android:importantForAutofill="no"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/exitTimeField"
+            android:hint="@string/exit_time"
+            app:endIconDrawable="@drawable/future_icon"
+            app:endIconMode="custom"
+            style="@style/MaterialTextField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/EditText"
+                android:id="@+id/exitTimeEditText"
+                android:inputType="time"
+                android:maxLines="1"
+                android:importantForAutofill="no"
+                android:imeOptions="actionNext"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/useProfile"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fill_with_profile"
+            android:checked="true"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/createButton"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:textSize="16sp"
+            android:text="@string/create_certificate"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</ScrollView>

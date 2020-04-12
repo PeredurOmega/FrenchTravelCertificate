@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.pi.attestation.ui.home.HomeFragment"
+        android:label="@string/menu_certificates"
+        tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.pi.attestation.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_eula"
+        android:name="com.pi.attestation.ui.eula.EulaFragment"
+        android:label="@string/menu_eula"
+        tools:layout="@layout/fragment_eula" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.pi.attestation.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

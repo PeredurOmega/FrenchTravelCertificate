@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name">Travel certificate</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_certificates">Certificates</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_eula">EULA</string>
+
+    <string name="no_profile_info">Please fill your profile to create a certificate.</string>
+    <string name="fill_profile">Fill profile</string>
+    <string name="unknown_error">An unknown error occurred.</string>
+
+    <string name="first_name_key" translatable="false">FIRST_NAME</string>
+    <string name="last_name_key" translatable="false">LAST_NAME</string>
+    <string name="shared_pref" translatable="false">com.pi.attestation.SHARED_PREFERENCES</string>
+    <string name="birth_date_key" translatable="false">BIRTH_DATE</string>
+    <string name="birth_place_key" translatable="false">BIRTH_PLACE</string>
+    <string name="address_key" translatable="false">ADDRESS</string>
+    <string name="postal_code_key" translatable="false">POSTAL_CODE</string>
+    <string name="city_key" translatable="false">CITY</string>
+
+    <string name="work_reason_short_name">Déplacements entre le domicile et le travail</string>
+    <string name="purchase_of_necessities_reason_short_name">Déplacements pour les achats
+        nécéssaires</string>
+    <string name="health_reason_short_name">Consultations et soins</string>
+    <string name="family_reason_short_name">Déplacements pour motif familial</string>
+    <string name="sports_or_animals_reason_short_name">Déplacements brefs pour l\'activité physique
+        et les animaux</string>
+    <string name="judicial_or_administrative_reason_short_name">Convocation judiciaire ou
+        administrative</string>
+    <string name="general_interest_task_reason_short_name">Mission d\'intérêt général</string>
+
+    <string name="work_reason_description">Déplacements entre le domicile et le lieu d\'exercice de
+        l’activité professionnelle, lorsqu\'ils sont indispensables à l\'exercice d’activités ne
+        pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant
+        être différés (à utiliser par les travailleurs non-salariés, lorsqu\'ils ne peuvent disposer
+        d\'un justificatif de déplacement établi par leur employeur).</string>
+    <string name="purchase_of_necessities_reason_description">Déplacements pour effectuer des
+        achats de fournitures nécessaires à l\'activité professionnelle et des achats de première
+        nécessité (y compris les acquisitions à titre gratuit (distribution de denrées
+        alimentaires…) et les déplacements liés à la perception de prestations sociales et au
+        retrait d’espèces) dans des établissements dont les activités demeurent autorisées (liste
+        sur gouvernement.fr). </string>
+    <string name="health_reason_description">Consultations et soins ne pouvant être assurés à
+        distance et ne pouvant être différés; consultations et soins des patients atteints d\'une
+        affection de longue durée. </string>
+    <string name="family_reason_description">Déplacements pour motif familial impérieux, pour
+        l\'assistance aux personnes vulnérables ou la garde d’enfants. </string>
+    <string name="sports_or_animals_reason_description">Déplacements brefs, dans la limite d\'une
+        heure quotidienne et dans un rayon maximal d\'un kilomètre autour du domicile, liés soit à
+        l\'activité physique individuelle des personnes, à l\'exclusion de toute pratique sportive
+        collective et de toute proximité avec d\'autres personnes, soit à la promenade avec les
+        seules personnes regroupées dans un même domicile, soit aux besoins des animaux de
+        compagnie. </string>
+    <string name="judicial_or_administrative_reason_description">Convocation judiciaire ou
+        administrative.</string>
+    <string name="general_interest_task_reason_description">Participation à des missions d\'intérêt
+        général sur demande de l\'autorité administrative.</string>
+    <string name="create_certificate">Create certificate</string>
+    <string name="fill_certificate">Fill certificate</string>
+    <string name="please_fill_info">Please fill info</string>
+    <string name="loading_please_wait">Loading… Please wait…</string>
+    <string name="please_fill_date_time">Please fill date and time fields</string>
+    <string name="an_unknown_error_occurred">An unknown error occurred</string>
+    <string name="menu_settings">Settings</string>
+    <string name="save_profile">Save profile</string>
+    <string name="remove_all_certificates">Remove all certificates</string>
+    <string name="date_time_placeholder">%1$s at %2$s</string>
+    <string name="select_exit_date">Select exit date</string>
+    <string name="select_your_birthdate">Select your birthdate</string>
+    <string name="ask_remove_all_certificates">Do you want to remove all certificates ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save_changes">Save changes</string>
+    <string name="ask_save_changes">Do you want to save changes ?</string>
+    <string name="save">Save</string>
+    <string name="discard">Discard</string>
+    <string name="certificate">Certificate</string>
+    <string name="qr_code">QR Code</string>
+    <string name="icon_description">Image view containg an icon to easily identifiate the reason to exit</string>
+    <string name="pdf_view_description">Image view used to display a pdf file (in our case the certificate)</string>
+    <string name="open_source_code">Open-source code</string>
+    <string name="open_source_text">To see how we manage your data and how the application works you can see the code source of the application (written in Kotlin) at</string>
+    <string name="eula">EULA</string>
+    <string name="pick">Pick</string>
+    <string name="exit_date">Exit date</string>
+    <string name="exit_time">Exit time</string>
+    <string name="fill_with_profile">Fill with profile</string>
+    <string name="no_certificate">No certificate</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="birth_date">Birth date</string>
+    <string name="birth_place">Birth place</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="postal_code">Postal code</string>
+    <string name="attestation">Attestation</string>
+    <string name="de_d_placement_d_rogatoire">de déplacement dérogatoire</string>
+
+</resources>
