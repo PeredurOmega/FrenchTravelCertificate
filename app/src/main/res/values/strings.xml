@@ -4,10 +4,23 @@
     <string name="menu_certificates">Certificates</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_eula">EULA</string>
+    <string name="menu_contribute">Contribute</string>
+    <string name="credits">Credits</string>
     <string name="header_sub_title">for france mainland</string>
     <string name="profile_saved">Profile saved</string>
     <string name="create">Create</string>
     <string name="ok">OK</string>
+    <string name="help_to_translate">Help to translate</string>
+    <string name="help_to_design">Help to design</string>
+    <string name="help_to_design_text">Feel free to help us to improve the app\'s design (logo,
+        banner, mockups…) by clicking the below button.</string>
+    <string name="help_to_code">Help to code</string>
+    <string name="help_to_code_text">We need help to fix bugs and add new features, feel free to
+    make any pull request. If your pull request is approved your name or username will be added to
+    the credits.</string>
+    <string name="help_to_translate_text">We need your help to translate the app in order to not
+        forget anyone. You can also notify us of any typos or mistakes made in any language. To
+        help us please click on the bellow button "Help us to translate".</string>
     <string name="how_to_use_title">How to use the certificate ?</string>
     <string name="how_to_use_text">All your certificates are available on the app\'s main page.
         To dispaly them you just need to click on them. To see the QR Code you just need to swipe
@@ -174,4 +187,5 @@
     <string name="postal_code_key" translatable="false">POSTAL_CODE</string>
     <string name="city_key" translatable="false">CITY</string>
     <string name="first_certificate_view_key" translatable="false">FIRST_CERTIFICATE_VIEW</string>
+    <string name="people_to_credit" translatable="false">Paul SOUTEYRAT</string>
 </resources>

@@ -4,10 +4,24 @@
     <string name="menu_certificates">Attestations</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_eula">CGU</string>
+    <string name="menu_contribute">Aider</string>
+    <string name="credits">Crédits</string>
     <string name="header_sub_title">de déplacement dérogatoire</string>
     <string name="profile_saved">Profile sauvegardé</string>
     <string name="create">Créer</string>
     <string name="ok">Ok</string>
+    <string name="help_to_translate">Aider à la traduction</string>
+    <string name="help_to_code">Aider à coder</string>
+    <string name="help_to_design">Aider à designer</string>
+    <string name="help_to_design_text">N\'hésitez pas à apporter votre aide pour designer
+        l\'application (logo, bannières, mockups…) en cliquant sur le bouton ci-dessous.</string>
+    <string name="help_to_code_text">Nous avons besoin de votre aide pour ajouter de nouvelles
+        fonctionnalités et nous serons ravi d\'examiner vos "pull requests". Si elles sont
+        approuvées votre nom ou votre pseudo sera ajouter aux crédits.</string>
+    <string name="help_to_translate_text">Nous avons besoin de traduire l\'application pour ne
+        laisser personne à  l\'écart. Vous pouvez aussi via ce biais nous indiquer les erreurs
+        d\'orthographe ou de frappe dans n\'importe quelle langue. Pour nous aider cliquer sur le
+        bouton ci-dessous "Aider à traduire".</string>
     <string name="how_to_use_title">Comment utiliser l\'attestation ?</string>
     <string name="how_to_use_text">Toutes vos attestations sont disponibles sur la page d\'accueil
         de l\'application. Pour les visualiser il suffit de cliquer dessus. Pour voir le QR Code,

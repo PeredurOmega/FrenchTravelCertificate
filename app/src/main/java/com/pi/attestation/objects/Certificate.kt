@@ -20,6 +20,7 @@ class Certificate(val creationDateTime: DateTime, val userInfo: UserInfo,
             .append("; Naissance: ")
             .append(userInfo.birthDate)
             .append(" a ")
+            .append(userInfo.birthPlace)
             .append("; Adresse: ")
             .append(userInfo.address)
             .append(" ")

@@ -17,7 +17,7 @@
     </group>
 
     <group
-        android:id="@+id/secondaryMenu"
+        android:id="@+id/secondMenu"
         android:checkableBehavior="none">
         <item
             android:id="@+id/nav_eula"
@@ -28,5 +28,14 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/settings_icon"
             android:title="@string/menu_settings" />
+    </group>
+
+    <group
+        android:id="@+id/thirdMenu"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_contribute"
+            android:icon="@drawable/volunteering_icon"
+            android:title="@string/menu_contribute" />
     </group>
 </menu>
