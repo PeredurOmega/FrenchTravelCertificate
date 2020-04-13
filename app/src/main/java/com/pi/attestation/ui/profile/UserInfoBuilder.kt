@@ -41,10 +41,6 @@ internal class UserInfoBuilder(
         return false
     }
 
-    /**
-     * Returns a [UserInfo] containing only edited info. Other fields are null.
-     * @return [UserInfo] containing only edited info. Other fields are left null.
-     */
     fun buildUserInfoInput(): UserInfo {
         return UserInfo(firstNameEditText.getText(), lastNameEditText.getText(),
             birthDateEditText.getText(), birthPlaceEditText.getText(), addressEditText.getText(),

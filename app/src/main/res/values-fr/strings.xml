@@ -5,6 +5,12 @@
     <string name="menu_profile">Profile</string>
     <string name="menu_eula">CGU</string>
     <string name="header_sub_title">de déplacement dérogatoire</string>
+    <string name="profile_saved">Profile sauvegardé</string>
+    <string name="create">Créer</string>
+    <string name="incomplete_profile">Profile incomplet. Tous les champs sont obligatoires.</string>
+    <string name="ask_for_creating_a_certificate">Souhaitez vous créer une attestation ?</string>
+    <string name="create_a_certificate">Créer une attestation</string>
+    <string name="malformed_birthdate">La date de naissance doit être au format jj/mm/aaaa</string>
     <string name="no_profile_info">Merci de compléter votre profile pour créer une attestation.
     </string>
     <string name="fill_profile">Compléter</string>
@@ -75,8 +81,8 @@
     <string name="open_source_link">https://github.com/PeredurOmega/FrenchTravelCertificate</string>
     <string name="eula">CGU</string>
     <string name="pick">Choisir</string>
-    <string name="exit_date">Date de sortie</string>
-    <string name="exit_time">Heure de sortie</string>
+    <string name="exit_date">Date de sortie (jj/mm/aaaa)</string>
+    <string name="exit_time">Heure de sortie (HH:mm)</string>
     <string name="fill_with_profile">Compléter avec le profil</string>
     <string name="no_certificate">Aucune attestation</string>
     <string name="last_name">Nom de famille</string>
@@ -159,16 +165,17 @@
         être engagée pour tous les dommages (excepté ceux requis par la loi applicable). Et les
         remboursements éventuels des dommages ne peuvent excéder le prix que vous avez payé pour
         l\'acquisition et l\'utilisation du Logiciel, facture ou reçu à l\'appui.</string>
-    <string name="eula_content_part_12">6. Confidentialité. Le logiciel ne peut pas collecter les
-        données "in-app" pour les envoyer à des serveurs ou appareils distants. Vos informations
-        personnelles dans votre profile et vos attestations sont uniquèment et complètement
-        stockées dans la mémoire de stockage interne de votre appareil et ne sont pas et ne peuvent
-        pas être envoyées ou communiquées à d\'autres appareils, personnes ou institutions. Le
-        Logiciel peut tout de même collecter des données pour détecter d\'éventuels bugs et en
-        particulier récolter des informations sur les "crashs" aussi appelés plantages de
-        l'Application. Néanmoins toutes les données sont anonymisées et ne sont utilisés que dans
-        le but d'améliorer le Logiciel. Le Logiciel peut aussi collecter des données relatives aux
-        nombres de lancement de l\'application à des fins statistiques.</string>
+    <string name="eula_content_part_12">6. Confidentialité. Le Logiciel ne peut pas collecter les
+        données "in-app" pour les envoyer à des serveurs ou appareils distants. Vos
+        informations personnelles dans votre profile et vos attestations sont uniquement et
+        complètement stockées dans la mémoire de stockage interne de votre appareil et ne sont pas
+        et ne peuvent pas être envoyées ou communiquées à d\'autres appareils, personnes ou
+        institutions. Le Logiciel peut tout de même collecter des données pour détecter
+        d\'éventuels bugs et en particulier récolter des informations sur les "crashs"
+        aussi appelés plantages de l\'Application. Néanmoins toutes les données sont anonymisées et
+        ne sont utilisés que dans le but d\'améliorer le Logiciel. Le Logiciel peut aussi collecter
+        des données relatives aux nombres de lancement de l\'application à des fins statistiques.
+    </string>
     <string name="eula_content_part_13">7. Indemnité. Vous acceptez d\'indémniser, de défendre et
         de décharger le Détenteur de, et contre, tous dommages, pertes ou dépenses découlant
         directement ou indirectement de : (i) vos actes et vos oublis d\'agir en utilisant le

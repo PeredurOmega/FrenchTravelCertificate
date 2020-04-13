@@ -80,7 +80,7 @@ abstract class SaverFragment : Fragment() {
         hideKeyboard()
     }
 
-    private fun Fragment.hideKeyboard() {
+    protected fun Fragment.hideKeyboard() {
         view?.let { activity?.hideKeyboard(it) }
     }
 

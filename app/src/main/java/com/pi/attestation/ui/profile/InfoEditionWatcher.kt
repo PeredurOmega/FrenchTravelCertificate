@@ -54,7 +54,7 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
 
     /**
      * Returns the info of the user that have been edited.
-     * @return [UserInfo] containing all the new info of the user (only the ones that have been edited by the user).
+     * @return [UserInfo] containing all the new info of the user
      */
     val info: UserInfo?
         get() {
