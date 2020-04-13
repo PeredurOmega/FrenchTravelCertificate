@@ -1,9 +1,11 @@
 package com.pi.attestation.ui.viewer
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -30,6 +32,31 @@ class CertificateViewerActivity : AppCompatActivity() {
         fab.setOnClickListener {
             onBackPressed()
         }
+
+        showExplanationsIfNeeded()
+    }
+
+    private fun showExplanationsIfNeeded(){
+        Thread(Runnable {
+            val sharedPref = getSharedPreferences(getString(R.string.shared_pref),
+                Context.MODE_PRIVATE)
+            val showExplanations =
+                sharedPref.getBoolean(getString(R.string.first_certificate_view_key), true)
+
+            if(showExplanations){
+                val editor = sharedPref.edit()
+                editor.putBoolean(getString(R.string.first_certificate_view_key), false)
+                editor.apply()
+
+                this.runOnUiThread {
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle(R.string.how_to_use_title)
+                        .setMessage(R.string.how_to_use_text)
+                        .setPositiveButton(R.string.ok) { _, _ -> }
+                        .show()
+                }
+            }
+        }).start()
     }
 
     private fun setAdapter(viewPager: ViewPager2, tabLayout: TabLayout) {

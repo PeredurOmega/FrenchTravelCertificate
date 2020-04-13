@@ -7,6 +7,14 @@
     <string name="header_sub_title">de déplacement dérogatoire</string>
     <string name="profile_saved">Profile sauvegardé</string>
     <string name="create">Créer</string>
+    <string name="ok">Ok</string>
+    <string name="how_to_use_title">Comment utiliser l\'attestation ?</string>
+    <string name="how_to_use_text">Toutes vos attestations sont disponibles sur la page d\'accueil
+        de l\'application. Pour les visualiser il suffit de cliquer dessus. Pour voir le QR Code,
+        il vous suffit de glisser votre doigt vers la gauche. Pour quitter cliquez sur le bouton
+        rouge en bas à gauche.</string>
+    <string name="date_time_match_error">L\'heure doit utiliser le fomat HH:mm et la date le format
+        jj/mm/aaaa.</string>
     <string name="incomplete_profile">Profile incomplet. Tous les champs sont obligatoires.</string>
     <string name="ask_for_creating_a_certificate">Souhaitez vous créer une attestation ?</string>
     <string name="create_a_certificate">Créer une attestation</string>

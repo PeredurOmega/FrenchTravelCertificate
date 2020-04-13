@@ -82,8 +82,13 @@ class DateTimeFragment : Fragment() {
         val exitTime: String? = exitTimeEditText.text.toString()
 
         if(!exitDate.isNullOrEmpty() && ! exitTime.isNullOrEmpty()){
-            if(useProfile) createCertificate(DateTime(exitDate, exitTime), view.context)
-            else goFillCertificate(DateTime(exitDate, exitTime))
+            val exitDateTime = DateTime(exitDate, exitTime)
+            if(exitDateTime.isMalformed()){
+                Toast.makeText(context, R.string.date_time_match_error, Toast.LENGTH_SHORT).show()
+            }else{
+                if(useProfile) createCertificate(exitDateTime, view.context)
+                else goFillCertificate(exitDateTime)
+            }
         }else Toast.makeText(context, R.string.please_fill_date_time, Toast.LENGTH_SHORT).show()
     }
 

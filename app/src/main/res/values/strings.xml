@@ -7,6 +7,13 @@
     <string name="header_sub_title">for france mainland</string>
     <string name="profile_saved">Profile saved</string>
     <string name="create">Create</string>
+    <string name="ok">OK</string>
+    <string name="how_to_use_title">How to use the certificate ?</string>
+    <string name="how_to_use_text">All your certificates are available on the app\'s main page.
+        To dispaly them you just need to click on them. To see the QR Code you just need to swipe
+        to the left. To quit just click on the red bottom-left button.</string>
+    <string name="date_time_match_error">Time must match HH:mm and date must match dd/mm/yyyy.
+    </string>
     <string name="create_a_certificate">Create a certificate</string>
     <string name="malformed_birthdate">The birthdate should matched dd/mm/yyyy</string>
     <string name="ask_for_creating_a_certificate">Do you want to create a certificate ?</string>
@@ -166,4 +173,5 @@
     <string name="address_key" translatable="false">ADDRESS</string>
     <string name="postal_code_key" translatable="false">POSTAL_CODE</string>
     <string name="city_key" translatable="false">CITY</string>
+    <string name="first_certificate_view_key" translatable="false">FIRST_CERTIFICATE_VIEW</string>
 </resources>
