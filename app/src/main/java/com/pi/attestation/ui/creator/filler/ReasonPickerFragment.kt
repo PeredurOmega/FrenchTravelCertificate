@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.pi.attestation.R
 import com.pi.attestation.objects.Reason
+
 
 @Suppress("unused")
 class ReasonPickerFragment : Fragment(), ReasonListener {
@@ -19,7 +21,8 @@ class ReasonPickerFragment : Fragment(), ReasonListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView = view as RecyclerView
+        val recyclerView = view.findViewById<RecyclerView>(R.id.reasonsRecyclerView)
+        (recyclerView.itemAnimator as SimpleItemAnimator?)?.supportsChangeAnimations = false
         recyclerView.adapter = ReasonsAdapter(resources, this)
         recyclerView.setHasFixedSize(true)
     }
@@ -29,5 +32,13 @@ class ReasonPickerFragment : Fragment(), ReasonListener {
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentContainer, DateTimeFragment.newInstance(reason))
         transaction.commit()
+    }
+
+    override fun onDetailsOpened(position: Int) {
+        val view = view
+        if(view != null){
+            val reasonsRecyclerView = view.findViewById<RecyclerView>(R.id.reasonsRecyclerView)
+            reasonsRecyclerView.smoothScrollToPosition(position)
+        }
     }
 }

@@ -6,4 +6,6 @@ interface ReasonListener {
 
     fun pick(reason: Reason)
 
+    fun onDetailsOpened(position: Int)
+
 }

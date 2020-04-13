@@ -12,9 +12,9 @@ import com.pi.attestation.ui.viewer.CertificateViewerActivity
 
 class CertificateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    private var iconView: ImageView = itemView.findViewById(R.id.icon)
-    private var timeAndDate: TextView = itemView.findViewById(R.id.timeAndDate)
-    private var shortName: TextView = itemView.findViewById(R.id.shortName)
+    private val iconView: ImageView = itemView.findViewById(R.id.icon)
+    private val timeAndDate: TextView = itemView.findViewById(R.id.timeAndDate)
+    private val shortName: TextView = itemView.findViewById(R.id.shortName)
 
     fun bindToCertificate(certificate: Certificate){
         iconView.setImageResource(certificate.reason.icon)
