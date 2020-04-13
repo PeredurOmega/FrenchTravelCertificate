@@ -86,7 +86,8 @@
     <string name="open_source_code">Open-source code</string>
     <string name="open_source_text">To see how we manage your data and how the application works
         you can see the code source of the application (written in Kotlin) at:</string>
-    <string name="open_source_link">https://github.com/PeredurOmega/FrenchTravelCertificate</string>
+    <string name="open_source_link" translatable="false">
+        https://github.com/PeredurOmega/FrenchTravelCertificate</string>
     <string name="eula">EULA</string>
     <string name="pick">Pick</string>
     <string name="incomplete_profile">Incomplete profile. All fields must be filled.</string>
@@ -120,9 +121,11 @@
         single device. The rights granted herein are subject to your compliance with this EULA.
         The Software is being licenced to you and you hereby acknowledge that no title or ownership
         in the Software is being transferred or assigned and this EULA is not to be construed as a
-        sale of any rights in the Software. You may see the full license of the source code at
-        https://github.com/PeredurOmega/FrenchTravelCertificate/blob/master/LICENSE (English only).
+        sale of any rights in the Software. You may see the full license (only available in
+        english) of the source code at:
     </string>
+    <string name="license_link" translatable="false">
+        https://github.com/PeredurOmega/FrenchTravelCertificate/blob/master/LICENSE</string>
     <string name="eula_content_part_6">2. Restrictions of use. Unless the Owner has authorized you
         to distribute the Software, you shall not make or distribute copies of the Software or
         transfer the Software from one device to another. You shall not decompile, reverse engineer,
@@ -177,6 +180,8 @@
         application, wishes you to stay safe (and home as long as much as possible). We hope you
         will use this application wisely.</string>
     <string name="eula_content_part_15">by Paul SOUTEYRAT</string>
+    <string name="people_to_credit">Creator : Paul SOUTEYRAT. Based on the
+        work provided in https://github.com/LAB-MI/deplacement-covid-19.</string>
 
     <string name="first_name_key" translatable="false">FIRST_NAME</string>
     <string name="last_name_key" translatable="false">LAST_NAME</string>
@@ -187,5 +192,4 @@
     <string name="postal_code_key" translatable="false">POSTAL_CODE</string>
     <string name="city_key" translatable="false">CITY</string>
     <string name="first_certificate_view_key" translatable="false">FIRST_CERTIFICATE_VIEW</string>
-    <string name="people_to_credit" translatable="false">Paul SOUTEYRAT</string>
 </resources>

@@ -87,6 +87,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textSize="16sp"
+            android:autoLink="web"
+            android:text="@string/license_link" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="16sp"
             android:text="@string/eula_content_part_6" />
 
         <TextView
@@ -141,11 +149,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="16sp"
+            android:text="@string/eula_content_part_14" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="75dp"
             android:textSize="16sp"
-            android:text="@string/eula_content_part_14" />
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:gravity="end"
+            android:text="@string/eula_content_part_15" />
     </LinearLayout>
 </ScrollView>

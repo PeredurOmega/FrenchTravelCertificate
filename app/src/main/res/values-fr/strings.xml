@@ -33,7 +33,7 @@
     <string name="ask_for_creating_a_certificate">Souhaitez vous créer une attestation ?</string>
     <string name="create_a_certificate">Créer une attestation</string>
     <string name="malformed_birthdate">La date de naissance doit être au format jj/mm/aaaa</string>
-    <string name="no_profile_info">Merci de compléter votre profile pour créer une attestation.
+    <string name="no_profile_info">Compléter votre profile pour créer une attestation.
     </string>
     <string name="fill_profile">Compléter</string>
     <string name="unknown_error">Une erreur inconnue s\'est produite.</string>
@@ -100,7 +100,6 @@
     <string name="open_source_code">Code open-source</string>
     <string name="open_source_text">Pour comprendre comment l\'application fonctionne vous pouvez
         visualiser le code source (écrit en Kotlin) à:</string>
-    <string name="open_source_link">https://github.com/PeredurOmega/FrenchTravelCertificate</string>
     <string name="eula">CGU</string>
     <string name="pick">Choisir</string>
     <string name="exit_date">Date de sortie (jj/mm/aaaa)</string>
@@ -136,8 +135,8 @@
         sont sujets à votre respect des CGU. Le Logiciel vous est concédé sous licence, et par le
         contrat présent vous reconnaissez qu\'aucun titre ou droit de propriété vis-à-vis du
         Logiciel ne vous est transféré ou assigné et que ces CGU ne peuvent en aucun cas être
-        interprétées en une vente d\'un quelconque droit vis-à-vis du Logiciel.
-    </string>
+        interprétées en une vente d\'un quelconque droit vis-à-vis du Logiciel. Vous pouvez
+        consulter la license complète (dispnible en anglais uniquement) à:</string>
     <string name="eula_content_part_6">2. Restrictions d\'usage. Sauf si le Détenteur vous a
         autorisé à distribuer le Logiciel, vous ne pouvez pas faire ou distribuer des copies du
         Logiciel ou transférer le Logiciel d\'un appareil à un autre. Vous ne pouvez pas décompiler,
@@ -207,4 +206,6 @@
         peu que possible de chez vous). Nous espérons que vous utiliserez cette application à bon
         escient.</string>
     <string name="eula_content_part_15">par Paul SOUTEYRAT</string>
+    <string name="people_to_credit">Créateur : Paul SOUTEYRAT. Basé sur le travail réalisé à
+        https://github.com/LAB-MI/deplacement-covid-19.</string>
 </resources>
