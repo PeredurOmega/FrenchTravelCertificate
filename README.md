@@ -22,6 +22,6 @@ Please keep in mind that this app is provided for free in order to support and h
 the coronavirus crisis, but the work on this app is under a license. For more information, please
 read https://github.com/PeredurOmega/FrenchTravelCertificate/blob/master/LICENSE.
 
-## Screenshot
+## Screenshots / Mockups
 
-<img src="/screenshots/screenshot_1.png" alt="Screenshot 1" width="376" height="800"> <img src="/screenshots/screenshot_2.png" alt="Screenshot 2" width="376" height="800">
+<img src="/mockups/mockup_1.png" alt="Mockup 1" width="288" height="512"><img src="/mockups/mockup_2.png" alt="Mockup 2" width="288" height="512"><img src="/mockups/mockup_3.png" alt="Mockup 3" width="288" height="512"><img src="/mockups/mockup_4.png" alt="Mockup 4" width="288" height="512"><img src="/mockups/mockup_5.png" alt="Mockup 5" width="288" height="512"><img src="/mockups/mockup_6.png" alt="Mockup 6" width="288" height="512"><img src="/mockups/mockup_7.png" alt="Mockup 7" width="288" height="512"><img src="/mockups/mockup_8.png" alt="Mockup 8" width="288" height="512">
