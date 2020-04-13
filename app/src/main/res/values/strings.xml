@@ -94,7 +94,6 @@
     <string name="exit_date">Exit date (dd/mm/yyyy)</string>
     <string name="exit_time">Exit time (HH:mm)</string>
     <string name="fill_with_profile">Fill with profile</string>
-    <string name="no_certificate">No certificate</string>
     <string name="last_name">Last name</string>
     <string name="first_name">First name</string>
     <string name="birth_date">Birth date (dd/mm/yyyy)</string>
@@ -102,6 +101,12 @@
     <string name="address">Current address</string>
     <string name="city">Current city</string>
     <string name="postal_code">Current postal code</string>
+    <string name="no_certificate">You have no certificate</string>
+    <string name="no_certificate_explanation">First, please fill your profile. It will be used to
+        auto-complete your certificates. You will find all your certificates here. By clicking
+        on it you will display their filled form and their QR Code.</string>
+    <string name="no_certificate_explanation_profile_filled">You will find all your certificates
+        here. By clicking on it you will display their filled form and their QR Code..</string>
 
     <string name="eula_content_part_1">Applicable from: 12 April 2020</string>
     <string name="eula_content_part_2">(Note: all the clauses contained in this agreement are

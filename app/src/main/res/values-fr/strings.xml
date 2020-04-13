@@ -105,14 +105,21 @@
     <string name="exit_date">Date de sortie (jj/mm/aaaa)</string>
     <string name="exit_time">Heure de sortie (HH:mm)</string>
     <string name="fill_with_profile">Compléter avec le profil</string>
-    <string name="no_certificate">Aucune attestation</string>
     <string name="last_name">Nom de famille</string>
     <string name="first_name">Prénom</string>
-    <string name="birth_date">Date de naissance</string>
+    <string name="birth_date">Date de naissance (jj/mm/aaaa)</string>
     <string name="birth_place">Lieu de naissance</string>
     <string name="address">Adresse actuelle</string>
     <string name="city">Ville actuelle</string>
     <string name="postal_code">Code postal actuel</string>
+    <string name="no_certificate">Vous n\'avez aucune attestation</string>
+    <string name="no_certificate_explanation">Pour commencer veuillez compléter votre profile. Celui-ci servira à
+        compléter automatiquement vos attestations. Vous retrouverez toutes vos attestations ici.
+        En cliquant dessus vous pourrez obtenir leur formulaire complété et leur QR Code.</string>
+    <string name="no_certificate_explanation_profile_filled">Vous retrouverez toutes vos
+        attestations ici. En cliquant dessus vous pourrez obtenir leur formulaire complété et leur
+        QR Code.</string>
+
 
     <string name="eula_content_part_1">Applicable à partir du: 12 April 2020</string>
     <string name="eula_content_part_2">(Note: toutes les clauses contenues dans cet accord sont
