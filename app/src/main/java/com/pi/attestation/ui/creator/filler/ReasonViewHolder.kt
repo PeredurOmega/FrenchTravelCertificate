@@ -1,5 +1,6 @@
 package com.pi.attestation.ui.creator.filler
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
@@ -25,7 +26,12 @@ class ReasonViewHolder(itemView: View, private val reasonListener: ReasonListene
     fun bindReason(reason: Reason){
         shortName.text = reason.shortName
 
-        iconView.setImageResource(reason.icon)
+        val context = itemView.context
+
+        iconView.setImageDrawable(context.getDrawable(
+            context.resources.getIdentifier(reason.iconName, "drawable",
+                context.packageName)))
+
         iconView.backgroundTintList = ColorStateList.valueOf(reason.color)
 
         shortView.setOnClickListener {

@@ -3,10 +3,7 @@ package com.pi.attestation.tools
 import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
-import android.util.Log
 import android.widget.Toast
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.itextpdf.barcodes.BarcodeQRCode
 import com.itextpdf.forms.PdfAcroForm
 import com.itextpdf.io.font.constants.StandardFonts
@@ -116,45 +113,10 @@ class CertificateGenerator(mContext: Context, private val certificate: Certifica
         pdfDoc.close()
 
         val certificatesFile = File(context.filesDir, "certificates.json")
-        certificatesFile.createNewFile()
 
-        val certificates = getExistingCertificates(certificatesFile)
-        certificates.add(certificate)
-        saveCertificates(certificatesFile, certificates)
+        CertificatesManager().addCertificate(certificate, certificatesFile, 0)
 
         return fileNew.name
-    }
-
-    private fun saveCertificates(file: File, certificates: ArrayList<Certificate>){
-        val gson = Gson()
-        val fileOutputStream = FileOutputStream(file)
-        fileOutputStream.write(gson.toJson(certificates).toByteArray())
-        fileOutputStream.flush()
-        fileOutputStream.close()
-    }
-
-    private fun getExistingCertificates(file: File): ArrayList<Certificate> {
-        val gson = Gson()
-        var text = ""
-        try {
-            val inputStream: InputStream = FileInputStream(file)
-            val stringBuilder = StringBuilder()
-            val inputStreamReader = InputStreamReader(inputStream)
-            val bufferedReader = BufferedReader(inputStreamReader)
-            var receiveString: String?
-            while (bufferedReader.readLine().also { receiveString = it } != null) {
-                stringBuilder.append(receiveString)
-            }
-            inputStream.close()
-            text = stringBuilder.toString()
-        } catch (e: FileNotFoundException) {
-            Log.e("ATTESTATION", e.message ?: "")
-        } catch (e: IOException) {
-            Log.e("ATTESTATION", e.message ?: "")
-        }
-        val type = object : TypeToken<ArrayList<Certificate>?>() {}.type
-        val certificates: ArrayList<Certificate>? = gson.fromJson(text, type)
-        return certificates ?: ArrayList()
     }
 
     override fun onPostExecute(result: String?) {

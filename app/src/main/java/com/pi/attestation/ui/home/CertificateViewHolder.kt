@@ -17,7 +17,12 @@ class CertificateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     private val shortName: TextView = itemView.findViewById(R.id.shortName)
 
     fun bindToCertificate(certificate: Certificate){
-        iconView.setImageResource(certificate.reason.icon)
+        val context = itemView.context
+
+        iconView.setImageDrawable(context.getDrawable(
+            context.resources.getIdentifier(certificate.reason.iconName, "drawable",
+                context.packageName)))
+
         iconView.backgroundTintList = ColorStateList.valueOf(certificate.reason.color)
 
         timeAndDate.text = timeAndDate.context.getString(R.string.date_time_placeholder,

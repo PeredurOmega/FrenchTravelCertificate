@@ -111,6 +111,8 @@
     <string name="birth_place">Lieu de naissance</string>
     <string name="address">Adresse actuelle</string>
     <string name="city">Ville actuelle</string>
+    <string name="certificate_deleted">Attestation supprimée</string>
+    <string name="undo">Annuler</string>
     <string name="postal_code">Code postal actuel</string>
     <string name="no_certificate">Vous n\'avez aucune attestation</string>
     <string name="no_certificate_explanation">Pour commencer veuillez compléter votre profile. Celui-ci servira à

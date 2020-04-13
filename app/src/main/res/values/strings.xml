@@ -100,6 +100,8 @@
     <string name="birth_place">Birth place</string>
     <string name="address">Current address</string>
     <string name="city">Current city</string>
+    <string name="certificate_deleted">Certificate deleted</string>
+    <string name="undo">Undo</string>
     <string name="postal_code">Current postal code</string>
     <string name="no_certificate">You have no certificate</string>
     <string name="no_certificate_explanation">First, please fill your profile. It will be used to
