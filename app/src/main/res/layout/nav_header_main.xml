@@ -14,7 +14,7 @@
         android:textSize="30sp"
         android:textStyle="italic|bold"
         android:textColor="@color/titleColor"
-        android:text="@string/attestation"/>
+        android:text="@string/certificate"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -23,6 +23,6 @@
         android:textStyle="italic"
         android:textColor="@color/titleColor"
         android:layout_marginBottom="25dp"
-        android:text="@string/de_d_placement_d_rogatoire"/>
+        android:text="@string/header_sub_title"/>
 
 </LinearLayout>

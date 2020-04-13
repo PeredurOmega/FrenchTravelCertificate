@@ -1,0 +1,181 @@
+<resources>
+    <string name="app_name">Attestation de déplacement</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="menu_certificates">Attestations</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_eula">CGU</string>
+    <string name="header_sub_title">de déplacement dérogatoire</string>
+    <string name="no_profile_info">Merci de compléter votre profile pour créer une attestation.
+    </string>
+    <string name="fill_profile">Compléter</string>
+    <string name="unknown_error">Une erreur inconnue s\'est produite.</string>
+    <string name="work_reason_short_name">Déplacements entre le domicile et le travail</string>
+    <string name="purchase_of_necessities_reason_short_name">Déplacements pour les achats
+        nécéssaires</string>
+    <string name="health_reason_short_name">Consultations et soins</string>
+    <string name="family_reason_short_name">Déplacements pour motif familial</string>
+    <string name="sports_or_animals_reason_short_name">Déplacements brefs pour l\'activité physique
+        et les animaux</string>
+    <string name="judicial_or_administrative_reason_short_name">Convocation judiciaire ou
+        administrative</string>
+    <string name="general_interest_task_reason_short_name">Mission d\'intérêt général</string>
+    <string name="work_reason_description">Déplacements entre le domicile et le lieu d\'exercice de
+        l’activité professionnelle, lorsqu\'ils sont indispensables à l\'exercice d’activités ne
+        pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant
+        être différés (à utiliser par les travailleurs non-salariés, lorsqu\'ils ne peuvent disposer
+        d\'un justificatif de déplacement établi par leur employeur).</string>
+    <string name="purchase_of_necessities_reason_description">Déplacements pour effectuer des
+        achats de fournitures nécessaires à l\'activité professionnelle et des achats de première
+        nécessité (y compris les acquisitions à titre gratuit (distribution de denrées
+        alimentaires…) et les déplacements liés à la perception de prestations sociales et au
+        retrait d’espèces) dans des établissements dont les activités demeurent autorisées (liste
+        sur gouvernement.fr).</string>
+    <string name="health_reason_description">Consultations et soins ne pouvant être assurés à
+        distance et ne pouvant être différés; consultations et soins des patients atteints d\'une
+        affection de longue durée.</string>
+    <string name="family_reason_description">Déplacements pour motif familial impérieux, pour
+        l\'assistance aux personnes vulnérables ou la garde d’enfants.</string>
+    <string name="sports_or_animals_reason_description">Déplacements brefs, dans la limite d\'une
+        heure quotidienne et dans un rayon maximal d\'un kilomètre autour du domicile, liés soit à
+        l\'activité physique individuelle des personnes, à l\'exclusion de toute pratique sportive
+        collective et de toute proximité avec d\'autres personnes, soit à la promenade avec les
+        seules personnes regroupées dans un même domicile, soit aux besoins des animaux de
+        compagnie.</string>
+    <string name="judicial_or_administrative_reason_description">Convocation judiciaire ou
+        administrative.</string>
+    <string name="general_interest_task_reason_description">Participation à des missions d\'intérêt
+        général sur demande de l\'autorité administrative.</string>
+    <string name="create_certificate">Créer l\'attestation</string>
+    <string name="fill_certificate">Fill l\'attestation</string>
+    <string name="please_fill_info">Merci de remplir les informations demandées</string>
+    <string name="loading_please_wait">Chargement… Merci d\'attendre…</string>
+    <string name="please_fill_date_time">Merci d\'indiquer l\'heure et la date</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="save_profile">Sauvergarder</string>
+    <string name="remove_all_certificates">Supprimer les attestations</string>
+    <string name="date_time_placeholder">%1$s à %2$s</string>
+    <string name="select_exit_date">Sélectionner la date de sortie</string>
+    <string name="select_your_birthdate">Sélectionner votre date de naissance</string>
+    <string name="ask_remove_all_certificates">Souhaitez vous supprimer toutes vos attestations ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="save_changes">Sauvergarder les changements</string>
+    <string name="ask_save_changes">Souhaitez vous sauvegarder les changements ?</string>
+    <string name="save">Sauvegarder</string>
+    <string name="discard">Oublier</string>
+    <string name="certificate">Attestation</string>
+    <string name="qr_code">QR Code</string>
+    <string name="icon_description">Image contenant un icon pour facilement identifier les raisons
+        d\'une sortie ou d\'un déplacement.</string>
+    <string name="pdf_view_description">Image utilisé pour afficher un pdf (dans notre cas une
+        attestation)</string>
+    <string name="open_source_code">Code open-source</string>
+    <string name="open_source_text">Pour comprendre comment l\'application fonctionne vous pouvez
+        visualiser le code source (écrit en Kotlin) à:</string>
+    <string name="open_source_link">https://github.com/PeredurOmega/FrenchTravelCertificate</string>
+    <string name="eula">CGU</string>
+    <string name="pick">Choisir</string>
+    <string name="exit_date">Date de sortie</string>
+    <string name="exit_time">Heure de sortie</string>
+    <string name="fill_with_profile">Compléter avec le profil</string>
+    <string name="no_certificate">Aucune attestation</string>
+    <string name="last_name">Nom de famille</string>
+    <string name="first_name">Prénom</string>
+    <string name="birth_date">Date de naissance</string>
+    <string name="birth_place">Lieu de naissance</string>
+    <string name="address">Adresse actuelle</string>
+    <string name="city">Ville actuelle</string>
+    <string name="postal_code">Code postal actuel</string>
+
+    <string name="eula_content_part_1">Applicable à partir du: 12 April 2020</string>
+    <string name="eula_content_part_2">(Note: toutes les clauses contenues dans cet accord sont
+        considérées comme connues, vous avez donc à les lire entièrement)</string>
+    <string name="eula_content_part_3">Ces Condiditions Générales d\'Utilisation (“CGU”)
+        constituent un accord entre vous et Paul SOUTEYRAT (aussi appelé le “Détenteur”) concernant
+        l\'Application de création d\'attestation pour les téléphones fonctionnant (par mesure de
+        simplicité référencée dans leur globalité par les termes suivants :“Produit Logiciel”,
+        le “Logiciel”, ou simplement "l\'Application"). En installant le Logiciel ou en utilisant
+        le Logiciel, vous acceptez d\'être lié aux termes de ce contrat de licence.
+    </string>
+    <string name="eula_content_part_4">Votre utilisation du Logiciel (tel que spécifié ci-dessous)
+        est sujette à des termes et des conditions énoncés dans ces CGU. Si vous n\'acceptez pas
+        les termes de ces CGU, n\'installez pas (ou désinstallez) le Logiciel et ne l\'utilisez pas.
+    </string>
+    <string name="eula_content_part_5">1. Licence. Le Logiciel est concédé sous licence et non
+        vendu. Le Détenteur vous accorde un droit limité, non-exclusive, non-transférable et
+        non-cessible ainsi qu\'une licence pour utiliser une copie du Logiciel pour votre
+        utilisation personnel et non-commerciale sur un unique appareil. Les droits accordés ici
+        sont sujets à votre respect des CGU. Le Logiciel vous est concédé sous licence, et par le
+        contrat présent vous reconnaissez qu\'aucun titre ou droit de propriété vis-à-vis du
+        Logiciel ne vous est transféré ou assigné et que ces CGU ne peuvent en aucun cas être
+        interprétées en une vente d\'un quelconque droit vis-à-vis du Logiciel.
+    </string>
+    <string name="eula_content_part_6">2. Restrictions d\'usage. Sauf si le Détenteur vous a
+        autorisé à distribuer le Logiciel, vous ne pouvez pas faire ou distribuer des copies du
+        Logiciel ou transférer le Logiciel d\'un appareil à un autre. Vous ne pouvez pas décompiler,
+        désassembler, développer, désosser ("reverse engineering"), inclure dans un autre logiciel
+        ou traduire le Logiciel, ou utiliser le Logiciel pour une quelconque utilisation
+        commerciale. Vous ne pouvez pas modifier, altérer, changer ou sauf accord contraire faire
+        une quelconque modification du Logiciel ou créer un travail, un logiciel ou une oeuvre,
+        dérivé ou basé sur le Logiciel. Vous ne pouvez pas louer, revendre, sous-licencer,
+        assigner, lease, distribuer ou sauf accord contraire transférer le Logiciel ou cette
+        licence. Toute tentative, tout essai et toutes démarches sont alors considérés comme nuls
+        et non-avenus.</string>
+    <string name="eula_content_part_7">3. Copyright / Propriété Intelectuelle. Vous reconaissez
+        qu\'aucun titre de propriété intellectuelle sur le Logiciel ne vous est transféré. De plus,
+        vous reconnaissez que les titres et les droits du Logiciel restent et resteront la
+        propriété exclusive du Détenteur, et que vous n\'avez et n\'acquiérerez aucun droit ou
+        titre sur le Logiciel. Vous ne devez en auncun cas supprimer ou obscursir le copyright
+        du Détenteur, la marque ou toute autre avis ou étiquette de propriété présent dans le
+        Logiciel et/ou téléchargé par ce-dernier.</string>
+    <string name="eula_content_part_8">4. Clause de non-responsabilité et exclusion de garanties.
+        Le Logiciel est fourni "tel quel", sans garantie d\'aucune sorte. Nous déclinons et ne
+        formulons aucune garantie explicite ou implicite et en particulier nous refusons les
+        garanties de qualité marchande, de conditions de vendabilité, conformité à une
+        utilisation particulière, de titre de propriété et de respect des droits des tiers. Vous
+        assumez l\'ensemble des risques quant à la qualité, aux effets et aux perfomances du
+        Logiciel. Nous ne garantissons en aucun cas que les fonctionalités contenues dans le
+        Logiciel satisferont ou satisfont vos critères et exigences ou que les opérations et
+        actions de ce Logiciel sont et seront sans erreurs.</string>
+    <string name="eula_content_part_9">5. Limitation de responsabilité. Dans aucun cas le Détenteur
+        ne serait être tenu pour responsable de tous dommages directs, indirects ou autres,
+        résultants de la possession, l\'accès, l\'utilisation ou le dysfonctionnement du Logiciel,
+        incluant sans limitation les dommages à la propriété, une perte de valeur, les
+        disfonctionnements d\'ordinateur ou d\'appareils mobiles et, dans le cadre légal, les
+        dommages pour blessures corporelles, perte de profits ou dommages punitifs de toute
+        cause d\'action résultante ou reliée à ces CGU ou au Logiciel, causés à tort (incluant la
+        négligence) et cela que le Détenteur soit au courant ou non de la potentialité de tels
+        dommages.</string>
+    <string name="eula_content_part_10">Dû au fait que certains états&#47;pays n\'autorisent pas
+        certaines limitaions de responsabilité, cette limitation de responsabilité ne devrez
+        s\'appliquer que dans le cadre complet permis par la loi applicable dans la juridiction
+        ciblée. Cette limitation de responsabilité ne s\'applique pas exclusivement dans la mesure
+        ou toute disposition spécifique de cette limitation de responsabilité est interdite par
+        n\'importe quelle loi municipale, fédérale ou nationale, qui ne peuvent être prévenus
+        et&#47;ou combattus. Ces CGU vous donnent des droits légaux spécifiques, et vous pouvez
+        avoir d\'autres droits variant de juridiction en juridiction.
+    </string>
+    <string name="eula_content_part_11">Dans aucun cas la responsabilité du Détenteur ne serait
+        être engagée pour tous les dommages (excepté ceux requis par la loi applicable). Et les
+        remboursements éventuels des dommages ne peuvent excéder le prix que vous avez payé pour
+        l\'acquisition et l\'utilisation du Logiciel, facture ou reçu à l\'appui.</string>
+    <string name="eula_content_part_12">6. Confidentialité. Le logiciel ne peut pas collecter les
+        données "in-app" pour les envoyer à des serveurs ou appareils distants. Vos informations
+        personnelles dans votre profile et vos attestations sont uniquèment et complètement
+        stockées dans la mémoire de stockage interne de votre appareil et ne sont pas et ne peuvent
+        pas être envoyées ou communiquées à d\'autres appareils, personnes ou institutions. Le
+        Logiciel peut tout de même collecter des données pour détecter d\'éventuels bugs et en
+        particulier récolter des informations sur les "crashs" aussi appelés plantages de
+        l'Application. Néanmoins toutes les données sont anonymisées et ne sont utilisés que dans
+        le but d'améliorer le Logiciel. Le Logiciel peut aussi collecter des données relatives aux
+        nombres de lancement de l\'application à des fins statistiques.</string>
+    <string name="eula_content_part_13">7. Indemnité. Vous acceptez d\'indémniser, de défendre et
+        de décharger le Détenteur de, et contre, tous dommages, pertes ou dépenses découlant
+        directement ou indirectement de : (i) vos actes et vos oublis d\'agir en utilisant le
+        Logiciel en respectant les temes et clauses des CGU; ou (ii) votre manquement aux CGU.</string>
+    <string name="eula_content_part_14">Pour terminer, toutes les personnes impliquées dans la
+        création de cette application vous souhaitent de rester en bonne santé (et de sortir aussi
+        peu que possible de chez vous). Nous espérons que vous utiliserez cette application à bon
+        escient.</string>
+    <string name="eula_content_part_15">par Paul SOUTEYRAT</string>
+</resources>

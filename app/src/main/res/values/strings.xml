@@ -4,63 +4,41 @@
     <string name="menu_certificates">Certificates</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_eula">EULA</string>
-
+    <string name="header_sub_title">for france mainland</string>
     <string name="no_profile_info">Please fill your profile to create a certificate.</string>
     <string name="fill_profile">Fill profile</string>
     <string name="unknown_error">An unknown error occurred.</string>
-
-    <string name="first_name_key" translatable="false">FIRST_NAME</string>
-    <string name="last_name_key" translatable="false">LAST_NAME</string>
-    <string name="shared_pref" translatable="false">com.pi.attestation.SHARED_PREFERENCES</string>
-    <string name="birth_date_key" translatable="false">BIRTH_DATE</string>
-    <string name="birth_place_key" translatable="false">BIRTH_PLACE</string>
-    <string name="address_key" translatable="false">ADDRESS</string>
-    <string name="postal_code_key" translatable="false">POSTAL_CODE</string>
-    <string name="city_key" translatable="false">CITY</string>
-
-    <string name="work_reason_short_name">Déplacements entre le domicile et le travail</string>
-    <string name="purchase_of_necessities_reason_short_name">Déplacements pour les achats
-        nécéssaires</string>
-    <string name="health_reason_short_name">Consultations et soins</string>
-    <string name="family_reason_short_name">Déplacements pour motif familial</string>
-    <string name="sports_or_animals_reason_short_name">Déplacements brefs pour l\'activité physique
-        et les animaux</string>
-    <string name="judicial_or_administrative_reason_short_name">Convocation judiciaire ou
-        administrative</string>
-    <string name="general_interest_task_reason_short_name">Mission d\'intérêt général</string>
-
-    <string name="work_reason_description">Déplacements entre le domicile et le lieu d\'exercice de
-        l’activité professionnelle, lorsqu\'ils sont indispensables à l\'exercice d’activités ne
-        pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant
-        être différés (à utiliser par les travailleurs non-salariés, lorsqu\'ils ne peuvent disposer
-        d\'un justificatif de déplacement établi par leur employeur).</string>
-    <string name="purchase_of_necessities_reason_description">Déplacements pour effectuer des
-        achats de fournitures nécessaires à l\'activité professionnelle et des achats de première
-        nécessité (y compris les acquisitions à titre gratuit (distribution de denrées
-        alimentaires…) et les déplacements liés à la perception de prestations sociales et au
-        retrait d’espèces) dans des établissements dont les activités demeurent autorisées (liste
-        sur gouvernement.fr). </string>
-    <string name="health_reason_description">Consultations et soins ne pouvant être assurés à
-        distance et ne pouvant être différés; consultations et soins des patients atteints d\'une
-        affection de longue durée. </string>
-    <string name="family_reason_description">Déplacements pour motif familial impérieux, pour
-        l\'assistance aux personnes vulnérables ou la garde d’enfants. </string>
-    <string name="sports_or_animals_reason_description">Déplacements brefs, dans la limite d\'une
-        heure quotidienne et dans un rayon maximal d\'un kilomètre autour du domicile, liés soit à
-        l\'activité physique individuelle des personnes, à l\'exclusion de toute pratique sportive
-        collective et de toute proximité avec d\'autres personnes, soit à la promenade avec les
-        seules personnes regroupées dans un même domicile, soit aux besoins des animaux de
-        compagnie. </string>
-    <string name="judicial_or_administrative_reason_description">Convocation judiciaire ou
-        administrative.</string>
-    <string name="general_interest_task_reason_description">Participation à des missions d\'intérêt
-        général sur demande de l\'autorité administrative.</string>
+    <string name="work_reason_short_name">Travel between home and work</string>
+    <string name="purchase_of_necessities_reason_short_name">Travel to purchase essential goods
+    </string>
+    <string name="health_reason_short_name">Medical consultations and care</string>
+    <string name="family_reason_short_name">Travel for family reason</string>
+    <string name="sports_or_animals_reason_short_name">Short travel for exercising or animals
+        walking</string>
+    <string name="judicial_or_administrative_reason_short_name">Judicial or administrative
+        convocation</string>
+    <string name="general_interest_task_reason_short_name">General interest task</string>
+    <string name="work_reason_description">Travel between my home and my work, when remote work
+        isn\'t an option (you\'ll also have to fill the work travel document) or work travels
+        can\'t be canceled.</string>
+    <string name="purchase_of_necessities_reason_description">Travel to purchase essential goods
+        within the nearest authorized facilities (list available at gouvernement.fr).</string>
+    <string name="health_reason_description">Travels for medical consultations that can\'t be done
+        remotely.</string>
+    <string name="family_reason_description">Travels for family reasons, to assist vulnerable
+        individuals, or for child care.</string>
+    <string name="sports_or_animals_reason_description">Short travels, close to home, for
+        individual physical activity (excluding group sports or proximity with other individuals),
+        or for walking pets.</string>
+    <string name="judicial_or_administrative_reason_description">Judicial or administrative
+        convocation.</string>
+    <string name="general_interest_task_reason_description">Participation to general interest
+        missions commissioned by an administrative authority.</string>
     <string name="create_certificate">Create certificate</string>
     <string name="fill_certificate">Fill certificate</string>
     <string name="please_fill_info">Please fill info</string>
     <string name="loading_please_wait">Loading… Please wait…</string>
     <string name="please_fill_date_time">Please fill date and time fields</string>
-    <string name="an_unknown_error_occurred">An unknown error occurred</string>
     <string name="menu_settings">Settings</string>
     <string name="save_profile">Save profile</string>
     <string name="remove_all_certificates">Remove all certificates</string>
@@ -76,10 +54,14 @@
     <string name="discard">Discard</string>
     <string name="certificate">Certificate</string>
     <string name="qr_code">QR Code</string>
-    <string name="icon_description">Image view containg an icon to easily identifiate the reason to exit</string>
-    <string name="pdf_view_description">Image view used to display a pdf file (in our case the certificate)</string>
+    <string name="icon_description">Image view containing an icon to easily identificate the reason
+        to exit</string>
+    <string name="pdf_view_description">Image view used to display a pdf file (in our case the
+        certificate)</string>
     <string name="open_source_code">Open-source code</string>
-    <string name="open_source_text">To see how we manage your data and how the application works you can see the code source of the application (written in Kotlin) at</string>
+    <string name="open_source_text">To see how we manage your data and how the application works
+        you can see the code source of the application (written in Kotlin) at:</string>
+    <string name="open_source_link">https://github.com/PeredurOmega/FrenchTravelCertificate</string>
     <string name="eula">EULA</string>
     <string name="pick">Pick</string>
     <string name="exit_date">Exit date</string>
@@ -90,10 +72,92 @@
     <string name="first_name">First name</string>
     <string name="birth_date">Birth date</string>
     <string name="birth_place">Birth place</string>
-    <string name="address">Address</string>
-    <string name="city">City</string>
-    <string name="postal_code">Postal code</string>
-    <string name="attestation">Attestation</string>
-    <string name="de_d_placement_d_rogatoire">de déplacement dérogatoire</string>
+    <string name="address">Current address</string>
+    <string name="city">Current city</string>
+    <string name="postal_code">Current postal code</string>
 
+    <string name="eula_content_part_1">Applicable from: 12 April 2020</string>
+    <string name="eula_content_part_2">(Note: all the clauses contained in this agreement are
+        considered known, therefore you have to read them entirely)</string>
+    <string name="eula_content_part_3">This End-User Licence Agreement (“EULA”) constitutes an
+        agreement between you and Paul SOUTEYRAT (herein referred to as the “Owner”) with regard
+        to the "Travel certificate" (also called "Attestation de déplacement" in French)
+        Application for Android (herein referred to as “Software Product”, “Software”, or simply
+        “The Application”). By installing the Software, you are agreeing to be bound by the terms
+        of this licence agreement.</string>
+    <string name="eula_content_part_4">Your use of the Software (as specified below) is subject to
+        the terms and conditions set forth in this EULA. If you do not accept the terms of this
+        EULA, do not install (or uninstall) the Software.</string>
+    <string name="eula_content_part_5">1. Licence. The Software is licenced, not sold.
+        The Owner grants you a non-exclusive, non-transferable, non-sublicensable, limited right
+        and licence to use one copy of the Software for your personal non-commercial use on a
+        single device. The rights granted herein are subject to your compliance with this EULA.
+        The Software is being licenced to you and you hereby acknowledge that no title or ownership
+        in the Software is being transferred or assigned and this EULA is not to be construed as a
+        sale of any rights in the Software. You may see the full license of the source code at
+        https://github.com/PeredurOmega/FrenchTravelCertificate/blob/master/LICENSE (English only).
+    </string>
+    <string name="eula_content_part_6">2. Restrictions of use. Unless the Owner has authorized you
+        to distribute the Software, you shall not make or distribute copies of the Software or
+        transfer the Software from one device to another. You shall not decompile, reverse engineer,
+        disassemble, include in other software, or translate the Software, or use the Software for
+        any commercial purposes. You shall not modify, alter, change or otherwise make any
+        modification to the Software or create derivative works based upon the Software. You shall
+        not rent, lease, resell, sub-licence, assign, distribute or otherwise transfer the Software
+        or this licence. Any attempt to do so shall be void and of no effect.</string>
+    <string name="eula_content_part_7">3. Copyright. You acknowledge that no title to the
+        intellectual property in the Software is transferred to you. You further acknowledge that
+        title and full ownership rights to the Software will remain the exclusive property of
+        the Owner, and you will not acquire any rights to the Software. You shall not remove
+        or obscure the Owner\'s copyright, trade mark or other proprietary notices from any of the
+        materials contained in this package or downloaded together with the Software.</string>
+    <string name="eula_content_part_8">4. Disclaimer of warranty. The Software is provided “AS IS”,
+        without warranty of any kind. We disclaim and make no express or implied warranties and
+        specifically disclaim the warranties of merchantability, fitness for a particular purpose
+        and non-infringement of third-party rights. The entire risk as to the quality and
+        performance of the Software is with you. We do not warrant that the functions contained in
+        the Software will meet your requirements or that the operation of the Software will be
+        error-free.</string>
+    <string name="eula_content_part_9">5. Limitation of liability. In no event will the Owner be
+        liable for special, incidental or consequential damages resulting from possession, access,
+        use or malfunction of the Software, including but not limited to damages to property,
+        loss of goodwill, computer or mobile device malfunction and, to the extent permitted by
+        law, damages for personal injuries, property damage, lost profits or punitive damages from
+        any causes of action arising out of or related to this EULA or the Software, whether
+        arising in tort (including negligence), contract, strict liability or otherwise and whether
+        or not the Owner has been advised of the possibility of such damages.</string>
+    <string name="eula_content_part_10">Because some states/countries do not allow certain
+        limitations of liability, this limitation of liability shall apply to the fullest extent
+        permitted by law in the applicable jurisdiction. This limitation of liability shall not be
+        applicable solely to the extent that any specific provision of this limitation of liability
+        is prohibited by any federal, state, or municipal law, which cannot be pre-empted. This
+        EULA gives you specific legal rights, and you may have other rights that vary from
+        jurisdiction to jurisdiction.</string>
+    <string name="eula_content_part_11">In no event shall the Owner’s liability for all damages
+        (except as required by applicable law) exceed the actual price paid by you for use of
+        the Software (supported by an invoice).</string>
+    <string name="eula_content_part_12">6. Privacy. The Software can not collect any in-app data
+        for sending it to an other server or device. Your info in your profile and your
+        certificates are fully stored in the internal storage of your device and are not and can
+        not be sent to any device, person or institution. The Software may still collect data to
+        detect bugs and especially to know when the app crashes. But all data are anonymized and
+        are just used for the purpose of improving the Software. The Software may also collect
+        the number of "app launches" for statistical purposes.</string>
+    <string name="eula_content_part_13">7. Indemnity. You agree to indemnify, defend and hold the
+        Owner harmless from and against any and all damages, losses and expenses arising directly
+        or indirectly from: (i) your acts and omissions to act in using the Software pursuant to
+        the terms of the EULA; or (ii) your breach of this EULA.</string>
+    <string name="eula_content_part_14">Finally, everyone involved in the creation of this
+        application, wishes you to stay safe (and home as long as much as possible). We hope you
+        will use this application wisely.</string>
+    <string name="eula_content_part_15">by Paul SOUTEYRAT</string>
+
+    <string name="first_name_key" translatable="false">FIRST_NAME</string>
+    <string name="last_name_key" translatable="false">LAST_NAME</string>
+    <string name="shared_pref" translatable="false">com.pi.attestation.SHARED_PREFERENCES</string>
+    <string name="birth_date_key" translatable="false">BIRTH_DATE</string>
+    <string name="birth_place_key" translatable="false">BIRTH_PLACE</string>
+    <string name="address_key" translatable="false">ADDRESS</string>
+    <string name="postal_code_key" translatable="false">POSTAL_CODE</string>
+    <string name="city_key" translatable="false">CITY</string>
 </resources>

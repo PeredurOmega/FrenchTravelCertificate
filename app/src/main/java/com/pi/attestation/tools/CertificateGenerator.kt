@@ -166,6 +166,6 @@ class CertificateGenerator(mContext: Context, private val certificate: Certifica
             val intent = Intent(context, CertificateViewerActivity::class.java)
             intent.putExtra(CertificateViewerActivity.FILE_NAME, result)
             context.startActivity(intent)
-        }else Toast.makeText(context, R.string.an_unknown_error_occurred, Toast.LENGTH_SHORT).show()
+        }else Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show()
     }
 }
