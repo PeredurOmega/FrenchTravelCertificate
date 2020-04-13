@@ -1,5 +1,6 @@
 package com.pi.attestation
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -15,6 +16,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
 import com.pi.attestation.ui.creator.CertificateCreatorActivity
 import com.pi.attestation.ui.profile.InfoManager
 import com.pi.attestation.ui.tools.Leaver
@@ -58,6 +62,26 @@ class MainActivity : AppCompatActivity() {
                 else showFab()
             }
         }
+
+        checkForUpdate(this)
+    }
+
+    private fun checkForUpdate(activity: Activity){
+        Thread(Runnable {
+            val appUpdateManager = AppUpdateManagerFactory.create(activity)
+            val appUpdateInfo = appUpdateManager.appUpdateInfo
+            appUpdateInfo.addOnSuccessListener {
+                if (it.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                    && it.clientVersionStalenessDays() != null
+                    && it.clientVersionStalenessDays() >= 1
+                    && it.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                    activity.runOnUiThread {
+                        appUpdateManager.startUpdateFlowForResult(it, AppUpdateType.IMMEDIATE,
+                            activity, 123)
+                    }
+                }
+            }
+        }).start()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

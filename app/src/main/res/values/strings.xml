@@ -181,7 +181,7 @@
         will use this application wisely.</string>
     <string name="eula_content_part_15">by Paul SOUTEYRAT</string>
     <string name="people_to_credit">Creator : Paul SOUTEYRAT. Based on the
-        work provided in https://github.com/LAB-MI/deplacement-covid-19.</string>
+        work provided in https://github.com/LAB-MI/deplacement-covid-19</string>
 
     <string name="first_name_key" translatable="false">FIRST_NAME</string>
     <string name="last_name_key" translatable="false">LAST_NAME</string>
