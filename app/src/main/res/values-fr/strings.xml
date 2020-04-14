@@ -35,7 +35,7 @@
     <string name="malformed_birthdate">La date de naissance doit être au format jj/mm/aaaa</string>
     <string name="no_profile_info">Compléter votre profile pour créer une attestation.
     </string>
-    <string name="fill_profile">Compléter</string>
+    <string name="fill_profile">Compléter le profile</string>
     <string name="unknown_error">Une erreur inconnue s\'est produite.</string>
     <string name="work_reason_short_name">Déplacements entre le domicile et le travail</string>
     <string name="purchase_of_necessities_reason_short_name">Déplacements pour les achats
@@ -74,7 +74,7 @@
     <string name="general_interest_task_reason_description">Participation à des missions d\'intérêt
         général sur demande de l\'autorité administrative.</string>
     <string name="create_certificate">Créer l\'attestation</string>
-    <string name="fill_certificate">Fill l\'attestation</string>
+    <string name="fill_certificate">Compléter l\'attestation</string>
     <string name="please_fill_info">Merci de remplir les informations demandées</string>
     <string name="loading_please_wait">Chargement… Merci d\'attendre…</string>
     <string name="please_fill_date_time">Merci d\'indiquer l\'heure et la date</string>

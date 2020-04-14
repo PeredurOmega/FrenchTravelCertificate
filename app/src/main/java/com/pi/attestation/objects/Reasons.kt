@@ -30,25 +30,25 @@ class Reasons(private val resources: Resources) {
         return when (position){
             0 -> Reason(resources.getString(R.string.work_reason_short_name),
                 resources.getString(R.string.work_reason_description),
-                "business_96px",  -0xff6978, 0)
+                "business_96px",  -0xff6978, 0, "travail")
             1 -> Reason(resources.getString(R.string.purchase_of_necessities_reason_short_name),
                 resources.getString(R.string.purchase_of_necessities_reason_description),
-                "buy_96px",  -0xa5fa, 1)
+                "buy_96px",  -0xa5fa, 1, "courses")
             2 -> Reason(resources.getString(R.string.sports_or_animals_reason_short_name),
                 resources.getString(R.string.sports_or_animals_reason_description),
-                "exercise_96px", -0xb350b0, 2)
+                "exercise_96px", -0xb350b0, 2, "sport")
             3 -> Reason(resources.getString(R.string.family_reason_short_name),
                 resources.getString(R.string.family_reason_description),
-                "family_96px",  -0x16e19d, 3)
+                "family_96px",  -0x16e19d, 3, "famille")
             4 -> Reason(resources.getString(R.string.health_reason_short_name),
                 resources.getString(R.string.health_reason_description),
-                "caduceus_96px",  -0xfc560c, 4)
+                "caduceus_96px",  -0xfc560c, 4, "sante")
             5 -> Reason(resources.getString(R.string.judicial_or_administrative_reason_short_name),
                 resources.getString(R.string.judicial_or_administrative_reason_description),
-                "law_96px", -0x98c549, 5)
+                "law_96px", -0x98c549, 5, "judiciaire")
             else -> Reason(resources.getString(R.string.general_interest_task_reason_short_name),
                 resources.getString(R.string.general_interest_task_reason_description),
-                "work_96px",  -0x3223c7, 6)
+                "work_96px",  -0x3223c7, 6, "missions")
         }
     }
 

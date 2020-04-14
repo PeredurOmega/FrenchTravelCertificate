@@ -23,11 +23,10 @@
         help us please click on the bellow button "Help us to translate".</string>
     <string name="how_to_use_title">How to use the certificate ?</string>
     <string name="how_to_use_text">All your certificates are available on the app\'s main page.
-        To dispaly them you just need to click on them. To see the QR Code you just need to swipe
+        To display them you just need to click on them. To see the QR Code you just need to swipe
         to the left. To quit just click on the red bottom-left button.</string>
     <string name="date_time_match_error">Time must match HH:mm and date must match dd/mm/yyyy.
     </string>
-    <string name="create_a_certificate">Create a certificate</string>
     <string name="malformed_birthdate">The birthdate should matched dd/mm/yyyy</string>
     <string name="ask_for_creating_a_certificate">Do you want to create a certificate ?</string>
     <string name="no_profile_info">Please fill your profile to create a certificate.</string>
@@ -60,6 +59,7 @@
     <string name="general_interest_task_reason_description">Participation to general interest
         missions commissioned by an administrative authority.</string>
     <string name="create_certificate">Create certificate</string>
+    <string name="create_a_certificate">Create a certificate</string>
     <string name="fill_certificate">Fill certificate</string>
     <string name="please_fill_info">Please fill info</string>
     <string name="loading_please_wait">Loading… Please wait…</string>

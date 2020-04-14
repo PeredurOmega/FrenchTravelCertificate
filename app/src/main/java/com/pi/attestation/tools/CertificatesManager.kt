@@ -39,6 +39,7 @@ class CertificatesManager(dirFile: File) {
      */
     fun removeCertificate(certificateToRemove: Certificate){
         val certificates = getExistingCertificates()
+        if(certificates.size == 0) return
         var index = 0
         while (index < certificates.size &&
             certificates[index].pdfPath != certificateToRemove.pdfPath){
@@ -96,7 +97,21 @@ class CertificatesManager(dirFile: File) {
      * Removes all the certificates by deleting the [CertificatesManager.certificatesFile].
      */
     fun removeAll() {
+        val certificates = getExistingCertificates()
         certificatesFile.delete()
-        //TODO WE SHOULD ALSO REMOVE ALL PDF
+        for(certificate in certificates){
+            deletePdf(certificate)
+        }
+    }
+
+    /**
+     * Deletes the pdf bound to a certificate. This action is final and if executed the pdf will
+     * be fully deleted. This method should be called only when we are sure that the user really
+     * wants to delete a certificate.
+     * @param certificate [Certificate] bound to the pdf to delete. This [Certificate] should also
+     * be deleted when this action is done.
+     */
+    fun deletePdf(certificate: Certificate) {
+        File(certificate.pdfPath).delete()
     }
 }

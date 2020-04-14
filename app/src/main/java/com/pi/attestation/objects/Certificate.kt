@@ -29,7 +29,7 @@ class Certificate(val creationDateTime: DateTime, val userInfo: UserInfo,
         dataBuilder.append("Cree le: ")
             .append(creationDateTime.date)
             .append(" a ")
-            .append(creationDateTime.time)
+            .append(creationDateTime.time.replace(":", "h"))
             .append("; Nom: ")
             .append(userInfo.lastName)
             .append("; Prenom: ")
@@ -47,9 +47,22 @@ class Certificate(val creationDateTime: DateTime, val userInfo: UserInfo,
             .append("; Sortie: ")
             .append(exitDateTime.date)
             .append(" a ")
-            .append(exitDateTime.time)
+            .append(exitDateTime.time.replace(":", "h"))
             .append("; Motifs: ")
-            .append(reason.shortName)
+            .append(reason.value)
         return dataBuilder.toString()
+    }
+
+    override fun equals(other: Any?): Boolean {
+        return if(other is Certificate){ other.pdfPath == pdfPath }else false
+    }
+
+    override fun hashCode(): Int {
+        var result = creationDateTime.hashCode()
+        result = 31 * result + userInfo.hashCode()
+        result = 31 * result + exitDateTime.hashCode()
+        result = 31 * result + reason.hashCode()
+        result = 31 * result + pdfPath.hashCode()
+        return result
     }
 }

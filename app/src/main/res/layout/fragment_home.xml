@@ -14,40 +14,4 @@
         android:clipToPadding="false"
         android:padding="7dp"
         tools:context=".ui.home.HomeFragment"/>
-
-    <LinearLayout
-        android:id="@+id/noCertificateLayout"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_text_field"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="15dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimary"
-            android:text="@string/no_certificate"/>
-
-        <TextView
-            android:id="@+id/noCertificateText"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="@string/no_certificate_explanation"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/fillProfile"
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fill_profile"/>
-    </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

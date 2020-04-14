@@ -7,6 +7,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.pi.attestation.R
+import com.pi.attestation.ui.home.CertificatesAdapter.Companion.CREATE_CERTIFICATE_CARD_TYPE
+import com.pi.attestation.ui.home.CertificatesAdapter.Companion.CREATE_CERTIFICATE_WHEN_NONE_CARD_TYPE
+import com.pi.attestation.ui.home.CertificatesAdapter.Companion.FILL_PROFILE_CARD_TYPE
 
 /**
  * [ItemTouchHelper.Callback] that provides a "swipe to delete" feature.
@@ -52,6 +55,9 @@ abstract class SwipeToDeleteCallback internal constructor(context: Context) :
 
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder)
             : Int {
+        if(viewHolder.itemViewType == FILL_PROFILE_CARD_TYPE
+            || viewHolder.itemViewType == CREATE_CERTIFICATE_WHEN_NONE_CARD_TYPE
+            || viewHolder.itemViewType == CREATE_CERTIFICATE_CARD_TYPE) return 0
         return makeMovementFlags(0, ItemTouchHelper.LEFT)
     }
 

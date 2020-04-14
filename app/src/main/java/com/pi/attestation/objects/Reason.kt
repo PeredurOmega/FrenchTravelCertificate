@@ -10,6 +10,7 @@ import java.io.Serializable
  * @param iconName [String] Name of the icon of this reason.
  * @param color [Int] Color value of the icon's background tint of this reason.
  * @param id [Int] Position / Id of this reason.
+ * @param value [String] Official value of this reason.
  */
 class Reason (val shortName: String, val fullDescription: String, val iconName: String,
-              val color: Int, val id: Int) : Serializable
+              val color: Int, val id: Int, val value : String) : Serializable
