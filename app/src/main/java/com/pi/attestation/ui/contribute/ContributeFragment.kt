@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.pi.attestation.R
 
-
+/**
+ * [Fragment] used to invite people to contribute to this project by helping for translating, for
+ * designing and for coding.
+ */
 class ContributeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -21,30 +24,29 @@ class ContributeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val helpDir = "https://github.com/PeredurOmega/FrenchTravelCertificate/blob/master/"
+
         val helpToCode = view.findViewById<MaterialButton>(R.id.helpToCode)
         helpToCode.setOnClickListener {
-            val url = "https://github.com/PeredurOmega/FrenchTravelCertificate/" +
-                    "blob/master/HELP_TO_CODE.md"
+            val helpToCodeUrl = helpDir + "HELP_TO_CODE.md"
             val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
+            i.data = Uri.parse(helpToCodeUrl)
             startActivity(i)
         }
 
         val helpToDesign = view.findViewById<MaterialButton>(R.id.helpToDesign)
         helpToDesign.setOnClickListener {
-            val url = "https://github.com/PeredurOmega/FrenchTravelCertificate/" +
-                    "blob/master/HELP_TO_DESIGN.md"
+            val helpToDesignUrl = helpDir + "HELP_TO_DESIGN.md"
             val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
+            i.data = Uri.parse(helpToDesignUrl)
             startActivity(i)
         }
 
         val helpToTranslate = view.findViewById<MaterialButton>(R.id.helpToTranslate)
         helpToTranslate.setOnClickListener {
-            val url = "https://github.com/PeredurOmega/FrenchTravelCertificate/" +
-                    "blob/master/HELP_TO_TRANSLATE.md"
+            val helpToTranslateUrl = helpDir + "HELP_TO_TRANSLATE.md"
             val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
+            i.data = Uri.parse(helpToTranslateUrl)
             startActivity(i)
         }
     }

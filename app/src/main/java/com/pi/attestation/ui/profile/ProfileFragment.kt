@@ -16,7 +16,10 @@ import com.pi.attestation.ui.tools.EditedListener
 import com.pi.attestation.ui.tools.Leaver
 import com.pi.attestation.ui.tools.SaverFragment
 
-
+/**
+ * [SaverFragment] displaying user's info and enabling him to edit his info.
+ * @see [SaverFragment]
+ */
 class ProfileFragment : SaverFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -64,6 +67,19 @@ class ProfileFragment : SaverFragment() {
         }
     }
 
+    /**
+     * Tries to save the info currently written in this [ProfileFragment]. In case it fails because
+     * info are incomplete or malformed a [Toast] will be shown. This method automatically hides the
+     * keyboard as the user should not be editing his info during the process.
+     * @param context [Context] provided to the [InfoManager]
+     * @param editionWatcher [InfoEditionWatcher] used to register the edition in case the save is
+     * successful.
+     * @param leaver [Leaver] to notify in case it's not null and the save is successful.
+     * @param userInfo [UserInfo] to save.
+     * @see [InfoManager]
+     * @see [InfoEditionWatcher]
+     * @see [Leaver]
+     */
     private fun saveInfo(context: Context, editionWatcher: InfoEditionWatcher, leaver: Leaver?,
                          userInfo: UserInfo) {
         hideKeyboard()

@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModelProvider
 import java.io.File
 import java.lang.reflect.InvocationTargetException
 
+/**
+ * Factory used to create [ViewModel] with specific constructors.
+ */
 class ViewModelFactory(private val cacheFile: File): ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

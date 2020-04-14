@@ -20,15 +20,41 @@ import com.pi.attestation.ui.profile.InfoManager
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * [Fragment] that is used to prompt the user for information. This fragment is only reached when
+ * the user chooses not to use its registered profile.
+ */
 class InfoFragment : Fragment() {
 
+    /**
+     * Previously selected [Reason] for the certificate that we are currently trying to fill.
+     */
     private lateinit var reason: Reason
+
+    /**
+     * Previously selected [DateTime] for the certificate that we are currently trying to fill.
+     */
     private lateinit var exitDateTime: DateTime
 
     companion object{
+
+        /**
+         * Key value for retrieving [InfoFragment#reason].
+         */
         private const val REASON = "REASON"
+
+        /**
+         * Key value for retrieving [InfoFragment#exitDateTime].
+         */
         private const val EXIT_DATE_TIME = "EXIT_DATE_TIME"
 
+        /**
+         * Creates a new instance of [InfoFragment] with the previously selected [Reason] and exit
+         * [DateTime] as arguments (enabling to retain arguments even in case of screen rotation).
+         * @param reason [Reason] previously selected.
+         * @param exitDateTime [DateTime] previously selected.
+         * @return New [InfoFragment].
+         */
         fun newInstance(reason: Reason, exitDateTime: DateTime): InfoFragment{
             val args = Bundle()
             args.putSerializable(REASON, reason)
@@ -71,6 +97,10 @@ class InfoFragment : Fragment() {
         }
     }
 
+    /**
+     * Creates a certificate once all the info are filled.
+     * @param context [Context] to provide to the [CertificateGenerator].
+     */
     private fun createCertificate(context: Context){
         val timeFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),

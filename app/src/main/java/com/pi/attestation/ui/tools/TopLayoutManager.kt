@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 
-
+/**
+ * [LinearLayoutManager] which enables smooth scrolling to a specific position.
+ */
 @Suppress("unused")
 class TopLayoutManager : LinearLayoutManager {
 
@@ -26,6 +28,10 @@ class TopLayoutManager : LinearLayoutManager {
         startSmoothScroll(topSmoothScroller)
     }
 
+    /**
+     * [LinearSmoothScroller] which is a bit slower than usual for a better rendering.
+     * Usually the speed is calculated with 25f/densityDpi. Here we use 150f/densityDpi.
+     */
     private class TopSmoothScroller(context: Context) : LinearSmoothScroller(context) {
 
         override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float {

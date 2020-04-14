@@ -8,15 +8,47 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.pi.attestation.R
 
-
-abstract class SwipeToDeleteCallback internal constructor(val context: Context) :
+/**
+ * [ItemTouchHelper.Callback] that provides a "swipe to delete" feature.
+ * @param context [Context] used to retrieve resources : [SwipeToDeleteCallback#background] and
+ * [SwipeToDeleteCallback#deleteDrawable]
+ */
+abstract class SwipeToDeleteCallback internal constructor(context: Context) :
     ItemTouchHelper.Callback() {
 
+    /**
+     * [Paint] holding the style and color information about how to draw geometries, text and bitmaps.
+     */
     private val clearPaint = Paint()
+
+    /**
+     * Background to draw when swiping to delete. This drawable should have exactly the size of the
+     * item which is being deleted and will be drawn at the exact same place of the original position
+     * of the item view which is being deleted.
+     */
     private val background = ContextCompat.getDrawable(context, R.drawable.delete_background)
+
+    /**
+     * Drawable to draw when swiping to delete. This drawable will be drawn at the center right of
+     * the original item position.
+     */
     private val deleteDrawable = ContextCompat.getDrawable(context, R.drawable.delete_bin_96px)
+
+    /**
+     * Original width of the [SwipeToDeleteCallback#deleteDrawable].
+     */
     private val intrinsicWidth: Int
+
+    /**
+     * Original height of the [SwipeToDeleteCallback#deleteDrawable].
+     */
     private val intrinsicHeight: Int
+
+    init {
+        clearPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
+        intrinsicWidth = deleteDrawable!!.intrinsicWidth
+        intrinsicHeight = deleteDrawable.intrinsicHeight
+    }
 
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder)
             : Int {
@@ -59,17 +91,19 @@ abstract class SwipeToDeleteCallback internal constructor(val context: Context) 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }
 
+    /**
+     * Clears the [Canvas].
+     * @param c [Canvas] to clear.
+     * @param left [Float] The left side of the rectangle to clear.
+     * @param top [Float] The top side of the rectangle to clear.
+     * @param right [Float] The right side of the rectangle to clear.
+     * @param bottom [Float] The bottom side of the rectangle to clear.
+     */
     private fun clearCanvas(c: Canvas, left: Float, top: Float, right: Float, bottom: Float) {
         c.drawRect(left, top, right, bottom, clearPaint)
     }
 
     override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
         return 0.7f
-    }
-
-    init {
-        clearPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
-        intrinsicWidth = deleteDrawable!!.intrinsicWidth
-        intrinsicHeight = deleteDrawable.intrinsicHeight
     }
 }

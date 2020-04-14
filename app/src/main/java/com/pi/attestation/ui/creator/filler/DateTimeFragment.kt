@@ -25,15 +25,36 @@ import com.pi.attestation.ui.profile.InfoManager
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+/**
+ * [Fragment] used to indicate the date and the time of the exit considered with the current reason.
+ * By default the date will be today. By default the time will be now.
+ */
 class DateTimeFragment : Fragment() {
 
+    /**
+     * Previously selected [Reason].
+     */
     private lateinit var reason: Reason
+
+    /**
+     * Currently selected date.
+     * @see Calendar
+     */
     private val date = Calendar.getInstance(Locale.getDefault())
 
     companion object{
+
+        /**
+         * Key value for retrieving [DateTimeFragment#reason].
+         */
         private const val REASON = "REASON"
 
+        /**
+         * Creates a new instance of [DateTimeFragment] with the previously selected [Reason] as an
+         * argument (enabling to retain this argument even in case of screen rotation).
+         * @param reason [Reason] previously selected.
+         * @return New [DateTimeFragment].
+         */
         fun newInstance(reason: Reason): DateTimeFragment{
             val args = Bundle()
             args.putSerializable(REASON, reason)
@@ -61,6 +82,10 @@ class DateTimeFragment : Fragment() {
         setUpCreation(view)
     }
 
+    /**
+     * Sets up the create button.
+     * @param view [View] where to find needed components for creation.
+     */
     private fun setUpCreation(view: View){
         val useProfile = view.findViewById<SwitchMaterial>(R.id.useProfile)
         val createButton = view.findViewById<MaterialButton>(R.id.createButton)
@@ -74,6 +99,13 @@ class DateTimeFragment : Fragment() {
         createButton.setOnClickListener { tryToCreateCertificate(useProfile.isChecked, view) }
     }
 
+    /**
+     * Tries to create a certificate. If information are malformed or missing a [Toast] will be
+     * displayed to the user.
+     * @param useProfile [Boolean] True if we should use the user's profile (registered information)
+     * or false if we should create a new temporary profile just for this certificate.
+     * @param view [View] where to find needed components for creation.
+     */
     private fun tryToCreateCertificate(useProfile: Boolean, view: View){
         val exitDateEditText = view.findViewById<TextInputEditText>(R.id.exitDateEditText)
         val exitTimeEditText = view.findViewById<TextInputEditText>(R.id.exitTimeEditText)
@@ -92,6 +124,13 @@ class DateTimeFragment : Fragment() {
         }else Toast.makeText(context, R.string.please_fill_date_time, Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * Navigates to [InfoFragment] in order to ask the user for the info related to this
+     * certificate. This method is only called when the user doesn't want to use its registered
+     * profile's info.
+     * @param exitDateTime [DateTime] representing the date and the time of the exit considered in
+     * this certificate.
+     */
     private fun goFillCertificate(exitDateTime: DateTime){
         val fragmentManager = parentFragmentManager
         val transaction = fragmentManager.beginTransaction()
@@ -99,8 +138,15 @@ class DateTimeFragment : Fragment() {
         transaction.commit()
     }
 
+    /**
+     * Creates a certificate. This method is only called when the user wants to use its registered
+     * profile's info.
+     * @param exitDateTime [DateTime] representing the date and the time of the exit considered in
+     * this certificate.
+     * @param context [Context] used to generate a certificate with [CertificateGenerator].
+     * @see [CertificateGenerator]
+     */
     private fun createCertificate(exitDateTime: DateTime, context: Context){
-
         val timeFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),
             Locale.getDefault())
@@ -115,6 +161,11 @@ class DateTimeFragment : Fragment() {
         CertificateGenerator(context, certificate).execute()
     }
 
+    /**
+     * Sets up the time [TextInputEditText] and [TextInputLayout] with their [TimePickerDialog].
+     * @param view [View] where to find the time [TextInputEditText] and the time [TextInputLayout].
+     * @see DateTimeFragment.setUpDateField
+     */
     private fun setUpTimeField(view: View){
         val exitTimeEditText = view.findViewById<TextInputEditText>(R.id.exitTimeEditText)
         val exitTimeField = view.findViewById<TextInputLayout>(R.id.exitTimeField)
@@ -125,8 +176,7 @@ class DateTimeFragment : Fragment() {
         exitTimeEditText.setText(timeFormat.format(date.time))
 
         exitTimeField.setEndIconOnClickListener {
-            val timePicker: TimePickerDialog
-            timePicker = TimePickerDialog(context,
+            val timePicker = TimePickerDialog(context,
                 OnTimeSetListener { _, selectedHour, selectedMinute ->
                     date.set(Calendar.HOUR_OF_DAY, selectedHour)
                     date.set(Calendar.MINUTE, selectedMinute)
@@ -137,6 +187,11 @@ class DateTimeFragment : Fragment() {
         }
     }
 
+    /**
+     * Sets up the date [TextInputEditText] and [TextInputLayout] with their [MaterialDatePicker].
+     * @param view [View] where to find the date [TextInputEditText] and the date [TextInputLayout].
+     * @see DateTimeFragment.setUpDateField
+     */
     private fun setUpDateField(view: View){
         val exitDateEditText = view.findViewById<TextInputEditText>(R.id.exitDateEditText)
         val exitDateField = view.findViewById<TextInputLayout>(R.id.exitDateField)

@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.pi.attestation.R
 
-
+/**
+ * [AppCompatActivity] used to create a certificate.
+ */
 class CertificateCreatorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

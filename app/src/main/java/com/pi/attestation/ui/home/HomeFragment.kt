@@ -21,9 +21,11 @@ import com.pi.attestation.tools.CertificatesManager
 import com.pi.attestation.ui.creator.CertificateCreatorActivity
 import com.pi.attestation.ui.profile.InfoManager
 import com.pi.attestation.ui.tools.ViewModelFactory
-import java.io.File
 
-
+/**
+ * [Fragment] displayed when we open the app (as "home" [Fragment]). This [Fragment] displays all
+ * the previous certificates or a help box in case there is no certificate.
+ */
 class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +39,7 @@ class HomeFragment : Fragment() {
         val fragmentActivity = activity ?: return
 
         val homeViewModel = ViewModelProvider(this,
-            ViewModelFactory(File(fragmentActivity.filesDir, "certificates.json")))
+            ViewModelFactory(fragmentActivity.filesDir))
             .get(HomeViewModel::class.java)
 
         homeViewModel.certificates.observe(viewLifecycleOwner, Observer {
@@ -70,6 +72,17 @@ class HomeFragment : Fragment() {
         }
     }
 
+    /**
+     * Enables the swipe to delete feature. With this feature enabled the user can delete a
+     * [Certificate] just by swiping to the left. When deleting a [Certificate] a [Snackbar] will be
+     * shown to provide a "undo" feature to the user in case it was accidental.
+     * @param view [View] where to create the [Snackbar] displayed in case of [Certificate]
+     * deletion.
+     * @param recyclerView [RecyclerView] where the feature should be enabled.
+     * @param adapter [CertificatesAdapter] populating the [RecyclerView] with [Certificate] bound
+     * to [CertificateViewHolder].
+     * @see SwipeToDeleteCallback
+     */
     private fun enableSwipeToDelete(view: View, recyclerView: RecyclerView,
                                     adapter: CertificatesAdapter){
         val swipeToDeleteCallback: SwipeToDeleteCallback =
@@ -90,15 +103,35 @@ class HomeFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
+    /**
+     * Removes an item. All items are [Certificate] in [HomeFragment].
+     * @param position [Int] Position of the item to remove.
+     * @param adapter [CertificatesAdapter] to notify that a [Certificate] has been removed at the
+     * provided position.
+     * @param certificate [Certificate] to remove.
+     * @see CertificatesManager.removeCertificate
+     * @see CertificatesAdapter.removeItem
+     */
     private fun removeItem(position: Int, adapter: CertificatesAdapter, certificate: Certificate){
         adapter.removeItem(position)
-        CertificatesManager().removeCertificate(certificate,
-            File(activity?.filesDir, "certificates.json"))
+        val activity = activity
+        if(activity != null) CertificatesManager(activity.filesDir).removeCertificate(certificate)
     }
 
+    /**
+     * Restores an item. All items are [Certificate] in [HomeFragment].
+     * @param position [Int] Position of the item to restore.
+     * @param adapter [CertificatesAdapter] to notify that a [Certificate] has been restored at the
+     * provided position.
+     * @param certificate [Certificate] to restore.
+     * @see CertificatesManager.addCertificate
+     * @see CertificatesAdapter.addItem
+     */
     private fun restoreItem(position: Int, adapter: CertificatesAdapter, certificate: Certificate){
         adapter.addItem(certificate, position)
-        CertificatesManager().addCertificate(certificate,
-            File(activity?.filesDir, "certificates.json"), position)
+        val activity = activity
+        if(activity != null){
+            CertificatesManager(activity.filesDir).addCertificate(certificate, position)
+        }
     }
 }

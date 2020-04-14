@@ -3,11 +3,29 @@ package com.pi.attestation.objects
 import android.content.res.Resources
 import com.pi.attestation.R
 
+/**
+ * Utility object used to represent create all the reasons that can be used for an exit on a
+ * certificate. This class behaves more or less like an array.
+ * @param resources [Resources] where to find reasons' names and descriptions in local language.
+ */
 class Reasons(private val resources: Resources) {
 
+    /**
+     * Number of reasons contained. Should match the number of reasons on the "paper" certificate
+     * provided by the French Ministry of Home Affairs.
+     */
     private val size = 7
+
+    /**
+     * [Array] created by using [Reasons#getReason]. The size of this [Array] matches
+     * [Reasons#size].
+     */
     private val reasons = Array(size){ getReason(it) }
 
+    /**
+     * Utility method used to populates [Reasons#reasons].
+     * @param position [Int] Position of the reason in the [Array].
+     */
     private fun getReason(position: Int): Reason{
         return when (position){
             0 -> Reason(resources.getString(R.string.work_reason_short_name),
@@ -34,10 +52,17 @@ class Reasons(private val resources: Resources) {
         }
     }
 
+    /**
+     * Operator used to retrieve a [Reason] the same way we would for an [Array].
+     * @param position [Int] Position of the [Reason] to retrieve.
+     */
     operator fun get(position: Int): Reason{
         return reasons[position]
     }
 
+    /**
+     * Returns [Reasons#size].
+     */
     fun size(): Int {
         return size
     }

@@ -16,11 +16,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Toolkit class which provides useful tools to monitor the state of the user's information edition.
+ * Toolkit class which provides useful tools to monitor the state of the user's information edition
+ * and implements [EditedListener].
  */
 class InfoEditionWatcher internal constructor(private val fragmentActivity: FragmentActivity) :
     EditedListener {
 
+    /**
+     * @see UserInfoBuilder
+     */
     private var userInfoBuilder: UserInfoBuilder? = null
 
     /**
@@ -54,11 +58,11 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
 
     /**
      * Returns the info of the user that have been edited.
-     * @return [UserInfo] containing all the new info of the user
+     * @return [UserInfo] containing all the new info of the user.
      */
     val info: UserInfo?
         get() {
-            return userInfoBuilder?.buildUserInfoInput()
+            return userInfoBuilder?.buildUserInfo()
         }
 
     override fun hasBeenEdited(): Boolean {
@@ -69,6 +73,14 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
         userInfoBuilder?.registerEdition()
     }
 
+    /**
+     * Sets up the birth date [TextInputEditText] and [TextInputLayout] and enables input with a
+     * [MaterialDatePicker].
+     * @param birthDateEditText [TextInputEditText] where is written the birth date of the user.
+     * @param birthDateField [TextInputLayout] containing the [TextInputEditText] where is written
+     * the birth date of the user.
+     * @param birthDate [String?] of the currently registered birth date of the user.
+     */
     private fun setUpBirthDate(birthDateEditText: TextInputEditText,
                                birthDateField: TextInputLayout,
                                birthDate: String?): String? {

@@ -12,10 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="7dp"
-        android:paddingTop="7dp"
-        android:paddingStart="7dp"
-        android:paddingEnd="7dp"
+        android:padding="7dp"
         tools:context=".ui.home.HomeFragment"/>
 
     <LinearLayout

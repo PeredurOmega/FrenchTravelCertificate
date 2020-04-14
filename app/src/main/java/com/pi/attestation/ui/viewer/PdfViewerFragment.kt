@@ -10,20 +10,42 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.pi.attestation.R
-import com.pi.attestation.ui.viewer.CertificateViewerActivity.Companion.FILE_NAME
+import com.pi.attestation.ui.viewer.CertificateViewerActivity.Companion.FILE_PATH
 import java.io.File
 
+/**
+ * [Fragment] used to display one page of a pdf.
+ */
 class PdfViewerFragment : Fragment(){
 
-    private lateinit var fileName: String
+    /**
+     * [String] File path of the pdf to display.
+     */
+    private lateinit var filePath: String
+
+    /**
+     * [Int] Representing the number of the page to display (starting from 0).
+     */
     private var page: Int? = null
 
     companion object{
+
+        /**
+         * Key value for retrieving [PdfViewerFragment#page]
+         */
         private const val PAGE = "PAGE"
 
-        fun newInstance(fileName: String, page: Int): PdfViewerFragment{
+        /**
+         * Creates a new instance of [PdfViewerFragment] with the file path of the pdf to display
+         * and the number of the page to display (starting from 0). Those parameters will be "saved"
+         * as arguments (enabling to retain them even in case of screen rotation).
+         * @param filePath [String] File path of the pdf to display.
+         * @param page [Int] Number of the page to display (starting from 0).
+         * @return
+         */
+        fun newInstance(filePath: String, page: Int): PdfViewerFragment{
             val args = Bundle()
-            args.putString(FILE_NAME, fileName)
+            args.putString(FILE_PATH, filePath)
             args.putInt(PAGE, page)
             val fragment = PdfViewerFragment()
             fragment.arguments = args
@@ -33,7 +55,7 @@ class PdfViewerFragment : Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        fileName = arguments?.getString(FILE_NAME).toString()
+        filePath = arguments?.getString(FILE_PATH).toString()
         page = arguments?.getInt(PAGE)!!
     }
 
@@ -45,7 +67,7 @@ class PdfViewerFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val file = File(context?.cacheDir, fileName)
+        val file = File(context?.cacheDir, filePath)
 
         if(page != null){
             val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY).also {

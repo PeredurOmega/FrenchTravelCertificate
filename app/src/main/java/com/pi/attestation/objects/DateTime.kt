@@ -6,20 +6,39 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Utility object that is used to store the date and the time in a good format.
+ * @param date [String] date matching dd/mm/yyyy.
+ * @param time [String] time matching HH:mm.
+ */
 class DateTime(val date: String, val time: String) : Serializable{
+
+    /**
+     * @return [String] representing the hours field of the time.
+     */
     fun getHours(): String{
         return time.split(":")[0]
     }
 
+    /**
+     * @return [String] representing the minutes field of the time.
+     */
     fun getMinutes(): String{
         return time.split(":")[1]
     }
 
+    /**
+     * Overrides toString() in order to provide a unique file name.
+     */
     override fun toString(): String {
         return (date.plus("_").plus(time))
             .replace("/", "").replace(":", "")
     }
 
+    /**
+     * Checks if the [DateTime] is malformed.
+     * @return True if the [DateTime] is malformed, false otherwise.
+     */
     fun isMalformed(): Boolean {
         if(!date.contains("/")) return true
         if(!time.contains(":")) return true

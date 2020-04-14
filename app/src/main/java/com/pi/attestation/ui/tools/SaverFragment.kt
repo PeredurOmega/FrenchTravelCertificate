@@ -43,6 +43,15 @@ abstract class SaverFragment : Fragment() {
         }
     }
 
+    /**
+     * Navigates to a specific [Fragment] according to the [MenuItem] provided.
+     * @param item [MenuItem] to which we should navigate.
+     * @param navView [NavigationView] to use to navigate.
+     * @param navController [NavController] to use to navigate.
+     * @param fragmentActivity [FragmentActivity] to use to navigate.
+     * @see NavController
+     * @see NavigationView
+     */
     private fun navigate(item: MenuItem, navView: NavigationView, navController: NavController,
                          fragmentActivity: FragmentActivity) {
         NavigationUI.setupWithNavController(navView, navController)
@@ -53,7 +62,8 @@ abstract class SaverFragment : Fragment() {
 
     /**
      * Registers a [EditedListener] to this [SaverFragment].
-     * @param editedListener [EditedListener] to check if the content of the child [Fragment] has been edited.
+     * @param editedListener [EditedListener] to check if the content of the child [Fragment] has
+     * been edited.
      */
     protected fun setEditedListener(editedListener: EditedListener) {
         this.editedListener = editedListener
@@ -61,12 +71,22 @@ abstract class SaverFragment : Fragment() {
 
     /**
      * Returns the currently registered [EditedListener].
-     * @return [EditedListener] used by this [SaverFragment] to check id the content of the child has been edited.
+     * @return [EditedListener] used by this [SaverFragment] to check id the content of the child
+     * has been edited.
      */
     fun getEditedListener(): EditedListener? {
         return editedListener
     }
 
+    /**
+     * Prompts the user if he wants to save made changes. This method auto hides the keyboard
+     * because the user should not do any more changes while we try to save the provided content.
+     * If the user wants to save changes, this method calls [SaverFragment.saveChanges], if he
+     * clicks on the discard button, the [Leaver] provided will be executed and changes will not be
+     * saved. If the user cancel the [MaterialAlertDialogBuilder] (by clicking outside the view or
+     * on the back button) nothing will happen.
+     * @param leaver [Leaver] to execute when changes have been saved or discarded.
+     */
     private fun askForSaving(leaver: Leaver) {
         val context = context
         if (context != null) {
@@ -80,10 +100,17 @@ abstract class SaverFragment : Fragment() {
         hideKeyboard()
     }
 
+    /**
+     * Extension to hide the keyboard from [Fragment].
+     */
     protected fun Fragment.hideKeyboard() {
         view?.let { activity?.hideKeyboard(it) }
     }
 
+    /**
+     * Extension to hide the keyboard from [Context].
+     * @param view [View] from which we should exit the keyboard.
+     */
     private fun Context.hideKeyboard(view: View) {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
@@ -97,8 +124,8 @@ abstract class SaverFragment : Fragment() {
     /**
      * Check if the [Fragment] can be left.
      * @param leaver [Leaver] to call when exiting the [Fragment].
-     * @return True if we should exit right now, false otherwise. If false the user will also be asked for which saving option he wants (save or
-     * discard).
+     * @return [Boolean] True if we should exit right now, false otherwise. If false the user will
+     * also be asked for which saving option he wants (save or discard).
      */
     fun shouldNotExit(leaver: Leaver): Boolean {
         if (!shouldExit) {

@@ -19,11 +19,24 @@ import com.pi.attestation.ui.viewer.CertificateViewerActivity
 import java.io.*
 import java.lang.ref.WeakReference
 
-
+/**
+ * [AsyncTask] Generating a certificate in a background thread. On pre execution this class shows a
+ * [LoadingDialog] and on post execution this class hides its [LoadingDialog] and launches the
+ * [CertificateViewerActivity]. The generated certificate is stored in a pdf file that contains two
+ * filled pages with the second one containing a "big" QR Code. When the pdf file is generated the
+ * certificate is auto added to the json file containing all the certificates.
+ */
 class CertificateGenerator(mContext: Context, private val certificate: Certificate) :
     AsyncTask<Void, Void, String?>() {
 
+    /**
+     * [WeakReference] of the [Context] used to show the [LoadingDialog] and to start an intent.
+     */
     private var context: WeakReference<Context> = WeakReference(mContext)
+
+    /**
+     * [LoadingDialog] that asks the user to wait while the certificate is generated.
+     */
     private var loadingDialog: LoadingDialog? = null
 
     override fun onPreExecute() {
@@ -83,7 +96,9 @@ class CertificateGenerator(mContext: Context, private val certificate: Certifica
             4 -> form.getField("Déplacements brefs (activité physique et animaux)")
                 .setValue("X", font, 11f)
             5 -> form.getField("Convcation judiciaire ou administrative")
-                .setValue("X", font, 11f) //TODO CREATE ISSUE -> JUDICIAL CONVOCATION
+                .setValue("X", font, 11f)
+            //TODO CHANGE TO -> JUDICIAL CONVOCATION FOLLOWING
+            // (https://github.com/LAB-MI/deplacement-covid-19/issues/89)
             6 -> form.getField("Mission d'intérêt général")
                 .setValue("X", font, 11f)
         }
@@ -112,22 +127,25 @@ class CertificateGenerator(mContext: Context, private val certificate: Certifica
 
         pdfDoc.close()
 
-        val certificatesFile = File(context.filesDir, "certificates.json")
-
-        CertificatesManager().addCertificate(certificate, certificatesFile, 0)
+        CertificatesManager(context.filesDir).addCertificate(certificate, 0)
 
         return fileNew.name
     }
 
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
-        loadingDialog?.dismiss()
         val context = context.get()
 
         if(context != null && result != null){
             val intent = Intent(context, CertificateViewerActivity::class.java)
-            intent.putExtra(CertificateViewerActivity.FILE_NAME, result)
+            intent.putExtra(CertificateViewerActivity.FILE_PATH, result)
             context.startActivity(intent)
-        }else Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show()
+            /**
+             * The [LoadingDialog] is auto dismissed when a new activity is launched.
+             */
+        }else{
+            Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show()
+            loadingDialog?.dismiss()
+        }
     }
 }

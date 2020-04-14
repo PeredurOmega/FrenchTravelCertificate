@@ -13,11 +13,17 @@ import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrate
 import com.pi.attestation.MainActivity
 import com.pi.attestation.R
 
-
+/**
+ * [AppCompatActivity] used to display the two pages of a
+ * [com.pi.attestation.objects.Certificate.pdfPath].
+ */
 class CertificateViewerActivity : AppCompatActivity() {
 
     companion object{
-        const val FILE_NAME = "FILE_NAME"
+        /**
+         * Key value for the file path of the pdf.
+         */
+        const val FILE_PATH = "FILE_PATH"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +42,10 @@ class CertificateViewerActivity : AppCompatActivity() {
         showExplanationsIfNeeded()
     }
 
+    /**
+     * Shows an explanation of how to use the app this app if the user never opened
+     * [CertificateViewerActivity] before.
+     */
     private fun showExplanationsIfNeeded(){
         Thread(Runnable {
             val sharedPref = getSharedPreferences(getString(R.string.shared_pref),
@@ -59,8 +69,14 @@ class CertificateViewerActivity : AppCompatActivity() {
         }).start()
     }
 
+    /**
+     * Binds the [CertificateStateAdapter] to the [TabLayout] and the [ViewPager2] provided.
+     * @param viewPager [ViewPager2] where we should display the two pdf pages.
+     * @param tabLayout [TabLayout] used to navigate in the provided [ViewPager2] and to indicate
+     * the position of the current [ViewPager2].
+     */
     private fun setAdapter(viewPager: ViewPager2, tabLayout: TabLayout) {
-        val fileName = intent.getStringExtra(FILE_NAME)
+        val fileName = intent.getStringExtra(FILE_PATH)
         if(fileName != null){
             val stateAdapter = CertificateStateAdapter(this, fileName)
             viewPager.adapter = stateAdapter
@@ -76,6 +92,10 @@ class CertificateViewerActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Overrides onBackPressed to only go to the [MainActivity] when pressed (and therefore, never
+     * going back to edition once the certificate is generated).
+     */
     override fun onBackPressed() {
         startActivity(Intent(this, MainActivity::class.java))
     }

@@ -8,8 +8,12 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.attestation.R
+import com.pi.attestation.tools.CertificatesManager
 import java.io.File
 
+/**
+ * [Fragment] displaying the available settings.
+ */
 class SettingsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +32,7 @@ class SettingsFragment : Fragment() {
                 .setTitle(R.string.remove_all_certificates)
                 .setMessage(R.string.ask_remove_all_certificates)
                 .setPositiveButton(R.string.yes) { _, _ ->
-                    File(fragmentActivity.filesDir, "certificates.json").delete()
+                    CertificatesManager(fragmentActivity.filesDir).removeAll()
                 }
                 .setNegativeButton(R.string.no) {_, _ ->}
                 .show()

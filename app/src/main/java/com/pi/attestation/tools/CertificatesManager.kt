@@ -6,33 +6,56 @@ import com.google.gson.reflect.TypeToken
 import com.pi.attestation.objects.Certificate
 import java.io.*
 
+/**
+ * Utility class used to manage certificates in the json file.
+ * @param dirFile [File] directory that contains the json file for all certificates.
+ */
+class CertificatesManager(dirFile: File) {
 
-class CertificatesManager() {
+    /**
+     * Json [File] containing all the certificates of the user.
+     */
+    private val certificatesFile = File(dirFile, "certificates.json")
 
-
-    fun addCertificate(certificate: Certificate, certificatesFile: File, position: Int){
+    init {
         certificatesFile.createNewFile()
-        val certificates = getExistingCertificates(certificatesFile)
-        certificates.add(position, certificate)
-        saveCertificates(certificatesFile, certificates)
     }
 
-    fun removeCertificate(certificateToRemove: Certificate, certificatesFile: File){
-        certificatesFile.createNewFile()
-        val certificates = getExistingCertificates(certificatesFile)
+    /**
+     * Adds a [Certificate] to the [CertificatesManager.certificatesFile] containing all
+     * certificates.
+     * @param certificate [Certificate] to add.
+     * @param position [Int] where to add the [Certificate].
+     */
+    fun addCertificate(certificate: Certificate, position: Int){
+        val certificates = getExistingCertificates()
+        certificates.add(position, certificate)
+        saveCertificates(certificates)
+    }
 
+    /**
+     * Removes a [Certificate].
+     * @param certificateToRemove [Certificate] to remove.
+     */
+    fun removeCertificate(certificateToRemove: Certificate){
+        val certificates = getExistingCertificates()
         var index = 0
         while (index < certificates.size &&
             certificates[index].pdfPath != certificateToRemove.pdfPath){
             index++
         }
-
         certificates.removeAt(index)
-
-        saveCertificates(certificatesFile, certificates)
+        saveCertificates(certificates)
     }
 
-    private fun saveCertificates(certificatesFile: File, certificates: ArrayList<Certificate>){
+    /**
+     * Saves an [ArrayList] of [Certificate] discarding all previous certificates in the
+     * [CertificatesManager.certificatesFile].
+     * @param certificates Full [ArrayList] of [Certificate] that the json file containing
+     * certificates should contain.
+     * @see getExistingCertificates
+     */
+    private fun saveCertificates(certificates: ArrayList<Certificate>){
         val gson = Gson()
         val fileOutputStream = FileOutputStream(certificatesFile)
         fileOutputStream.write(gson.toJson(certificates).toByteArray())
@@ -40,7 +63,12 @@ class CertificatesManager() {
         fileOutputStream.close()
     }
 
-    fun getExistingCertificates(certificatesFile: File): ArrayList<Certificate> {
+    /**
+     * Retrieves all existing certificates in the [CertificatesManager.certificatesFile].
+     * @return The full [ArrayList] of [Certificate] contained in the
+     * [CertificatesManager.certificatesFile].
+     */
+    fun getExistingCertificates(): ArrayList<Certificate> {
         val gson = Gson()
         var text = ""
         try {
@@ -62,5 +90,13 @@ class CertificatesManager() {
         val type = object : TypeToken<ArrayList<Certificate>?>() {}.type
         val certificates: ArrayList<Certificate>? = gson.fromJson(text, type)
         return certificates ?: ArrayList()
+    }
+
+    /**
+     * Removes all the certificates by deleting the [CertificatesManager.certificatesFile].
+     */
+    fun removeAll() {
+        certificatesFile.delete()
+        //TODO WE SHOULD ALSO REMOVE ALL PDF
     }
 }

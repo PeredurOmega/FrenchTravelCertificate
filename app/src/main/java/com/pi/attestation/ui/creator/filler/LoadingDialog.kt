@@ -9,6 +9,9 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import com.pi.attestation.R
 
+/**
+ * [Dialog] that should be displayed while we are loading content.
+ */
 class LoadingDialog(context: Context, cancelable: Boolean,
                     cancelListener: DialogInterface.OnCancelListener?)
     : Dialog(context, cancelable, cancelListener) {

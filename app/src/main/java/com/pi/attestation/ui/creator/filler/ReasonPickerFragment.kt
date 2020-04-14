@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.pi.attestation.R
 import com.pi.attestation.objects.Reason
 
-
+/**
+ * [Fragment] used to show [com.pi.attestation.objects.Reasons] from which the user should choose.
+ */
 @Suppress("unused")
 class ReasonPickerFragment : Fragment(), ReasonListener {
 

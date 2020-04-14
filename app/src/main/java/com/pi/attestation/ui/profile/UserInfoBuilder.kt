@@ -7,16 +7,45 @@ import com.pi.attestation.objects.UserInfo
 
 /**
  * Toolkit class used for displaying user's info.
+ * @param firstNameEditText [Pair] containing as first parameter the [TextInputEditText] where the
+ * user can write his first name and as second parameter the [String] of the previously saved first
+ * name.
+ * @param lastNameEditText [Pair] containing as first parameter the [TextInputEditText] where the
+ * user can write his last name and as second parameter the [String] of the previously saved last
+ * name.
+ * @param birthDateEditText [Pair] containing as first parameter the [TextInputEditText] where the
+ * user can write his birthdate and as second parameter the [String] of the previously saved
+ * birthdate.
+ * @param birthPlaceEditText [Pair] containing as first parameter the [TextInputEditText] where the
+ * user can write his birth place and as second parameter the [String] of the previously saved
+ * birth place.
+ * @param addressEditText [Pair] containing as first parameter the [TextInputEditText] where the
+ * user can write his current address and as second parameter the [String] of the previously saved
+ * address.
+ * @param cityEditText [Pair] containing as first parameter the [TextInputEditText] where the
+ * user can write his current city and as second parameter the [String] of the previously saved
+ * city.
+ * @param postalCodeEditText [Pair] containing as first parameter the [TextInputEditText] where the
+ * user can write his current postal code and as second parameter the [String] of the previously
+ * saved postal code.
  */
 internal class UserInfoBuilder(
-    private var firstNameEditText: Pair<TextInputEditText?, String>,
-    private var lastNameEditText: Pair<TextInputEditText?, String>,
-    private var birthDateEditText: Pair<TextInputEditText?, String>,
-    private var birthPlaceEditText: Pair<TextInputEditText?, String>,
-    private var addressEditText: Pair<TextInputEditText?, String>,
-    private var cityEditText: Pair<TextInputEditText?, String>,
-    private var postalCodeEditText: Pair<TextInputEditText?, String>) {
+    private var firstNameEditText: Pair<TextInputEditText, String>,
+    private var lastNameEditText: Pair<TextInputEditText, String>,
+    private var birthDateEditText: Pair<TextInputEditText, String>,
+    private var birthPlaceEditText: Pair<TextInputEditText, String>,
+    private var addressEditText: Pair<TextInputEditText, String>,
+    private var cityEditText: Pair<TextInputEditText, String>,
+    private var postalCodeEditText: Pair<TextInputEditText, String>) {
 
+    init {
+        setUpTextInfo()
+    }
+
+    /**
+     * Sets the [String] previously saved in their bound [TextInputEditText] for all [Pair] passed
+     * in the constructor.
+     */
     private fun setUpTextInfo() {
         setOriginalText(firstNameEditText)
         setOriginalText(lastNameEditText)
@@ -27,11 +56,21 @@ internal class UserInfoBuilder(
         setOriginalText(postalCodeEditText)
     }
 
-    private fun setOriginalText(pair: Pair<TextInputEditText?, String>) {
+    /**
+     * Sets the [String] previously saved in their bound [TextInputEditText] the provided [Pair].
+     * @param pair [Pair] containing [TextInputEditText] as first argument and [String] as second
+     * argument.
+     */
+    private fun setOriginalText(pair: Pair<TextInputEditText, String>) {
         if (pair.first != null) pair.first!!.setText(pair.second)
     }
 
-    private fun fieldEdited(pair: Pair<TextInputEditText?, String>): Boolean {
+    /**
+     * Checks whether or not a [Pair] has been edited.
+     * @param pair [Pair] to check.
+     * @return [Boolean] True if the field has been edited. False otherwise.
+     */
+    private fun fieldEdited(pair: Pair<TextInputEditText, String>): Boolean {
         if (pair.first != null) {
             val editable = pair.first!!.text
             return if (editable != null) {
@@ -41,19 +80,28 @@ internal class UserInfoBuilder(
         return false
     }
 
-    fun buildUserInfoInput(): UserInfo {
+    /**
+     * Builds [UserInfo] by retrieving all text contained in the first paremeter of the [Pair]
+     * provided through the constructor of [UserInfoBuilder].
+     * @return [UserInfo] built according the user's input.
+     */
+    fun buildUserInfo(): UserInfo {
         return UserInfo(firstNameEditText.getText(), lastNameEditText.getText(),
             birthDateEditText.getText(), birthPlaceEditText.getText(), addressEditText.getText(),
             cityEditText.getText(), postalCodeEditText.getText())
     }
 
-    private fun Pair<TextInputEditText?, String>.getText() : String{
+    /**
+     * Extension returning the text content of a [Pair].
+     * @return [String] Text content of the [TextInputEditText] in this [Pair].
+     */
+    private fun Pair<TextInputEditText, String>.getText() : String{
         return this.first?.text.toString()
     }
 
     /**
      * Checks whether or not the current info has been updated / edited.
-     * @return True if one of the fields has been edited, false otherwise.
+     * @return [Boolean] True if one of the fields has been edited, false otherwise.
      */
     fun hasBeenEdited(): Boolean {
         return fieldEdited(firstNameEditText) || fieldEdited(lastNameEditText) ||
@@ -63,8 +111,8 @@ internal class UserInfoBuilder(
     }
 
     /**
-     * Registers all current changes. All the current fields will be registered and if you call [.hasBeenEdited] just after this method,
-     * the result should be false.
+     * Registers all current changes. All the current fields will be registered and if you call
+     * [UserInfoBuilder#hasBeenEdited] just after this method, the result should be false.
      */
     fun registerEdition() {
         firstNameEditText = registerEdition(firstNameEditText)
@@ -76,8 +124,12 @@ internal class UserInfoBuilder(
         postalCodeEditText = registerEdition(postalCodeEditText)
     }
 
-
-    private fun registerEdition(_pair: Pair<TextInputEditText?, String>): Pair<TextInputEditText?, String> {
+    /**
+     * Registers the current edition. Change will be now compared to this saved state.
+     * @param _pair [Pair] to register edition.
+     * @return [Pair] for which the change has been made.
+     */
+    private fun registerEdition(_pair: Pair<TextInputEditText, String>): Pair<TextInputEditText, String> {
         var pair = _pair
         if (pair.first != null) {
             val newEditable = pair.first!!.text
@@ -87,9 +139,5 @@ internal class UserInfoBuilder(
             }
         }
         return pair
-    }
-
-    init {
-        setUpTextInfo()
     }
 }

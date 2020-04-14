@@ -7,8 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pi.attestation.R
 import com.pi.attestation.objects.Reasons
 
+/**
+ * [RecyclerView.Adapter] used to populate the [RecyclerView] with [Reasons].
+ * @param resources [Resources] used to create [Reasons] in [ReasonsAdapter#reasons].
+ * @param reasonListener [ReasonListener] to provide to [ReasonViewHolder].
+ */
 class ReasonsAdapter(resources: Resources, private val reasonListener: ReasonListener): RecyclerView.Adapter<ReasonViewHolder>() {
 
+    /**
+     * [Reasons] to show in the [RecyclerView]
+     */
     private val reasons =  Reasons(resources)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReasonViewHolder {

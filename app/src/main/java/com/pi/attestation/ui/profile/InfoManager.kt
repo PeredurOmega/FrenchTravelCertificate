@@ -4,8 +4,18 @@ import android.content.Context
 import com.pi.attestation.R
 import com.pi.attestation.objects.UserInfo
 
+/**
+ * Utility class used to manage user's information.
+ * @param context [Context] to use to retrieve [android.content.SharedPreferences].
+ * @see [android.content.SharedPreferences]
+ */
 class InfoManager(private val context: Context) {
 
+    /**
+     * Returns the currently saved [UserInfo] in [android.content.SharedPreferences].
+     * @return [UserInfo] currently save in [android.content.SharedPreferences].
+     * @see [android.content.SharedPreferences]
+     */
     fun retrieveUserInfo(): UserInfo {
         val sharedPref = context.getSharedPreferences(context.getString(R.string.shared_pref),
             Context.MODE_PRIVATE)
@@ -19,6 +29,11 @@ class InfoManager(private val context: Context) {
         return UserInfo(firstName, lastName, birthDate, birthPlace, address, city, postalCode)
     }
 
+    /**
+     * Checks whether or not a provided [UserInfo] has been fully filled.
+     * @param userInfo [UserInfo] to check.
+     * @return [Boolean] True if the provided [UserInfo] is fully filled, false otherwise.
+     */
     fun hasBeenFilled(userInfo: UserInfo): Boolean{
         return !userInfo.firstName.isNullOrBlank() && !userInfo.lastName.isNullOrBlank() &&
                 !userInfo.birthDate.isNullOrBlank() && !userInfo.birthPlace.isNullOrBlank() &&
@@ -26,6 +41,11 @@ class InfoManager(private val context: Context) {
                 !userInfo.postalCode.isNullOrBlank()
     }
 
+    /**
+     * Saves the provided [UserInfo] in the [android.content.SharedPreferences].
+     * @param userInfo [UserInfo] to save into the [android.content.SharedPreferences].
+     * @see [android.content.SharedPreferences]
+     */
     fun saveUserInfo(userInfo: UserInfo) {
         val sharedPref = context.getSharedPreferences(context.getString(R.string.shared_pref),
             Context.MODE_PRIVATE)

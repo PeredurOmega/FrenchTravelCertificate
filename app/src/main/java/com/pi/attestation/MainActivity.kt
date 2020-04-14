@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -24,16 +25,36 @@ import com.pi.attestation.ui.profile.InfoManager
 import com.pi.attestation.ui.tools.Leaver
 import com.pi.attestation.ui.tools.SaverFragment
 
+/**
+ * Main [AppCompatActivity] oF the App. This is the first [AppCompatActivity] to be launched.
+ */
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    /**
+     * @see AppBarConfiguration
+     */
+    private lateinit var appBarConfiguration : AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        val navController = setUpNavController()
+        setUpFab(navController)
+
+        checkForUpdate(this)
+    }
+
+    /**
+     * Sets up the [NavController] and binding it with the [Toolbar] and the [DrawerLayout]. In case
+     * of changed destination the [FloatingActionButton] will be hidden if the destination is the
+     * ProfileFragment and will be shown for other destinations.
+     * @return [NavController] fully configured.
+     */
+    private fun setUpNavController(): NavController{
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
@@ -43,6 +64,24 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            run {
+                if ((destination.label)?.equals(getString(R.string.menu_profile)) == true) hideFab()
+                else showFab()
+            }
+        }
+        return navController
+    }
+
+    /**
+     * Sets up the [FloatingActionButton]. When the user clicks on the [FloatingActionButton] we
+     * check that his profile is complete. If it is we launch the [CertificateCreatorActivity]. If
+     * it isn't we prompt the user with a [Snackbar] containing a "Navigate to profile" action.
+     * @param navController [NavController] to use to navigate to the
+     * [com.pi.attestation.ui.profile.ProfileFragment] in case of click on the
+     * [FloatingActionButton] while the profile is incomplete.
+     */
+    private fun setUpFab(navController: NavController){
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             val infoManager = InfoManager(this)
@@ -55,17 +94,14 @@ class MainActivity : AppCompatActivity() {
                     }.show()
             }
         }
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            run {
-                if ((destination.label)?.equals(getString(R.string.menu_profile)) == true) hideFab()
-                else showFab()
-            }
-        }
-
-        checkForUpdate(this)
     }
 
+    /**
+     * Checks if there is any update available. If any the user will be prompted to update the app
+     * (if he has not been prompted to update since at least one day). This method is useful because
+     * of the change brought regularly by the Ministry of Home Affairs.
+     * @param activity [Activity] to use.
+     */
     private fun checkForUpdate(activity: Activity){
         Thread(Runnable {
             val appUpdateManager = AppUpdateManagerFactory.create(activity)
@@ -94,14 +130,29 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    /**
+     * Hides the [FloatingActionButton] of this [Activity].
+     */
     private fun hideFab() {
         findViewById<FloatingActionButton?>(R.id.fab)?.hide()
     }
 
+    /**
+     * Shows the [FloatingActionButton] of this [Activity].
+     */
     private fun showFab() {
         findViewById<FloatingActionButton?>(R.id.fab)?.show()
     }
 
+    /**
+     * This method overrides [AppCompatActivity.onBackPressed] to intercept back clicks. When a back
+     * click is intercepted this method checks if the displayed fragment inherits [SaverFragment].
+     * If the fragment inherits [SaverFragment] this [SaverFragment] will be notified that the user
+     * clicked on the back button, if it doesn't the method will call its super method
+     * [AppCompatActivity.onBackPressed]. When the [SaverFragment] is notified it should prompt the
+     * user for asking to save or discard any change (if any else the back click will behave as
+     * usual).
+     */
     override fun onBackPressed() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         if (navHostFragment != null) {

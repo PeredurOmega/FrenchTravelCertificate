@@ -7,11 +7,10 @@ import com.pi.attestation.objects.Certificate
 import com.pi.attestation.tools.CertificatesManager
 import java.io.*
 
-class HomeViewModel(private val file: File) : ViewModel() {
+class HomeViewModel(private val filesDir: File) : ViewModel() {
 
     private val _certificates = MutableLiveData<ArrayList<Certificate>>().apply {
-        file.createNewFile()
-        val certificates = CertificatesManager().getExistingCertificates(file)
+        val certificates = CertificatesManager(filesDir).getExistingCertificates()
         value = certificates
     }
 
