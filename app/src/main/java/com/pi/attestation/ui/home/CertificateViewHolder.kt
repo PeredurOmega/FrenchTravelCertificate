@@ -60,5 +60,7 @@ class CertificateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
             intent.putExtra(CertificateViewerActivity.FILE_PATH, certificate.pdfPath)
             it.context.startActivity(intent)
         }
+
+        //TODO MAINTAIN TO DELETE OR MORE OPTIONS
     }
 }

@@ -74,7 +74,25 @@ internal class UserInfoBuilder(
         if (pair.first != null) {
             val editable = pair.first!!.text
             return if (editable != null) {
-                if (TextUtils.isEmpty(pair.second) && TextUtils.isEmpty(editable.toString())) false else editable.toString() != pair.second
+                if (TextUtils.isEmpty(pair.second) && TextUtils.isEmpty(editable.toString())) false
+                else editable.toString() != pair.second
+            } else !TextUtils.isEmpty(pair.second)
+        }
+        return false
+    }
+
+    /**
+     * Checks whether or not a [Pair] dedicated to a date has been edited.
+     * @param pair [Pair] to check.
+     * @return [Boolean] True if the field has been edited. False otherwise.
+     */
+    private fun dateFieldEdited(pair: Pair<TextInputEditText, String>): Boolean {
+        if (pair.first != null) {
+            val editable = pair.first!!.text
+            return if (editable != null) {
+                if (TextUtils.isEmpty(pair.second) && TextUtils.isEmpty(editable.toString()
+                        .replace("[^\\d.]|\\.".toRegex(), ""))) false
+                else editable.toString() != pair.second
             } else !TextUtils.isEmpty(pair.second)
         }
         return false
@@ -105,7 +123,7 @@ internal class UserInfoBuilder(
      */
     fun hasBeenEdited(): Boolean {
         return fieldEdited(firstNameEditText) || fieldEdited(lastNameEditText) ||
-                fieldEdited(birthDateEditText) || fieldEdited(birthPlaceEditText) ||
+                dateFieldEdited(birthDateEditText) || fieldEdited(birthPlaceEditText) ||
                 fieldEdited(addressEditText) || fieldEdited(cityEditText)
                 || fieldEdited(postalCodeEditText)
     }

@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.creator.CertificateCreatorActivity"/>
-        <activity android:name=".ui.viewer.CertificateViewerActivity"/>
+        <activity android:name=".ui.viewer.CertificateViewerActivity"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

@@ -22,6 +22,8 @@ import com.pi.attestation.objects.DateTime
 import com.pi.attestation.objects.Reason
 import com.pi.attestation.tools.CertificateGenerator
 import com.pi.attestation.ui.profile.InfoManager
+import com.pi.attestation.ui.tools.DateEditTextFormatter
+import com.pi.attestation.ui.tools.TimeEditTextFormatter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -173,7 +175,9 @@ class DateTimeFragment : Fragment() {
         val timeFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),
             Locale.getDefault())
-        exitTimeEditText.setText(timeFormat.format(date.time))
+
+        val now = timeFormat.format(date.time)
+        exitTimeEditText.setText(now)
 
         exitTimeField.setEndIconOnClickListener {
             val timePicker = TimePickerDialog(context,
@@ -185,6 +189,8 @@ class DateTimeFragment : Fragment() {
             )
             timePicker.show()
         }
+
+        TimeEditTextFormatter(exitTimeEditText, now, exitTimeField)
     }
 
     /**
@@ -199,13 +205,16 @@ class DateTimeFragment : Fragment() {
         val dateFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
             Locale.getDefault())
-        exitDateEditText.setText(dateFormat.format(date.time))
+
+        val now = dateFormat.format(date.time)
+        exitDateEditText.setText(now)
 
         exitDateField.setEndIconOnClickListener {
             val builder = MaterialDatePicker.Builder.datePicker()
             val constraintsBuilder = CalendarConstraints.Builder()
-            val nowSelection = date.time.time
+            val nowSelection = date.timeInMillis
             constraintsBuilder.setOpenAt(nowSelection)
+            constraintsBuilder.setStart(date.timeInMillis)
             builder.setCalendarConstraints(constraintsBuilder.build())
             builder.setSelection(nowSelection)
             builder.setTitleText(R.string.select_exit_date)
@@ -216,5 +225,8 @@ class DateTimeFragment : Fragment() {
             }
             picker.show(parentFragmentManager, picker.toString())
         }
+
+        DateEditTextFormatter(exitDateEditText, now ?: "", exitDateField,
+            false)
     }
 }

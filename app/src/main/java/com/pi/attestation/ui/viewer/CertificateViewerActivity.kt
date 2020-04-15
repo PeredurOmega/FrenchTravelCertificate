@@ -97,6 +97,8 @@ class CertificateViewerActivity : AppCompatActivity() {
      * going back to edition once the certificate is generated).
      */
     override fun onBackPressed() {
-        startActivity(Intent(this, MainActivity::class.java))
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
     }
 }

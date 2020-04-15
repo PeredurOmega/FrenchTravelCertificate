@@ -10,6 +10,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pi.attestation.R
 import com.pi.attestation.objects.UserInfo
+import com.pi.attestation.ui.tools.DateEditTextFormatter
 import com.pi.attestation.ui.tools.EditedListener
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -57,7 +58,8 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
     }
 
     /**
-     * Returns the info of the user that have been edited.
+     * Returns the info of the user that have been edited. If a field is incomplete an error will
+     * be displayed on it.
      * @return [UserInfo] containing all the new info of the user.
      */
     val info: UserInfo?
@@ -119,6 +121,10 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
             }
             picker.show(fragmentActivity.supportFragmentManager, picker.toString())
         }
+
+
+        DateEditTextFormatter(birthDateEditText, originalDate ?: "", birthDateField,
+            true)
         return originalDate
     }
 }

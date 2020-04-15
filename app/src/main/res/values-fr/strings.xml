@@ -10,6 +10,16 @@
     <string name="profile_saved">Profile sauvegardé</string>
     <string name="create">Créer</string>
     <string name="ok">Ok</string>
+    <string name="time_format">HHmm</string>
+    <string name="hours_between_0_23">L\'heure doit être entre 0 et 23</string>
+    <string name="minutes_between_0_59">Les minutes doivent être entre 0 et 59</string>
+    <string name="month_between_1_12">Le mois doit être entre 1 et 12</string>
+    <string name="day_between_1_31">Le jour doit être entre 1 et 31</string>
+    <string name="date_can_not_be_before_1900">L\'année doit être après 1900</string>
+    <string name="date_can_not_be_after_2025">L\'année doit être avant 2025</string>
+    <string name="nonexistent_date">Sate inexistante</string>
+    <string name="date_after_today">Entrez une date avant aujourd\'hui</string>
+    <string name="date_format">jjmmyyyy</string>
     <string name="help_to_translate">Aider à la traduction</string>
     <string name="help_to_code">Aider à coder</string>
     <string name="help_to_design">Aider à designer</string>

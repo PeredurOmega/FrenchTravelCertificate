@@ -18,16 +18,18 @@ import com.pi.attestation.ui.home.CertificatesAdapter.Companion.FILL_PROFILE_CAR
  */
 abstract class SwipeToDeleteCallback internal constructor(context: Context) :
     ItemTouchHelper.Callback() {
+    //TODO ENABLE POSITION CHANGE UP / DOWN FLAGS
 
     /**
-     * [Paint] holding the style and color information about how to draw geometries, text and bitmaps.
+     * [Paint] holding the style and color information about how to draw geometries, text and
+     * bitmaps.
      */
     private val clearPaint = Paint()
 
     /**
      * Background to draw when swiping to delete. This drawable should have exactly the size of the
-     * item which is being deleted and will be drawn at the exact same place of the original position
-     * of the item view which is being deleted.
+     * item which is being deleted and will be drawn at the exact same place of the original
+     * position of the item view which is being deleted.
      */
     private val background = ContextCompat.getDrawable(context, R.drawable.delete_background)
 
@@ -58,7 +60,8 @@ abstract class SwipeToDeleteCallback internal constructor(context: Context) :
         if(viewHolder.itemViewType == FILL_PROFILE_CARD_TYPE
             || viewHolder.itemViewType == CREATE_CERTIFICATE_WHEN_NONE_CARD_TYPE
             || viewHolder.itemViewType == CREATE_CERTIFICATE_CARD_TYPE) return 0
-        return makeMovementFlags(0, ItemTouchHelper.LEFT)
+        return makeMovementFlags(0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
     }
 
     override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
@@ -67,9 +70,11 @@ abstract class SwipeToDeleteCallback internal constructor(context: Context) :
     }
 
 
-    override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
-                             dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+    override fun onChildDraw(c: Canvas, recyclerView: RecyclerView,
+                             viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float,
+                             actionState: Int, isCurrentlyActive: Boolean) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+        val swipingToTheRight = dX > 0
         val itemView: View = viewHolder.itemView
         val itemHeight: Int = itemView.height
         val isCancelled = dX == 0f && !isCurrentlyActive
@@ -88,8 +93,10 @@ abstract class SwipeToDeleteCallback internal constructor(context: Context) :
 
         val deleteIconTop: Int = itemView.top + (itemHeight - drawableHeight) / 2
         val deleteIconMargin = (itemHeight - drawableHeight) / 2
-        val deleteIconLeft: Int = itemView.right - deleteIconMargin - drawableWidth
-        val deleteIconRight: Int = itemView.right - deleteIconMargin
+        val deleteIconLeft: Int = if(swipingToTheRight) itemView.left + deleteIconMargin
+                                    else itemView.right - deleteIconMargin - drawableWidth
+        val deleteIconRight: Int = if(swipingToTheRight) deleteIconLeft + drawableWidth
+                                    else itemView.right - deleteIconMargin
         val deleteIconBottom = deleteIconTop + drawableHeight
         deleteDrawable?.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight,
             deleteIconBottom)

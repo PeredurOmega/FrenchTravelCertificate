@@ -10,6 +10,16 @@
     <string name="profile_saved">Profile saved</string>
     <string name="create">Create</string>
     <string name="ok">OK</string>
+    <string name="time_format">HHmm</string>
+    <string name="hours_between_0_23">Hours must be between 0 and 24</string>
+    <string name="minutes_between_0_59">Minutes must be between 0 and 59</string>
+    <string name="month_between_1_12">Month must be between 1 and 12</string>
+    <string name="day_between_1_31">Day must be between 1 and 31</string>
+    <string name="date_can_not_be_before_1900">Year must be after 1900</string>
+    <string name="date_can_not_be_after_2025">Year must be before 2025</string>
+    <string name="nonexistent_date">Nonexistent date</string>
+    <string name="date_after_today">Enter a date before today</string>
+    <string name="date_format">ddmmyyyy</string>
     <string name="help_to_translate">Help to translate</string>
     <string name="help_to_design">Help to design</string>
     <string name="help_to_design_text">Feel free to help us to improve the app\'s design (logo,

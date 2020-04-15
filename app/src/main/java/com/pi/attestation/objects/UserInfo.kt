@@ -52,6 +52,7 @@ class UserInfo(val firstName: String?, val lastName: String?, val birthDate: Str
      */
     fun incomplete(): Boolean {
         return firstName.isNullOrBlank() || lastName.isNullOrBlank() || birthDate.isNullOrBlank()
+                || birthDate.replace("[^\\d.]|\\.".toRegex(), "").isBlank()
                 || birthPlace.isNullOrBlank() || address.isNullOrBlank() || city.isNullOrBlank()
                 || postalCode.isNullOrBlank()
     }
