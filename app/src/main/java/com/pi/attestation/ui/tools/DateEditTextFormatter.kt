@@ -12,13 +12,12 @@ import java.util.*
  * @param editText [TextInputEditText] to which we have to set the [TextWatcher].
  * @param original [String] Text that was in this edit text in the first place.
  * @param textInputLayout [TextInputLayout] to use to throw malformation errors.
- * @param canNotBeAfterToday [Boolean] True if the date in the provided edit text can not be after
- * today, false otherwise.
+ * @param dateValidator [dateValidator] Used to check whether or not a date (well formatted) is
+ * valid.
  */
 class DateEditTextFormatter(private val editText: TextInputEditText, original: String,
                             private val textInputLayout : TextInputLayout,
-                            private val canNotBeAfterToday : Boolean) : TextWatcher{
-    //TODO CHANGE canNotBeAfterToday TO CONSTRAINTS VALIDATOR
+                            private val dateValidator : DateValidator) : TextWatcher{
 
     /**
      * Current text in the edit text.
@@ -66,6 +65,7 @@ class DateEditTextFormatter(private val editText: TextInputEditText, original: S
                     malformed = R.string.day_between_1_31
                     format.substring(0, 2)
                 } else clean.substring(0, 2)
+                cal[Calendar.DAY_OF_MONTH] = day
                 clean = sDay + clean.substring(2)
             }
 
@@ -81,20 +81,13 @@ class DateEditTextFormatter(private val editText: TextInputEditText, original: S
 
             if(clean.length == 8){
                 val year = clean.substring(4, 8).toInt()
-                val sYear = when {
-                    year < 1900 -> {
-                        malformed = R.string.date_can_not_be_before_1900
+                cal[Calendar.YEAR] = year
+                val isValid = dateValidator.isValid(cal)
+                val sYear = if(isValid != null) {
+                        malformed = isValid
                         format.substring(4, 8)
-                    }
-                    year > 2025 ->{
-                        malformed = if(canNotBeAfterToday) R.string.date_after_today
-                                    else R.string.date_can_not_be_after_2025
-                        format.substring(4, 8)
-                    }
-                    else -> {
-                        cal[Calendar.YEAR] = year
-                        clean.substring(4, 8)
-                    }
+                }else {
+                    clean.substring(4, 8)
                 }
 
                 clean = clean.substring(0, 4) + sYear
@@ -105,10 +98,13 @@ class DateEditTextFormatter(private val editText: TextInputEditText, original: S
                         format.substring(0, 2)
                     } else {
                         cal[Calendar.DAY_OF_MONTH] = day
+
+                        val isValidDate = dateValidator.isValid(cal)
+                        if(isValidDate != null && cal.after(Calendar.getInstance())){
+                            malformed = isValidDate
+                        }
+
                         day.toString()
-                    }
-                    if(canNotBeAfterToday && cal.after(Calendar.getInstance())){
-                        malformed = R.string.date_after_today
                     }
                     clean = sDay + clean.substring(2)
                 }

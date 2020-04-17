@@ -1,9 +1,7 @@
 package com.pi.attestation.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,7 +19,7 @@ import com.pi.attestation.ui.tools.ViewModelFactory
  * [Fragment] displayed when we open the app (as "home" [Fragment]). This [Fragment] displays all
  * the previous certificates or a help box in case there is no certificate.
  */
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ActionModeListener {
 
     private lateinit var homeViewModel : HomeViewModel
 
@@ -41,7 +39,8 @@ class HomeFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.certificatesRV)
         val infoManager = InfoManager(fragmentActivity)
-        val adapter = CertificatesAdapter(infoManager.hasBeenFilled(infoManager.retrieveUserInfo()))
+        val adapter = CertificatesAdapter(infoManager.hasBeenFilled(infoManager.retrieveUserInfo()),
+            this)
         recyclerView.adapter = adapter
         enableSwipeToDelete(view, recyclerView)
 
@@ -66,8 +65,9 @@ class HomeFragment : Fragment() {
                     val position = viewHolder.adapterPosition - 1
                     if(position < 0) return
                     val certificate = homeViewModel.getCertificate(position) ?: return
-                    val dirFile = activity?.filesDir
-                    if (dirFile != null) {
+                    val fragmentActivity = activity
+                    if (fragmentActivity != null) {
+                        val dirFile = fragmentActivity.filesDir
                         homeViewModel.removeItem(position)
                         CertificatesManager(dirFile).removeCertificate(certificate)
                         Snackbar.make(view, R.string.certificate_deleted, Snackbar.LENGTH_LONG)
@@ -81,8 +81,7 @@ class HomeFragment : Fragment() {
                                         CertificatesManager(dirFile).deletePdf(certificate)
                                     }
                                 }
-                            })
-                            .show()
+                            }).show()
                     }else Toast.makeText(view.context, R.string.unknown_error,
                         Toast.LENGTH_SHORT).show()
                 }
@@ -90,5 +89,37 @@ class HomeFragment : Fragment() {
 
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    override fun startActionMode(actionModeCallback: ActionMode.Callback) : ActionMode? {
+        return activity?.startActionMode(actionModeCallback, ActionMode.TYPE_PRIMARY)
+    }
+
+    override fun deleteAction(toBeRemovedList: ArrayList<Int>) {
+        val adapterPositions = ArrayList(toBeRemovedList)
+        val certificates = homeViewModel.getCertificates(toBeRemovedList) ?: return
+        val fragmentActivity = activity
+        if (fragmentActivity != null) {
+            val dirFile = fragmentActivity.filesDir
+            homeViewModel.removeItems(adapterPositions)
+            CertificatesManager(dirFile).removeCertificates(certificates)
+
+            val view = view
+            if(view != null){
+                Snackbar.make(view, if(toBeRemovedList.size == 1) R.string.certificate_deleted
+                                    else R.string.certificates_deleted,
+                    Snackbar.LENGTH_LONG)
+                    .setAction(R.string.undo) {
+                        homeViewModel.addItems(certificates, adapterPositions)
+                        CertificatesManager(dirFile).addCertificates(certificates, adapterPositions)
+                    }.addCallback(object : Snackbar.Callback() {
+                        override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                            if (event != DISMISS_EVENT_ACTION) {
+                                CertificatesManager(dirFile).deletePdfFiles(certificates)
+                            }
+                        }
+                    }).show()
+            }
+        }else Toast.makeText(fragmentActivity, R.string.unknown_error, Toast.LENGTH_SHORT).show()
     }
 }

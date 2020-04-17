@@ -60,9 +60,59 @@ class HomeViewModel(private val filesDir: File) : ViewModel() {
     /**
      * Returns a [Certificate] according its position [Int].
      * @param position [Int] Position of the [Certificate] to retrieve.
-     * @return [Certificate] at the gievn position.
+     * @return [Certificate] at the given position.
      */
     fun getCertificate(position: Int): Certificate? {
         return _certificates.value?.get(position)
+    }
+
+    /**
+     * Returns an [ArrayList] of [Certificate] according their positions in the adapter.
+     * @param adapterPositions [ArrayList] containing each position in the adapter of the elements
+     * of the [ArrayList] of [Certificate] to retrieve.
+     * @return [ArrayList] of [Certificate] of the elements found at the given positions.
+     */
+    fun getCertificates(adapterPositions: ArrayList<Int>): ArrayList<Certificate>? {
+        val certificates = _certificates.value ?: return null
+        val certificatesToRemove = ArrayList<Certificate>()
+        for(adapterPosition in adapterPositions){
+            certificatesToRemove.add(certificates[adapterPosition - 1])
+        }
+        return certificatesToRemove
+    }
+
+    /**
+     * Removes an [ArrayList] of [Certificate] to the [HomeViewModel#_certificates]. Any observer
+     * will be notified of this change.
+     * @param adapterPositions [ArrayList] of [Int] containing positions in the adapter of each
+     * [Certificate] to remove.
+     */
+    fun removeItems(adapterPositions: ArrayList<Int>){
+        val certificates = _certificates.value ?: return
+        var corrector = 1
+        for(adapterPosition in adapterPositions){
+            certificates.removeAt(adapterPosition - corrector)
+            corrector++
+        }
+        _certificates.postValue(certificates)
+    }
+
+    /**
+     * Adds an [ArrayList] of [Certificate] to the [HomeViewModel#_certificates]. Any observer will
+     * be notified of this change.
+     * @param certificatesToAdd [ArrayList] of [Certificate] to add.
+     * @param adapterPositions [ArrayList] of [Int] containing the positions where to add each
+     * provided [Certificate] in the [ArrayList].
+     */
+    fun addItems(certificatesToAdd: ArrayList<Certificate>, adapterPositions: ArrayList<Int>) {
+        val certificates = _certificates.value
+        if(certificates != null && certificatesToAdd.size == adapterPositions.size){
+            for(i in 0 until certificatesToAdd.size){
+                certificates.add(adapterPositions[i] - 1, certificatesToAdd[i])
+            }
+            _certificates.postValue(certificates)
+        }else{
+            _certificates.postValue(ArrayList(certificatesToAdd))
+        }
     }
 }

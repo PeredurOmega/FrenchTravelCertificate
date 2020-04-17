@@ -1,5 +1,6 @@
 package com.pi.attestation.ui.profile
 
+import android.os.Parcel
 import android.text.format.DateFormat
 import android.view.View
 import androidx.core.util.Pair
@@ -11,6 +12,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.pi.attestation.R
 import com.pi.attestation.objects.UserInfo
 import com.pi.attestation.ui.tools.DateEditTextFormatter
+import com.pi.attestation.ui.tools.DateValidator
 import com.pi.attestation.ui.tools.EditedListener
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -105,12 +107,43 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
             }
         }
 
+        val tomorrow = Calendar.getInstance()
+        tomorrow.set(Calendar.HOUR_OF_DAY, 0)
+        tomorrow.set(Calendar.MINUTE, 0)
+        tomorrow.set(Calendar.SECOND, 0)
+        tomorrow.set(Calendar.MILLISECOND, 0)
+        tomorrow.add(Calendar.DAY_OF_MONTH, 1)
+
+        val dateValidator = object : DateValidator {
+            override fun isValid(calendar: Calendar): Int? {
+                return when {
+                    calendar > tomorrow -> R.string.date_after_today
+                    calendar.get(Calendar.YEAR) < 1900 -> R.string.date_can_not_be_before_1900
+                    else -> null
+                }
+            }
+        }
+
         birthDateField.setEndIconOnClickListener {
             val builder = MaterialDatePicker.Builder.datePicker()
             val constraintsBuilder = CalendarConstraints.Builder()
             val nowSelection = birthCalendar.time.time
-            constraintsBuilder.setEnd(Date().time)
+            constraintsBuilder.setEnd(tomorrow.timeInMillis)
             constraintsBuilder.setOpenAt(nowSelection)
+            constraintsBuilder.setValidator(object : CalendarConstraints.DateValidator{
+
+                override fun writeToParcel(dest: Parcel?, flags: Int) {}
+
+                override fun isValid(date: Long): Boolean {
+                    val calendar = Calendar.getInstance()
+                    calendar.timeInMillis = date
+                    return dateValidator.isValid(calendar) == null
+                }
+
+                override fun describeContents(): Int {
+                    return 0
+                }
+            })
             builder.setCalendarConstraints(constraintsBuilder.build())
             builder.setSelection(nowSelection)
             builder.setTitleText(R.string.select_your_birthdate)
@@ -124,7 +157,7 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
 
 
         DateEditTextFormatter(birthDateEditText, originalDate ?: "", birthDateField,
-            true)
+            dateValidator)
         return originalDate
     }
 }

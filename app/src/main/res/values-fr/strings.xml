@@ -10,13 +10,16 @@
     <string name="profile_saved">Profile sauvegardé</string>
     <string name="create">Créer</string>
     <string name="ok">Ok</string>
+    <string name="action_delete">Supprimer</string>
     <string name="time_format">HHmm</string>
     <string name="hours_between_0_23">L\'heure doit être entre 0 et 23</string>
     <string name="minutes_between_0_59">Les minutes doivent être entre 0 et 59</string>
     <string name="month_between_1_12">Le mois doit être entre 1 et 12</string>
     <string name="day_between_1_31">Le jour doit être entre 1 et 31</string>
     <string name="date_can_not_be_before_1900">L\'année doit être après 1900</string>
-    <string name="date_can_not_be_after_2025">L\'année doit être avant 2025</string>
+    <string name="date_can_not_be_in_more_than_one_year">La date doit être dans moins d\'un
+        an</string>
+    <string name="date_before_today">La date ne peut être avant ajourd\'hui</string>
     <string name="nonexistent_date">Sate inexistante</string>
     <string name="date_after_today">Entrez une date avant aujourd\'hui</string>
     <string name="date_format">jjmmyyyy</string>
@@ -121,7 +124,9 @@
     <string name="birth_place">Lieu de naissance</string>
     <string name="address">Adresse actuelle</string>
     <string name="city">Ville actuelle</string>
+    <string name="selected_icon">Icone indiquant la séléction</string>
     <string name="certificate_deleted">Attestation supprimée</string>
+    <string name="certificates_deleted">Attestations supprimées</string>
     <string name="undo">Annuler</string>
     <string name="postal_code">Code postal actuel</string>
     <string name="no_certificate">Vous n\'avez aucune attestation</string>
@@ -225,6 +230,6 @@
         peu que possible de chez vous). Nous espérons que vous utiliserez cette application à bon
         escient.</string>
     <string name="eula_content_part_15">par Paul SOUTEYRAT</string>
-    <string name="people_to_credit">Créateur : Paul SOUTEYRAT. Basé sur le travail réalisé à
-        https://github.com/LAB-MI/deplacement-covid-19</string>
+    <string name="people_to_credit">Créateur : Paul SOUTEYRAT. Basé sur le travail réalisé par le
+        Ministère de l\'intérieur ici : https://github.com/LAB-MI/deplacement-covid-19</string>
 </resources>

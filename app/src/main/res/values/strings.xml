@@ -11,14 +11,16 @@
     <string name="create">Create</string>
     <string name="ok">OK</string>
     <string name="time_format">HHmm</string>
+    <string name="action_delete">Delete</string>
     <string name="hours_between_0_23">Hours must be between 0 and 24</string>
     <string name="minutes_between_0_59">Minutes must be between 0 and 59</string>
     <string name="month_between_1_12">Month must be between 1 and 12</string>
     <string name="day_between_1_31">Day must be between 1 and 31</string>
     <string name="date_can_not_be_before_1900">Year must be after 1900</string>
-    <string name="date_can_not_be_after_2025">Year must be before 2025</string>
+    <string name="date_can_not_be_in_more_than_one_year">Date must be in less than one year</string>
     <string name="nonexistent_date">Nonexistent date</string>
     <string name="date_after_today">Enter a date before today</string>
+    <string name="date_before_today">Date can not be before today</string>
     <string name="date_format">ddmmyyyy</string>
     <string name="help_to_translate">Help to translate</string>
     <string name="help_to_design">Help to design</string>
@@ -110,7 +112,9 @@
     <string name="birth_place">Birth place</string>
     <string name="address">Current address</string>
     <string name="city">Current city</string>
+    <string name="selected_icon">Icon indicating selection</string>
     <string name="certificate_deleted">Certificate deleted</string>
+    <string name="certificates_deleted">Certificates deleted</string>
     <string name="undo">Undo</string>
     <string name="postal_code">Current postal code</string>
     <string name="no_certificate">You have no certificate</string>
@@ -198,7 +202,8 @@
         will use this application wisely.</string>
     <string name="eula_content_part_15">by Paul SOUTEYRAT</string>
     <string name="people_to_credit">Creator : Paul SOUTEYRAT. Based on the
-        work provided in https://github.com/LAB-MI/deplacement-covid-19</string>
+        work provided by the French Ministry of Home Affairs at
+        https://github.com/LAB-MI/deplacement-covid-19</string>
 
     <string name="first_name_key" translatable="false">FIRST_NAME</string>
     <string name="last_name_key" translatable="false">LAST_NAME</string>

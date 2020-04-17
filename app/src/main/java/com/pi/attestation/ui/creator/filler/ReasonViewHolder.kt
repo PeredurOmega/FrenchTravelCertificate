@@ -4,6 +4,7 @@ import android.content.res.ColorStateList
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -47,11 +48,11 @@ class ReasonViewHolder(itemView: View, private val reasonListener: ReasonListene
     private val shortView: ConstraintLayout = itemView.findViewById(R.id.shortView)
 
     /**
-     * [ConstraintLayout] that contains details about the bound [Reason] (those details should be
+     * [LinearLayout] that contains details about the bound [Reason] (those details should be
      * constantly provided by the French Ministry of Home Affairs).
      * @see Reason.fullDescription
      */
-    private val detailView: ConstraintLayout = itemView.findViewById(R.id.detailView)
+    private val detailView: LinearLayout = itemView.findViewById(R.id.detailView)
 
     /**
      * [MaterialButton] that is clicked by the user when he wants to choose the bound [Reason].

@@ -4,6 +4,7 @@ import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.Context
 import android.os.Bundle
+import android.os.Parcel
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,7 @@ import com.pi.attestation.objects.Reason
 import com.pi.attestation.tools.CertificateGenerator
 import com.pi.attestation.ui.profile.InfoManager
 import com.pi.attestation.ui.tools.DateEditTextFormatter
+import com.pi.attestation.ui.tools.DateValidator
 import com.pi.attestation.ui.tools.TimeEditTextFormatter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -185,8 +187,7 @@ class DateTimeFragment : Fragment() {
                     date.set(Calendar.HOUR_OF_DAY, selectedHour)
                     date.set(Calendar.MINUTE, selectedMinute)
                     exitTimeEditText.setText(timeFormat.format(date.time))
-                }, date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), true
-            )
+                }, date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), true)
             timePicker.show()
         }
 
@@ -209,12 +210,46 @@ class DateTimeFragment : Fragment() {
         val now = dateFormat.format(date.time)
         exitDateEditText.setText(now)
 
+        val today = Calendar.getInstance()
+        today.set(Calendar.HOUR_OF_DAY, 0)
+        today.set(Calendar.MINUTE, 0)
+        today.set(Calendar.SECOND, 0)
+        today.set(Calendar.MILLISECOND, 0)
+
+        val inOneYear = Calendar.getInstance()
+        inOneYear.add(Calendar.YEAR, 1)
+
+        val dateValidator = object : DateValidator {
+            override fun isValid(calendar: Calendar): Int? {
+                return when {
+                    calendar < today -> R.string.date_before_today
+                    calendar > inOneYear -> R.string.date_can_not_be_in_more_than_one_year
+                    else -> null
+                }
+            }
+        }
+
         exitDateField.setEndIconOnClickListener {
             val builder = MaterialDatePicker.Builder.datePicker()
             val constraintsBuilder = CalendarConstraints.Builder()
             val nowSelection = date.timeInMillis
             constraintsBuilder.setOpenAt(nowSelection)
             constraintsBuilder.setStart(date.timeInMillis)
+            constraintsBuilder.setEnd(inOneYear.timeInMillis)
+            constraintsBuilder.setValidator(object : CalendarConstraints.DateValidator{
+
+                override fun writeToParcel(dest: Parcel?, flags: Int) {}
+
+                override fun isValid(date: Long): Boolean {
+                    val calendar = Calendar.getInstance()
+                    calendar.timeInMillis = date
+                    return dateValidator.isValid(calendar) == null
+                }
+
+                override fun describeContents(): Int {
+                    return 0
+                }
+            })
             builder.setCalendarConstraints(constraintsBuilder.build())
             builder.setSelection(nowSelection)
             builder.setTitleText(R.string.select_exit_date)
@@ -226,7 +261,6 @@ class DateTimeFragment : Fragment() {
             picker.show(parentFragmentManager, picker.toString())
         }
 
-        DateEditTextFormatter(exitDateEditText, now ?: "", exitDateField,
-            false)
+        DateEditTextFormatter(exitDateEditText, now ?: "", exitDateField, dateValidator)
     }
 }

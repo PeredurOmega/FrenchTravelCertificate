@@ -34,6 +34,22 @@ class CertificatesManager(dirFile: File) {
     }
 
     /**
+     * Adds an [ArrayList] of [Certificate] to the [CertificatesManager.certificatesFile] containing
+     * all certificates.
+     * @param certificatesToAdd [ArrayList] of [Certificate] to add.
+     * @param adapterPositions [ArrayList] of [Int] positions where to add [ArrayList] of
+     * [Certificate].
+     */
+    fun addCertificates(certificatesToAdd: ArrayList<Certificate>, adapterPositions: ArrayList<Int>) {
+        if(certificatesToAdd.size != adapterPositions.size) return
+        val certificates = getExistingCertificates()
+        for (i in 0 until certificatesToAdd.size){
+            certificates.add(adapterPositions[i] - 1, certificatesToAdd[i])
+        }
+        saveCertificates(certificates)
+    }
+
+    /**
      * Removes a [Certificate].
      * @param certificateToRemove [Certificate] to remove.
      */
@@ -41,8 +57,7 @@ class CertificatesManager(dirFile: File) {
         val certificates = getExistingCertificates()
         if(certificates.size == 0) return
         var index = 0
-        while (index < certificates.size &&
-            certificates[index].pdfPath != certificateToRemove.pdfPath){
+        while (index < certificates.size && certificates[index] != certificateToRemove){
             index++
         }
         certificates.removeAt(index)
@@ -105,7 +120,25 @@ class CertificatesManager(dirFile: File) {
     }
 
     /**
-     * Deletes the pdf bound to a certificate. This action is final and if executed the pdf will
+     * Removes an [ArrayList] of [Certificate].
+     * @param certificatesToRemove [ArrayList] of [Certificate] to remove.
+     */
+    fun removeCertificates(certificatesToRemove: ArrayList<Certificate>) {
+        val certificates = getExistingCertificates()
+        for(certificateToRemove in certificatesToRemove){
+            var index = 0
+            val certificatesCount = certificates.size
+            if(certificatesCount == 0) break
+            while (index < certificates.size && certificates[index] != certificateToRemove){
+                index++
+            }
+            certificates.removeAt(index)
+        }
+        saveCertificates(certificates)
+    }
+
+    /**
+     * Deletes the pdf bound to a [Certificate]. This action is final and if executed the pdf will
      * be fully deleted. This method should be called only when we are sure that the user really
      * wants to delete a certificate.
      * @param certificate [Certificate] bound to the pdf to delete. This [Certificate] should also
@@ -113,5 +146,18 @@ class CertificatesManager(dirFile: File) {
      */
     fun deletePdf(certificate: Certificate) {
         File(certificate.pdfPath).delete()
+    }
+
+    /**
+     * Deletes the pdf bound to each [Certificate] in the provided [ArrayList]. This action is
+     * final and if executed the pdf will be fully deleted. This method should be called only when
+     * we are sure that the user really wants to delete a certificate.
+     * @param certificatesToDelete [ArrayList] of [Certificate] bound to the pdf to delete. Those
+     * certificates should also be deleted when this action is done.
+     */
+    fun deletePdfFiles(certificatesToDelete: ArrayList<Certificate>){
+        for (certificateToDelete in certificatesToDelete){
+            deletePdf(certificateToDelete)
+        }
     }
 }
