@@ -1,7 +1,10 @@
 package com.pi.attestation.ui.home
 
 import android.os.Bundle
-import android.view.*
+import android.view.ActionMode
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,6 +17,7 @@ import com.pi.attestation.objects.Certificate
 import com.pi.attestation.tools.CertificatesManager
 import com.pi.attestation.ui.profile.InfoManager
 import com.pi.attestation.ui.tools.ViewModelFactory
+import kotlin.collections.ArrayList
 
 /**
  * [Fragment] displayed when we open the app (as "home" [Fragment]). This [Fragment] displays all
@@ -86,7 +90,6 @@ class HomeFragment : Fragment(), ActionModeListener {
                         Toast.LENGTH_SHORT).show()
                 }
             }
-
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }

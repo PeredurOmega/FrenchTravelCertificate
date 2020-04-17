@@ -1,5 +1,6 @@
 package com.pi.attestation.ui.home
 
+import android.content.res.Resources
 import android.view.*
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -88,13 +89,15 @@ class CertificatesAdapter(private val profileFilled : Boolean,
         }
     }
 
-    override fun selectedForActionMode(position: Int, selectedListener: SelectedListener): Boolean {
+    override fun selectedForActionMode(position: Int, selectedListener: SelectedListener,
+                                       resources: Resources): Boolean {
         if(actionMode == null) return false
-        onLongClick(position, selectedListener)
+        onLongClick(position, selectedListener, resources)
         return true
     }
 
-    override fun onLongClick(position: Int, selectedListener: SelectedListener) {
+    override fun onLongClick(position: Int, selectedListener: SelectedListener,
+                             resources: Resources) {
         if(selectedItemList.contains(position)){
             selectedItemList.remove(position)
             selectedListener.unselected(true)
@@ -110,7 +113,8 @@ class CertificatesAdapter(private val profileFilled : Boolean,
             actionMode!!.finish()
         }
         if(actionMode != null){
-            actionMode!!.title = "Selected " + currentSize //TODO CHANGE
+            actionMode!!.title = resources.getQuantityString(R.plurals.selected_count, currentSize,
+                currentSize)
         }
     }
 
@@ -160,7 +164,6 @@ class CertificatesAdapter(private val profileFilled : Boolean,
      */
     fun setItems(certificates: ArrayList<Certificate>?) {
         actionMode?.finish()
-        selectedItemList.clear()
         val diffResult = DiffUtil.calculateDiff(CertificatesDiffCallback(this.certificates,
             certificates ?: ArrayList()))
         this.certificates.clear()

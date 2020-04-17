@@ -232,4 +232,9 @@
     <string name="eula_content_part_15">par Paul SOUTEYRAT</string>
     <string name="people_to_credit">Créateur : Paul SOUTEYRAT. Basé sur le travail réalisé par le
         Ministère de l\'intérieur ici : https://github.com/LAB-MI/deplacement-covid-19</string>
+
+    <plurals name="selected_count">
+        <item quantity="one">%d sélectionné</item>
+        <item quantity="other">%d sélectionnés</item>
+    </plurals>
 </resources>

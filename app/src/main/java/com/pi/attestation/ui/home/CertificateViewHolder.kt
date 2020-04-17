@@ -11,6 +11,7 @@ import com.pi.attestation.objects.Certificate
 import com.pi.attestation.ui.tools.FlipAnimator
 import com.pi.attestation.ui.viewer.CertificateViewerActivity
 
+
 /**
  * [RecyclerView.ViewHolder] used to create certificate "card" for the [RecyclerView] in
  * [HomeFragment].
@@ -79,7 +80,8 @@ class CertificateViewHolder(itemView: View, private val itemClickListener: ItemC
         shortName.text = certificate.reason.shortName
 
         itemView.setOnClickListener {
-            if(!itemClickListener.selectedForActionMode(position, this)){
+            if(!itemClickListener.selectedForActionMode(position, this,
+                    it.resources)){
                 val intent = Intent(it.context, CertificateViewerActivity::class.java)
                 intent.putExtra(CertificateViewerActivity.FILE_PATH, certificate.pdfPath)
                 it.context.startActivity(intent)
@@ -88,7 +90,7 @@ class CertificateViewHolder(itemView: View, private val itemClickListener: ItemC
 
         itemView.setOnLongClickListener {
             //TODO MAINTAIN TO SHARE OPTION
-            itemClickListener.onLongClick(position, this)
+            itemClickListener.onLongClick(position, this, it.resources)
             return@setOnLongClickListener true
         }
     }

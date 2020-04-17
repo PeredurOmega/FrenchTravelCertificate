@@ -18,7 +18,6 @@ import com.pi.attestation.ui.home.CertificatesAdapter.Companion.FILL_PROFILE_CAR
  */
 abstract class SwipeToDeleteCallback internal constructor(context: Context) :
     ItemTouchHelper.Callback() {
-    //TODO ENABLE POSITION CHANGE UP / DOWN FLAGS
 
     /**
      * [Paint] holding the style and color information about how to draw geometries, text and

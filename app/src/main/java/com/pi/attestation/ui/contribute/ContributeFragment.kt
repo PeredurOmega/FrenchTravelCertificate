@@ -24,7 +24,7 @@ class ContributeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val helpDir = "https://github.com/PeredurOmega/FrenchTravelCertificate/blob/master/"
+        val helpDir = "https://github.com/PeredurOmega/FrenchTravelCertificate/blob/master/info/"
 
         val helpToCode = view.findViewById<MaterialButton>(R.id.helpToCode)
         helpToCode.setOnClickListener {

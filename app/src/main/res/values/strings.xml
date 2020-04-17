@@ -214,4 +214,9 @@
     <string name="postal_code_key" translatable="false">POSTAL_CODE</string>
     <string name="city_key" translatable="false">CITY</string>
     <string name="first_certificate_view_key" translatable="false">FIRST_CERTIFICATE_VIEW</string>
+
+    <plurals name="selected_count">
+        <item quantity="one">%d selected</item>
+        <item quantity="other">%d selected</item>
+    </plurals>
 </resources>

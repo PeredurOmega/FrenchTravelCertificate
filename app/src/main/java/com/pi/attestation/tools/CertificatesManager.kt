@@ -71,7 +71,7 @@ class CertificatesManager(dirFile: File) {
      * certificates should contain.
      * @see getExistingCertificates
      */
-    private fun saveCertificates(certificates: ArrayList<Certificate>){
+    fun saveCertificates(certificates: ArrayList<Certificate>){
         val gson = Gson()
         val fileOutputStream = FileOutputStream(certificatesFile)
         fileOutputStream.write(gson.toJson(certificates).toByteArray())
@@ -160,4 +160,5 @@ class CertificatesManager(dirFile: File) {
             deletePdf(certificateToDelete)
         }
     }
+
 }
