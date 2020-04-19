@@ -1,12 +1,10 @@
 package com.pi.attestation.ui.profile
 
-import android.os.Parcel
+import android.app.DatePickerDialog
 import android.text.format.DateFormat
 import android.view.View
+import android.widget.DatePicker
 import androidx.core.util.Pair
-import androidx.fragment.app.FragmentActivity
-import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pi.attestation.R
@@ -22,8 +20,7 @@ import java.util.*
  * Toolkit class which provides useful tools to monitor the state of the user's information edition
  * and implements [EditedListener].
  */
-class InfoEditionWatcher internal constructor(private val fragmentActivity: FragmentActivity) :
-    EditedListener {
+class InfoEditionWatcher : EditedListener {
 
     /**
      * @see UserInfoBuilder
@@ -79,7 +76,7 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
 
     /**
      * Sets up the birth date [TextInputEditText] and [TextInputLayout] and enables input with a
-     * [MaterialDatePicker].
+     * [DatePickerDialog] in case of a click from the user on the end icon.
      * @param birthDateEditText [TextInputEditText] where is written the birth date of the user.
      * @param birthDateField [TextInputLayout] containing the [TextInputEditText] where is written
      * the birth date of the user.
@@ -108,11 +105,10 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
         }
 
         val tomorrow = Calendar.getInstance(Locale.FRANCE)
-        tomorrow.set(Calendar.HOUR_OF_DAY, 0)
-        tomorrow.set(Calendar.MINUTE, 0)
-        tomorrow.set(Calendar.SECOND, 0)
-        tomorrow.set(Calendar.MILLISECOND, 0)
-        tomorrow.add(Calendar.DAY_OF_MONTH, 1)
+        tomorrow.set(Calendar.HOUR_OF_DAY, 23)
+        tomorrow.set(Calendar.MINUTE, 59)
+        tomorrow.set(Calendar.SECOND, 59)
+        tomorrow.set(Calendar.MILLISECOND, 99)
 
         val dateValidator = object : DateValidator {
             override fun isValid(calendar: Calendar): Int? {
@@ -125,50 +121,47 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
         }
 
         birthDateField.setEndIconOnClickListener {
-            val builder = MaterialDatePicker.Builder.datePicker()
-            val constraintsBuilder = CalendarConstraints.Builder()
-
-            val currentWrittenBirthDate = birthDateEditText.text
-            if(currentWrittenBirthDate != null){
+            val currentWrittenDate = birthDateEditText.text
+            if(currentWrittenDate != null){
                 try {
-                    val date = dateFormat.parse(currentWrittenBirthDate.toString())
-                    if (date != null) {
-                        birthCalendar.time = date
-                        birthCalendar.add(Calendar.DAY_OF_MONTH, 1)
+                    val newDate = dateFormat.parse(currentWrittenDate.toString())
+                    if (newDate != null) {
+                        birthCalendar.timeInMillis = newDate.time
                     }
                 } catch (e: ParseException) {
                     e.printStackTrace()
                 }
             }
 
-            val nowSelection = birthCalendar.timeInMillis
-            constraintsBuilder.setEnd(tomorrow.timeInMillis)
-            constraintsBuilder.setOpenAt(nowSelection)
-            constraintsBuilder.setValidator(object : CalendarConstraints.DateValidator{
-
-                override fun writeToParcel(dest: Parcel?, flags: Int) {}
-
-                override fun isValid(date: Long): Boolean {
-                    val calendar = Calendar.getInstance()
-                    calendar.timeInMillis = date
-                    return dateValidator.isValid(calendar) == null
+            val dateListener =
+                DatePickerDialog.OnDateSetListener { _: DatePicker?, year: Int, monthOfYear: Int,
+                                                     dayOfMonth: Int ->
+                    birthCalendar.set(Calendar.YEAR, year)
+                    birthCalendar.set(Calendar.MONTH, monthOfYear)
+                    birthCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    birthDateEditText.setText(dateFormat.format(birthCalendar.time))
                 }
 
-                override fun describeContents(): Int {
-                    return 0
-                }
-            })
-            builder.setCalendarConstraints(constraintsBuilder.build())
-            builder.setSelection(nowSelection)
-            builder.setTitleText(R.string.select_your_birthdate)
-            val picker = builder.build()
-            picker.addOnPositiveButtonClickListener { selection: Long? ->
-                birthCalendar.timeInMillis = selection!!
-                birthDateEditText.setText(dateFormat.format(birthCalendar.time))
+            val context = it.context
+            if(context != null){
+                val datePickerDialog = DatePickerDialog(context, R.style.TimePickerTheme,
+                    dateListener, birthCalendar.get(Calendar.YEAR),
+                    birthCalendar.get(Calendar.MONTH), birthCalendar.get(Calendar.DAY_OF_MONTH))
+                datePickerDialog.show()
+                val datePicker = datePickerDialog.datePicker
+                datePicker.firstDayOfWeek = Calendar.MONDAY
+                val in1900 = Calendar.getInstance(Locale.FRANCE)
+                in1900.set(Calendar.YEAR, 1900)
+                in1900.set(Calendar.MONTH, 0)
+                in1900.set(Calendar.DAY_OF_MONTH, 1)
+                in1900.set(Calendar.HOUR_OF_DAY, 0)
+                in1900.set(Calendar.MINUTE, 0)
+                in1900.set(Calendar.SECOND, 0)
+                in1900.set(Calendar.MILLISECOND, 0)
+                datePicker.maxDate = tomorrow.timeInMillis
+                datePicker.minDate = in1900.timeInMillis
             }
-            picker.show(fragmentActivity.supportFragmentManager, picker.toString())
         }
-
 
         DateEditTextFormatter(birthDateEditText, originalDate ?: "", birthDateField,
             dateValidator)

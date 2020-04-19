@@ -99,7 +99,7 @@ internal class UserInfoBuilder(
     }
 
     /**
-     * Builds [UserInfo] by retrieving all text contained in the first paremeter of the [Pair]
+     * Builds [UserInfo] by retrieving all text contained in the first parameter of the [Pair]
      * provided through the constructor of [UserInfoBuilder].
      * @return [UserInfo] built according the user's input.
      */

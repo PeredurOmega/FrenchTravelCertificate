@@ -5,8 +5,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/textColor</item>
-        <item name="colorSecondary ">@color/colorAccent</item>
-        <item name="colorOnSecondary ">@color/white</item>
         <item name="android:autofilledHighlight">@drawable/rounded_text_field_auto_completed</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/colorPrimary</item>

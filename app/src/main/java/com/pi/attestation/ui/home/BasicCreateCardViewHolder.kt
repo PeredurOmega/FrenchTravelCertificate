@@ -3,10 +3,7 @@ package com.pi.attestation.ui.home
 import android.content.Intent
 import android.view.View
 import androidx.core.content.ContextCompat.startActivity
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.button.MaterialButton
-import com.pi.attestation.R
 import com.pi.attestation.ui.creator.CertificateCreatorActivity
 
 /**

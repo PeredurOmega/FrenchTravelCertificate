@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="35dp"
+        style="@style/FloatingActionButton"
         app:srcCompat="@drawable/new_certificate_96px" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

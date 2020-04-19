@@ -79,7 +79,7 @@ class InfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val fragmentActivity = activity
         if(fragmentActivity != null){
-            val infoEditionWatcher = InfoEditionWatcher(fragmentActivity)
+            val infoEditionWatcher = InfoEditionWatcher()
             infoEditionWatcher.build(view, UserInfo(null, null, null,
                 null, null, null, null)
             )

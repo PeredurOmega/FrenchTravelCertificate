@@ -1,19 +1,19 @@
 package com.pi.attestation.ui.creator.filler
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.Context
 import android.os.Bundle
-import android.os.Parcel
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -183,7 +183,7 @@ class DateTimeFragment : Fragment() {
         exitTimeEditText.setText(now)
 
         exitTimeField.setEndIconOnClickListener {
-            val timePicker = TimePickerDialog(context,
+            val timePicker = TimePickerDialog(context, R.style.TimePickerTheme,
                 OnTimeSetListener { _, selectedHour, selectedMinute ->
                     date.set(Calendar.HOUR_OF_DAY, selectedHour)
                     date.set(Calendar.MINUTE, selectedMinute)
@@ -196,7 +196,8 @@ class DateTimeFragment : Fragment() {
     }
 
     /**
-     * Sets up the date [TextInputEditText] and [TextInputLayout] with their [MaterialDatePicker].
+     * Sets up the date [TextInputEditText] and [TextInputLayout] with their [DatePickerDialog] in
+     * case of a click on the end icon.
      * @param view [View] where to find the date [TextInputEditText] and the date [TextInputLayout].
      * @see DateTimeFragment.setUpDateField
      */
@@ -231,49 +232,37 @@ class DateTimeFragment : Fragment() {
         }
 
         exitDateField.setEndIconOnClickListener {
-            val builder = MaterialDatePicker.Builder.datePicker()
-            val constraintsBuilder = CalendarConstraints.Builder()
-
             val currentWrittenDate = exitDateEditText.text
             if(currentWrittenDate != null){
                 try {
                     val newDate = dateFormat.parse(currentWrittenDate.toString())
                     if (newDate != null) {
                         date.timeInMillis = newDate.time
-                        date.add(Calendar.DAY_OF_MONTH, 1)
                     }
                 } catch (e: ParseException) {
                     e.printStackTrace()
                 }
             }
 
-            val nowSelection = date.timeInMillis
-            constraintsBuilder.setOpenAt(nowSelection)
-            constraintsBuilder.setStart(date.timeInMillis)
-            constraintsBuilder.setEnd(inOneYear.timeInMillis)
-            constraintsBuilder.setValidator(object : CalendarConstraints.DateValidator{
-
-                override fun writeToParcel(dest: Parcel?, flags: Int) {}
-
-                override fun isValid(date: Long): Boolean {
-                    val calendar = Calendar.getInstance()
-                    calendar.timeInMillis = date
-                    return dateValidator.isValid(calendar) == null
+            val dateListener = OnDateSetListener{_: DatePicker?, year: Int, monthOfYear: Int,
+                                         dayOfMonth: Int ->
+                    date.set(Calendar.YEAR, year)
+                    date.set(Calendar.MONTH, monthOfYear)
+                    date.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    exitDateEditText.setText(dateFormat.format(date.time))
                 }
 
-                override fun describeContents(): Int {
-                    return 0
-                }
-            })
-            builder.setCalendarConstraints(constraintsBuilder.build())
-            builder.setSelection(nowSelection)
-            builder.setTitleText(R.string.select_exit_date)
-            val picker = builder.build()
-            picker.addOnPositiveButtonClickListener { selection: Long? ->
-                date.timeInMillis = selection!!
-                exitDateEditText.setText(dateFormat.format(date.time))
+            val context = it.context
+            if(context != null){
+                val datePickerDialog = DatePickerDialog(context, R.style.TimePickerTheme,
+                    dateListener, date.get(Calendar.YEAR), date.get(Calendar.MONTH),
+                    date.get(Calendar.DAY_OF_MONTH))
+                datePickerDialog.show()
+                val datePicker = datePickerDialog.datePicker
+                datePicker.firstDayOfWeek = Calendar.MONDAY
+                datePicker.maxDate = inOneYear.timeInMillis
+                datePicker.minDate = Calendar.getInstance(Locale.FRANCE).timeInMillis
             }
-            picker.show(parentFragmentManager, picker.toString())
         }
 
         DateEditTextFormatter(exitDateEditText, now ?: "", exitDateField, dateValidator)

@@ -4,8 +4,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/textColor</item>
-        <item name="colorSecondary ">@color/colorAccent</item>
-        <item name="colorOnSecondary ">@color/white</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/colorPrimary</item>
         <item name="actionButtonStyle">@style/ActionButton</item>
@@ -14,6 +12,26 @@
     <style name="ActionButton" parent="@android:style/Widget.ActionButton">
         <item name="android:drawablePadding">10dp</item>
         <item name="android:layout_marginRight">25dp</item>
+    </style>
+
+    <style name="TimePickerTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DialogButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/DialogButtonStyle</item>
+    </style>
+
+    <style name="DialogButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <style name="FloatingActionButton" parent="Widget.Design.FloatingActionButton">
+        <item name="tint">@color/white</item>
+        <item name="backgroundTint">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

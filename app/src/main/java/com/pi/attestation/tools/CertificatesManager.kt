@@ -72,7 +72,7 @@ class CertificatesManager(dirFile: File) {
      * certificates should contain.
      * @see getExistingCertificates
      */
-    fun saveCertificates(certificates: ArrayList<Certificate>){
+    private fun saveCertificates(certificates: ArrayList<Certificate>){
         val gson = Gson()
         val fileOutputStream = FileOutputStream(certificatesFile)
         fileOutputStream.write(gson.toJson(certificates).toByteArray())
