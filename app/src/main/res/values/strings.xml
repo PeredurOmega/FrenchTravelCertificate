@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Travel certificate</string>
     <string name="action_settings">Settings</string>
+    <string name="action_share">Share</string>
     <string name="menu_certificates">Certificates</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_eula">EULA</string>

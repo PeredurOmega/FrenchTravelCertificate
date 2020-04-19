@@ -86,9 +86,7 @@ class DateEditTextFormatter(private val editText: TextInputEditText, original: S
                 val sYear = if(isValid != null) {
                         malformed = isValid
                         format.substring(4, 8)
-                }else {
-                    clean.substring(4, 8)
-                }
+                }else clean.substring(4, 8)
 
                 clean = clean.substring(0, 4) + sYear
                 if(malformed == 0){
@@ -104,13 +102,11 @@ class DateEditTextFormatter(private val editText: TextInputEditText, original: S
                             malformed = isValidDate
                         }
 
-                        day.toString()
+                        clean.substring(0, 2)
                     }
                     clean = sDay + clean.substring(2)
                 }
-            }else if (clean.length < 8) {
-                clean += format.substring(clean.length)
-            }
+            }else if (clean.length < 8) clean += format.substring(clean.length)
 
             clean = String.format("%s/%s/%s", clean.substring(0, 2), clean.substring(2, 4),
                 clean.substring(4, 8))

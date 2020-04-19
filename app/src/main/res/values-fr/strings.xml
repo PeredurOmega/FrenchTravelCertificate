@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">Attestation de déplacement</string>
     <string name="action_settings">Paramètres</string>
+    <string name="action_share">Partager</string>
     <string name="menu_certificates">Attestations</string>
-    <string name="menu_profile">Profile</string>
+    <string name="menu_profile">Profil</string>
     <string name="menu_eula">CGU</string>
     <string name="menu_contribute">Aider</string>
     <string name="credits">Crédits</string>
     <string name="header_sub_title">de déplacement dérogatoire</string>
-    <string name="profile_saved">Profile sauvegardé</string>
+    <string name="profile_saved">Profil sauvegardé</string>
     <string name="create">Créer</string>
     <string name="ok">Ok</string>
     <string name="action_delete">Supprimer</string>
@@ -42,13 +43,13 @@
         rouge en bas à gauche.</string>
     <string name="date_time_match_error">L\'heure doit utiliser le fomat HH:mm et la date le format
         jj/mm/aaaa.</string>
-    <string name="incomplete_profile">Profile incomplet. Tous les champs sont obligatoires.</string>
+    <string name="incomplete_profile">Profil incomplet. Tous les champs sont obligatoires.</string>
     <string name="ask_for_creating_a_certificate">Souhaitez vous créer une attestation ?</string>
     <string name="create_a_certificate">Créer une attestation</string>
     <string name="malformed_birthdate">La date de naissance doit être au format jj/mm/aaaa</string>
-    <string name="no_profile_info">Compléter votre profile pour créer une attestation.
+    <string name="no_profile_info">Compléter votre profil pour créer une attestation.
     </string>
-    <string name="fill_profile">Compléter le profile</string>
+    <string name="fill_profile">Compléter le profil</string>
     <string name="unknown_error">Une erreur inconnue s\'est produite.</string>
     <string name="work_reason_short_name">Déplacements entre le domicile et le travail</string>
     <string name="purchase_of_necessities_reason_short_name">Déplacements pour les achats
@@ -130,7 +131,7 @@
     <string name="undo">Annuler</string>
     <string name="postal_code">Code postal actuel</string>
     <string name="no_certificate">Vous n\'avez aucune attestation</string>
-    <string name="no_certificate_explanation">Pour commencer veuillez compléter votre profile. Celui-ci servira à
+    <string name="no_certificate_explanation">Pour commencer veuillez compléter votre profil. Celui-ci servira à
         compléter automatiquement vos attestations. Vous retrouverez toutes vos attestations ici.
         En cliquant dessus vous pourrez obtenir leur formulaire complété et leur QR Code.</string>
     <string name="no_certificate_explanation_profile_filled">Vous retrouverez toutes vos
@@ -138,7 +139,7 @@
         QR Code.</string>
 
 
-    <string name="eula_content_part_1">Applicable à partir du: 12 April 2020</string>
+    <string name="eula_content_part_1">Applicable à partir du: 12 Avril 2020</string>
     <string name="eula_content_part_2">(Note: toutes les clauses contenues dans cet accord sont
         considérées comme connues, vous avez donc à les lire entièrement)</string>
     <string name="eula_content_part_3">Ces Condiditions Générales d\'Utilisation (“CGU”)
@@ -212,7 +213,7 @@
         l\'acquisition et l\'utilisation du Logiciel, facture ou reçu à l\'appui.</string>
     <string name="eula_content_part_12">6. Confidentialité. Le Logiciel ne peut pas collecter les
         données "in-app" pour les envoyer à des serveurs ou appareils distants. Vos
-        informations personnelles dans votre profile et vos attestations sont uniquement et
+        informations personnelles dans votre profil et vos attestations sont uniquement et
         complètement stockées dans la mémoire de stockage interne de votre appareil et ne sont pas
         et ne peuvent pas être envoyées ou communiquées à d\'autres appareils, personnes ou
         institutions. Le Logiciel peut tout de même collecter des données pour détecter

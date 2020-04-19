@@ -4,20 +4,19 @@ import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.widget.Toast
-import com.itextpdf.barcodes.BarcodeQRCode
-import com.itextpdf.forms.PdfAcroForm
-import com.itextpdf.io.font.constants.StandardFonts
-import com.itextpdf.kernel.font.PdfFontFactory
-import com.itextpdf.kernel.pdf.PdfDocument
-import com.itextpdf.kernel.pdf.PdfReader
-import com.itextpdf.kernel.pdf.PdfWriter
-import com.itextpdf.kernel.pdf.canvas.PdfCanvas
+import com.itextpdf.text.pdf.BarcodeQRCode
+import com.itextpdf.text.pdf.PdfReader
+import com.itextpdf.text.pdf.PdfStamper
+import com.itextpdf.text.pdf.qrcode.EncodeHintType
+import com.itextpdf.text.pdf.qrcode.ErrorCorrectionLevel
 import com.pi.attestation.R
 import com.pi.attestation.objects.Certificate
 import com.pi.attestation.ui.creator.filler.LoadingDialog
 import com.pi.attestation.ui.viewer.CertificateViewerActivity
-import java.io.*
+import java.io.File
+import java.io.FileOutputStream
 import java.lang.ref.WeakReference
+
 
 /**
  * [AsyncTask] Generating a certificate in a background thread. On pre execution this class shows a
@@ -69,66 +68,63 @@ class CertificateGenerator(mContext: Context, private val certificate: Certifica
             }
         }
 
-        val pdfReader = PdfReader(file)
-        val pdfWriter = PdfWriter(fileNew)
-        val pdfDoc = PdfDocument(pdfReader, pdfWriter)
+        val pdfReader = PdfReader(file.path)
+        val pdfStamper = PdfStamper(pdfReader, FileOutputStream(fileNew.path))
 
-        val font = PdfFontFactory.createFont(StandardFonts.HELVETICA)
-
-        val form = PdfAcroForm.getAcroForm(pdfDoc, true)
-        form.isGenerateAppearance = true
-        form.getField("Nom et prénom").setValue(userInfo.lastName!!.plus(" ")
-            .plus(userInfo.firstName), font, 11f)
-        form.getField("Date de naissance").setValue(userInfo.birthDate!!, font, 11f)
-        form.getField("Lieu de naissance").setValue(userInfo.birthPlace!!, font, 11f)
-        form.getField("Adresse actuelle").setValue(userInfo.address!!.plus(" ")
-            .plus(userInfo.postalCode!!).plus(" ").plus(userInfo.city!!), font, 11f)
+        val form = pdfStamper.acroFields
+        form.isGenerateAppearances = true
+        form.setField("Nom et prénom", userInfo.lastName!!.plus(" ")
+            .plus(userInfo.firstName))
+        form.setField("Date de naissance", userInfo.birthDate!!)
+        form.setField("Lieu de naissance", userInfo.birthPlace!!)
+        form.setField("Adresse actuelle", userInfo.address!!.plus(" ")
+            .plus(userInfo.postalCode!!).plus(" ").plus(userInfo.city!!))
 
         when(certificate.reason.id){
-            0 -> form.getField("Déplacements entre domicile et travail")
-                .setValue("X", font, 11f)
-            1 -> form.getField("Déplacements achats nécéssaires")
-                .setValue("X", font, 11f)
-            2 -> form.getField("Consultations et soins")
-                .setValue("X", font, 11f)
-            3 -> form.getField("Déplacements pour motif familial")
-                .setValue("X", font, 11f)
-            4 -> form.getField("Déplacements brefs (activité physique et animaux)")
-                .setValue("X", font, 11f)
-            5 -> form.getField("Convcation judiciaire ou administrative")
-                .setValue("X", font, 11f)
+            0 -> form.setField("Déplacements entre domicile et travail", "Oui")
+            1 -> form.setField("Déplacements achats nécéssaires", "Oui")
+            2 -> form.setField("Déplacements brefs (activité physique et animaux)", "Oui")
+            3 -> form.setField("Déplacements pour motif familial", "Oui")
+            4 -> form.setField("Consultations et soins", "Oui")
+            5 -> form.setField("Convcation judiciaire ou administrative", "Oui")
             //TODO CHANGE TO -> JUDICIAL CONVOCATION FOLLOWING
             // (https://github.com/LAB-MI/deplacement-covid-19/issues/89)
-            6 -> form.getField("Mission d'intérêt général")
-                .setValue("X", font, 11f)
+            6 -> form.setField("Mission d'intérêt général", "Oui")
         }
 
-        form.getField("Ville").setValue(userInfo.city, font, 11f)
-        form.getField("Date").setValue(certificate.exitDateTime.date, font, 11f)
-        form.getField("Heure").setValue(certificate.exitDateTime.getHours(), font, 11f)
-        form.getField("Minute").setValue(certificate.exitDateTime.getMinutes(), font, 11f)
-        form.getField("Signature").setValue(userInfo.lastName.plus(" ")
-            .plus(userInfo.firstName), font, 11f)
+        form.setField("Ville", userInfo.city)
+        form.setField("Date", certificate.exitDateTime.date)
+        form.setField("Heure", certificate.exitDateTime.getHours())
+        form.setField("Minute", certificate.exitDateTime.getMinutes())
+        form.setField("Signature", userInfo.lastName.plus(" ")
+            .plus(userInfo.firstName))
 
-        form.flattenFields()
+        pdfStamper.setFormFlattening(true)
 
-        val canvas = PdfCanvas(pdfDoc.firstPage)
+        pdfStamper.insertPage(pdfReader.numberOfPages + 1,
+            pdfReader.getPageSizeWithRotation(1))
 
-        val barcodeQRCode = BarcodeQRCode(certificate.buildData())
-        val codeQrImage = barcodeQRCode.createFormXObject(pdfDoc)
-        canvas.addXObject(codeQrImage, pdfDoc.firstPage.pageSize.width - 170f,140f,
-            100f / codeQrImage.width)
+        val qrParam: MutableMap<EncodeHintType, Any> = HashMap()
+        qrParam[EncodeHintType.ERROR_CORRECTION] = ErrorCorrectionLevel.M
 
-        val newPage = pdfDoc.addNewPage()
-        val newCanvas = PdfCanvas(newPage)
-        val fullPageWidth = newPage.pageSize.width / codeQrImage.width
-        newCanvas.addXObject(codeQrImage, 0f,
-            (newPage.pageSize.height / 2) - (newPage.pageSize.width / 2) + 100f, fullPageWidth)
+        val pageSize = pdfReader.getPageSize(1)
+        val width = pageSize.width
+        val height = pageSize.height
+        val barcodeQRCode = BarcodeQRCode(certificate.buildData(), width.toInt(),
+            width.toInt(), qrParam)
+        val image = barcodeQRCode.image ?: return null
+        image.scalePercent((100f / width) * 100f)
+        image.setAbsolutePosition(width - 170f, 155f)
+        pdfStamper.getOverContent(1).addImage(image)
 
-        pdfDoc.close()
+        image.scalePercent(100f)
+        image.setAbsolutePosition(0f, (height / 2) - (width / 2) + 100f)
+        pdfStamper.getOverContent(2).addImage(image)
+
+        pdfStamper.close()
+        pdfReader.close()
 
         CertificatesManager(context.filesDir).addCertificate(certificate, 0)
-
         return fileNew.name
     }
 

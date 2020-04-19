@@ -89,7 +89,7 @@ class InfoFragment : Fragment() {
                 val userInfo = infoEditionWatcher.info
                 val infoManager = InfoManager(fragmentActivity)
                 if(userInfo != null && infoManager.hasBeenFilled(userInfo)){
-                    createCertificate(fragmentActivity)
+                    createCertificate(fragmentActivity, userInfo)
                 }else{
                     Toast.makeText(context, R.string.please_fill_info, Toast.LENGTH_SHORT).show()
                 }
@@ -100,8 +100,9 @@ class InfoFragment : Fragment() {
     /**
      * Creates a certificate once all the info are filled.
      * @param context [Context] to provide to the [CertificateGenerator].
+     * @param userInfo [UserInfo] attached to the [Certificate] to create.
      */
-    private fun createCertificate(context: Context){
+    private fun createCertificate(context: Context, userInfo: UserInfo){
         val timeFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),
             Locale.getDefault())
@@ -111,7 +112,7 @@ class InfoFragment : Fragment() {
             Locale.getDefault())
 
         val certificate = Certificate(DateTime(dateFormat.format(Date()), timeFormat.format(Date())),
-            InfoManager(context).retrieveUserInfo(), exitDateTime, reason)
+            userInfo, exitDateTime, reason)
 
         CertificateGenerator(context, certificate).execute()
     }

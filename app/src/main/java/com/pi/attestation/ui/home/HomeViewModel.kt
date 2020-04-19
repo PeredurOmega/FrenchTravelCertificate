@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.pi.attestation.objects.Certificate
 import com.pi.attestation.tools.CertificatesManager
 import java.io.*
+import java.lang.IndexOutOfBoundsException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -75,8 +76,12 @@ class HomeViewModel(private val filesDir: File) : ViewModel() {
     fun getCertificates(adapterPositions: ArrayList<Int>): ArrayList<Certificate>? {
         val certificates = _certificates.value ?: return null
         val certificatesToRemove = ArrayList<Certificate>()
-        for(adapterPosition in adapterPositions){
-            certificatesToRemove.add(certificates[adapterPosition - 1])
+        try {
+            for(adapterPosition in adapterPositions){
+                certificatesToRemove.add(certificates[adapterPosition - 1])
+            }
+        }catch (e: IndexOutOfBoundsException){
+            return null
         }
         return certificatesToRemove
     }

@@ -100,9 +100,9 @@ class HomeFragment : Fragment(), ActionModeListener {
 
     override fun deleteAction(toBeRemovedList: ArrayList<Int>) {
         val adapterPositions = ArrayList(toBeRemovedList)
-        val certificates = homeViewModel.getCertificates(toBeRemovedList) ?: return
+        val certificates = homeViewModel.getCertificates(toBeRemovedList)
         val fragmentActivity = activity
-        if (fragmentActivity != null) {
+        if (fragmentActivity != null && certificates != null) {
             val dirFile = fragmentActivity.filesDir
             homeViewModel.removeItems(adapterPositions)
             CertificatesManager(dirFile).removeCertificates(certificates)
