@@ -15,9 +15,9 @@ class Certificate(val creationDateTime: DateTime, val userInfo: UserInfo,
                   val exitDateTime: DateTime, val reason: Reason) : Serializable{
 
     /**
-     * [String] Path of the pdf that has been generated once the certificate has been created.
+     * [String] Name of the pdf that has been generated once the certificate has been created.
      */
-    var pdfPath : String = ""
+    var pdfFileName : String = ""
 
     /**
      * Builds the data to put in the QR Code content. This data can be used by the police to check
@@ -54,7 +54,7 @@ class Certificate(val creationDateTime: DateTime, val userInfo: UserInfo,
     }
 
     override fun equals(other: Any?): Boolean {
-        return if(other is Certificate){ other.pdfPath == pdfPath }else false
+        return if(other is Certificate){ other.pdfFileName == pdfFileName }else false
     }
 
     override fun hashCode(): Int {
@@ -62,7 +62,7 @@ class Certificate(val creationDateTime: DateTime, val userInfo: UserInfo,
         result = 31 * result + userInfo.hashCode()
         result = 31 * result + exitDateTime.hashCode()
         result = 31 * result + reason.hashCode()
-        result = 31 * result + pdfPath.hashCode()
+        result = 31 * result + pdfFileName.hashCode()
         return result
     }
 }

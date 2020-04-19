@@ -6,6 +6,7 @@
         <item name="android:textColor">@color/textColor</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/colorPrimary</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="actionButtonStyle">@style/ActionButton</item>
     </style>
 
@@ -41,6 +42,7 @@
 
     <style name="SplashScreen" parent="AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

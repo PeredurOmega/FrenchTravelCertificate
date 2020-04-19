@@ -11,6 +11,10 @@
     <string name="profile_saved">Profile saved</string>
     <string name="create">Create</string>
     <string name="ok">OK</string>
+    <string name="share_to_your_friends">Share to your friends</string>
+    <string name="app_shared_text">For your travel certificates, use :
+        https://play.google.com/store/apps/details?id=com.pi.attestation.
+        Easy to use, fast, free, ad-free and open-source.</string>
     <string name="time_format">HHmm</string>
     <string name="action_delete">Delete</string>
     <string name="hours_between_0_23">Hours must be between 0 and 24</string>

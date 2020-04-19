@@ -1,11 +1,15 @@
 package com.pi.attestation.ui.home
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.ActionMode
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.FileProvider.getUriForFile
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,10 +18,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.pi.attestation.R
 import com.pi.attestation.objects.Certificate
+import com.pi.attestation.tools.CertificatesGenerator
 import com.pi.attestation.tools.CertificatesManager
+import com.pi.attestation.tools.GeneratorListener
 import com.pi.attestation.ui.profile.InfoManager
 import com.pi.attestation.ui.tools.ViewModelFactory
-import kotlin.collections.ArrayList
+import java.io.File
+
 
 /**
  * [Fragment] displayed when we open the app (as "home" [Fragment]). This [Fragment] displays all
@@ -96,7 +103,7 @@ class HomeFragment : Fragment(), ActionModeListener {
     }
 
     override fun startActionMode(actionModeCallback: ActionMode.Callback) : ActionMode? {
-        return activity?.startActionMode(actionModeCallback, ActionMode.TYPE_PRIMARY)
+        return activity?.startActionMode(actionModeCallback)
     }
 
     override fun deleteAction(toBeRemovedList: ArrayList<Int>) {
@@ -125,6 +132,55 @@ class HomeFragment : Fragment(), ActionModeListener {
                         }
                     }).show()
             }
+        }else Toast.makeText(fragmentActivity, R.string.unknown_error, Toast.LENGTH_SHORT)
+            .show()
+    }
+
+    override fun shareAction(selectedItemsPositions: ArrayList<Int>) {
+        val certificates = homeViewModel.getCertificates(selectedItemsPositions)
+        val fragmentActivity = activity
+        if (fragmentActivity != null && certificates != null) {
+
+            var generated = true
+
+            val pdfPaths = ArrayList<Uri>()
+            for(certificate in certificates){
+                val pdfFile = File(fragmentActivity.cacheDir, certificate.pdfFileName)
+                if(!pdfFile.exists()) generated = false
+                val pdfUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    getUriForFile(fragmentActivity, fragmentActivity.packageName, pdfFile)
+                } else Uri.fromFile(pdfFile)
+                pdfPaths.add(pdfUri)
+            }
+
+            val generatorListener = object : GeneratorListener {
+                override fun onGenerated() {
+                    when (pdfPaths.size) {
+                        0 -> return
+                        1 -> {
+                            val share = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                type = "application/pdf"
+                                putExtra(Intent.EXTRA_STREAM, pdfPaths[0])
+                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            }
+                            fragmentActivity.startActivity(share)
+                        }
+                        else -> {
+                            val share = Intent().apply {
+                                action = Intent.ACTION_SEND_MULTIPLE
+                                type = "application/pdf"
+                                putParcelableArrayListExtra(Intent.EXTRA_STREAM, pdfPaths)
+                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            }
+                            fragmentActivity.startActivity(share)
+                        }
+                    }
+                }
+            }
+
+            if(generated) generatorListener.onGenerated()
+            else CertificatesGenerator(fragmentActivity, certificates, generatorListener).execute()
         }else Toast.makeText(fragmentActivity, R.string.unknown_error, Toast.LENGTH_SHORT)
             .show()
     }

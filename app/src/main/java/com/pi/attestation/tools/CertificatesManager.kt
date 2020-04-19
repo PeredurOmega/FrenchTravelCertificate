@@ -148,7 +148,7 @@ class CertificatesManager(dirFile: File) {
      * @param cacheDir [File] where to find pdf files.
      */
     fun deletePdf(certificate: Certificate, cacheDir: File) {
-        File(cacheDir, certificate.pdfPath).delete()
+        File(cacheDir, certificate.pdfFileName).delete()
     }
 
     /**
@@ -167,14 +167,14 @@ class CertificatesManager(dirFile: File) {
 
     /**
      * Returns a certificate matching with the specified pdf file's name.
-     * @param pdfPath [String] Name of the pdf file.
+     * @param pdfFileName [String] Name of the pdf file.
      * @return A [Certificate] matching with the specified pdf file's path. Returns null in case no
      * certificate was found (should never occur).
      */
-    fun getCertificate(pdfPath: String) : Certificate?{
+    fun getCertificate(pdfFileName: String) : Certificate?{
         val certificates = getExistingCertificates()
         for(certificate in certificates){
-            if(certificate.pdfPath == pdfPath) return certificate
+            if(certificate.pdfFileName == pdfFileName) return certificate
         }
         return null
     }

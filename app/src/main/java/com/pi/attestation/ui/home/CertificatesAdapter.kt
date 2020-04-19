@@ -75,6 +75,12 @@ class CertificatesAdapter(private val profileFilled : Boolean,
                     mode.finish()
                     true
                 }
+                R.id.action_share -> {
+                    selectedItemList.sort()
+                    actionModeListener.shareAction(selectedItemList)
+                    mode.finish()
+                    true
+                }
                 else -> false
             }
         }

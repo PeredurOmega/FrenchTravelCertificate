@@ -15,7 +15,7 @@ import com.pi.attestation.R
 
 /**
  * [AppCompatActivity] used to display the two pages of a
- * [com.pi.attestation.objects.Certificate.pdfPath].
+ * [com.pi.attestation.objects.Certificate.pdfFileName].
  */
 class CertificateViewerActivity : AppCompatActivity() {
 

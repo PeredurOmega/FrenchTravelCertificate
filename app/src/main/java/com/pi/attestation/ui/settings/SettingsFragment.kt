@@ -1,5 +1,6 @@
 package com.pi.attestation.ui.settings
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,17 @@ class SettingsFragment : Fragment() {
                 }
                 .setNegativeButton(R.string.no) {_, _ ->}
                 .show()
+        }
+
+        val shareApp = view.findViewById<MaterialButton>(R.id.shareApp)
+        shareApp.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, getString(R.string.app_shared_text))
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
     }
 }

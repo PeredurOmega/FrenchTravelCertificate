@@ -83,13 +83,12 @@ class CertificateViewHolder(itemView: View, private val itemClickListener: ItemC
             if(!itemClickListener.selectedForActionMode(position, this,
                     it.resources)){
                 val intent = Intent(it.context, CertificateViewerActivity::class.java)
-                intent.putExtra(CertificateViewerActivity.FILE_PATH, certificate.pdfPath)
+                intent.putExtra(CertificateViewerActivity.FILE_PATH, certificate.pdfFileName)
                 it.context.startActivity(intent)
             }
         }
 
         itemView.setOnLongClickListener {
-            //TODO MAINTAIN TO SHARE OPTION
             itemClickListener.onLongClick(position, this, it.resources)
             return@setOnLongClickListener true
         }

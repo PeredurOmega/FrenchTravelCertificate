@@ -18,4 +18,10 @@ interface ActionModeListener {
      * @param toBeRemovedList [ArrayList] of [Int] positions in the adapter to delete.
      */
     fun deleteAction(toBeRemovedList: ArrayList<Int>)
+
+    /**
+     * Shares a list of items according to their positions in the adapter.
+     * @param selectedItemsPositions [ArrayList] of [Int] positions in the adapter to share.
+     */
+    fun shareAction(selectedItemsPositions: ArrayList<Int>)
 }
