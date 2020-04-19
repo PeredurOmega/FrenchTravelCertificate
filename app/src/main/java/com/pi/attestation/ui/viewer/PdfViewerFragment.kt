@@ -7,15 +7,16 @@ import android.os.ParcelFileDescriptor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.github.chrisbanes.photoview.PhotoView
 import com.pi.attestation.R
 import com.pi.attestation.tools.CertificateGenerator
 import com.pi.attestation.tools.CertificatesManager
 import com.pi.attestation.ui.viewer.CertificateViewerActivity.Companion.FILE_PATH
 import java.io.File
 import java.io.FileNotFoundException
+
 
 /**
  * [Fragment] used to display one page of a pdf.
@@ -80,10 +81,13 @@ class PdfViewerFragment : Fragment(){
                 val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY).also {
                     val pdfRenderer = PdfRenderer(it)
                     val page = pdfRenderer.openPage(page!!)
-                    val bitmap = Bitmap.createBitmap(page.width, page.height, Bitmap.Config.ARGB_8888)
+                    val pdfImageView = view.findViewById<PhotoView>(R.id.pdfView)
+                    val density = resources.displayMetrics.density
+                    val bitmap = Bitmap.createBitmap((page.width * density).toInt(),
+                        (page.height * density).toInt(), Bitmap.Config.ARGB_8888)
                     page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
-                    val pdfImageView : ImageView = view.findViewById(R.id.pdfView)
                     pdfImageView.setImageBitmap(bitmap)
+                    if(this.page == 1) pdfImageView.setZoomable(false)
                 }
                 fileDescriptor.close()
             }catch (e: FileNotFoundException){
