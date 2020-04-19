@@ -8,10 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.pi.attestation.R
+import com.pi.attestation.tools.CertificateGenerator
+import com.pi.attestation.tools.CertificatesManager
 import com.pi.attestation.ui.viewer.CertificateViewerActivity.Companion.FILE_PATH
 import java.io.File
+import java.io.FileNotFoundException
 
 /**
  * [Fragment] used to display one page of a pdf.
@@ -67,18 +71,29 @@ class PdfViewerFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val file = File(context?.cacheDir, filePath)
+        val context = context ?: return
+        val dirFile = context.cacheDir
+        val file = File(dirFile, filePath)
 
         if(page != null){
-            val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY).also {
-                val pdfRenderer = PdfRenderer(it)
-                val page = pdfRenderer.openPage(page!!)
-                val bitmap = Bitmap.createBitmap(page.width, page.height, Bitmap.Config.ARGB_8888)
-                page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
-                val pdfImageView : ImageView = view.findViewById(R.id.pdfView)
-                pdfImageView.setImageBitmap(bitmap)
+            try {
+                val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY).also {
+                    val pdfRenderer = PdfRenderer(it)
+                    val page = pdfRenderer.openPage(page!!)
+                    val bitmap = Bitmap.createBitmap(page.width, page.height, Bitmap.Config.ARGB_8888)
+                    page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+                    val pdfImageView : ImageView = view.findViewById(R.id.pdfView)
+                    pdfImageView.setImageBitmap(bitmap)
+                }
+                fileDescriptor.close()
+            }catch (e: FileNotFoundException){
+                val certificate = CertificatesManager(context.filesDir).getCertificate(filePath)
+                if(certificate != null) CertificateGenerator(context, certificate, false).execute()
+                else{
+                    Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show()
+                    activity?.onBackPressed()
+                }
             }
-            fileDescriptor.close()
         }
     }
 }

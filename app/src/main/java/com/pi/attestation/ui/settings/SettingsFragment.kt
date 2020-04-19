@@ -9,7 +9,6 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pi.attestation.R
 import com.pi.attestation.tools.CertificatesManager
-import java.io.File
 
 /**
  * [Fragment] displaying the available settings.
@@ -32,7 +31,8 @@ class SettingsFragment : Fragment() {
                 .setTitle(R.string.remove_all_certificates)
                 .setMessage(R.string.ask_remove_all_certificates)
                 .setPositiveButton(R.string.yes) { _, _ ->
-                    CertificatesManager(fragmentActivity.filesDir).removeAll()
+                    CertificatesManager(fragmentActivity.filesDir)
+                        .removeAll(fragmentActivity.cacheDir)
                 }
                 .setNegativeButton(R.string.no) {_, _ ->}
                 .show()

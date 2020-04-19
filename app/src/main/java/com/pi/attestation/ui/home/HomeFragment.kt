@@ -82,7 +82,8 @@ class HomeFragment : Fragment(), ActionModeListener {
                             }.addCallback(object : Snackbar.Callback() {
                                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                                     if (event != DISMISS_EVENT_ACTION) {
-                                        CertificatesManager(dirFile).deletePdf(certificate)
+                                        CertificatesManager(dirFile).deletePdf(certificate,
+                                            fragmentActivity.cacheDir)
                                     }
                                 }
                             }).show()
@@ -118,11 +119,13 @@ class HomeFragment : Fragment(), ActionModeListener {
                     }.addCallback(object : Snackbar.Callback() {
                         override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                             if (event != DISMISS_EVENT_ACTION) {
-                                CertificatesManager(dirFile).deletePdfFiles(certificates)
+                                CertificatesManager(dirFile).deletePdfFiles(certificates,
+                                    fragmentActivity.cacheDir)
                             }
                         }
                     }).show()
             }
-        }else Toast.makeText(fragmentActivity, R.string.unknown_error, Toast.LENGTH_SHORT).show()
+        }else Toast.makeText(fragmentActivity, R.string.unknown_error, Toast.LENGTH_SHORT)
+            .show()
     }
 }

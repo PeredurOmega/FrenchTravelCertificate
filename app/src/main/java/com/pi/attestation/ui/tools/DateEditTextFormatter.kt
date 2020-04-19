@@ -98,11 +98,10 @@ class DateEditTextFormatter(private val editText: TextInputEditText, original: S
                         cal[Calendar.DAY_OF_MONTH] = day
 
                         val isValidDate = dateValidator.isValid(cal)
-                        if(isValidDate != null && cal.after(Calendar.getInstance())){
+                        if(isValidDate != null){
                             malformed = isValidDate
-                        }
-
-                        clean.substring(0, 2)
+                            format.substring(0, 2)
+                        }else clean.substring(0, 2)
                     }
                     clean = sDay + clean.substring(2)
                 }

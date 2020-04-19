@@ -92,7 +92,7 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
         val dateFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
             Locale.getDefault())
-        val birthCalendar = Calendar.getInstance()
+        val birthCalendar = Calendar.getInstance(Locale.FRANCE)
 
         if(birthDate != null){
             try {
@@ -107,7 +107,7 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
             }
         }
 
-        val tomorrow = Calendar.getInstance()
+        val tomorrow = Calendar.getInstance(Locale.FRANCE)
         tomorrow.set(Calendar.HOUR_OF_DAY, 0)
         tomorrow.set(Calendar.MINUTE, 0)
         tomorrow.set(Calendar.SECOND, 0)
@@ -127,7 +127,21 @@ class InfoEditionWatcher internal constructor(private val fragmentActivity: Frag
         birthDateField.setEndIconOnClickListener {
             val builder = MaterialDatePicker.Builder.datePicker()
             val constraintsBuilder = CalendarConstraints.Builder()
-            val nowSelection = birthCalendar.time.time
+
+            val currentWrittenBirthDate = birthDateEditText.text
+            if(currentWrittenBirthDate != null){
+                try {
+                    val date = dateFormat.parse(currentWrittenBirthDate.toString())
+                    if (date != null) {
+                        birthCalendar.time = date
+                        birthCalendar.add(Calendar.DAY_OF_MONTH, 1)
+                    }
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+            }
+
+            val nowSelection = birthCalendar.timeInMillis
             constraintsBuilder.setEnd(tomorrow.timeInMillis)
             constraintsBuilder.setOpenAt(nowSelection)
             constraintsBuilder.setValidator(object : CalendarConstraints.DateValidator{

@@ -8,7 +8,8 @@ import java.io.*
 
 /**
  * Utility class used to manage certificates in the json file.
- * @param dirFile [File] directory that contains the json file for all certificates.
+ * @param dirFile [File] directory that contains the json file for all certificates. This directory
+ * can be obtained by using [android.content.Context.getFilesDir].
  */
 class CertificatesManager(dirFile: File) {
 
@@ -110,12 +111,13 @@ class CertificatesManager(dirFile: File) {
 
     /**
      * Removes all the certificates by deleting the [CertificatesManager.certificatesFile].
+     * @param cacheDir [File] where to find pdf files.
      */
-    fun removeAll() {
+    fun removeAll(cacheDir: File) {
         val certificates = getExistingCertificates()
         certificatesFile.delete()
         for(certificate in certificates){
-            deletePdf(certificate)
+            deletePdf(certificate, cacheDir)
         }
     }
 
@@ -143,9 +145,10 @@ class CertificatesManager(dirFile: File) {
      * wants to delete a certificate.
      * @param certificate [Certificate] bound to the pdf to delete. This [Certificate] should also
      * be deleted when this action is done.
+     * @param cacheDir [File] where to find pdf files.
      */
-    fun deletePdf(certificate: Certificate) {
-        File(certificate.pdfPath).delete()
+    fun deletePdf(certificate: Certificate, cacheDir: File) {
+        File(cacheDir, certificate.pdfPath).delete()
     }
 
     /**
@@ -154,11 +157,25 @@ class CertificatesManager(dirFile: File) {
      * we are sure that the user really wants to delete a certificate.
      * @param certificatesToDelete [ArrayList] of [Certificate] bound to the pdf to delete. Those
      * certificates should also be deleted when this action is done.
+     * @param cacheDir [File] where to find pdf files.
      */
-    fun deletePdfFiles(certificatesToDelete: ArrayList<Certificate>){
+    fun deletePdfFiles(certificatesToDelete: ArrayList<Certificate>, cacheDir: File){
         for (certificateToDelete in certificatesToDelete){
-            deletePdf(certificateToDelete)
+            deletePdf(certificateToDelete, cacheDir)
         }
     }
 
+    /**
+     * Returns a certificate matching with the specified pdf file's name.
+     * @param pdfPath [String] Name of the pdf file.
+     * @return A [Certificate] matching with the specified pdf file's path. Returns null in case no
+     * certificate was found (should never occur).
+     */
+    fun getCertificate(pdfPath: String) : Certificate?{
+        val certificates = getExistingCertificates()
+        for(certificate in certificates){
+            if(certificate.pdfPath == pdfPath) return certificate
+        }
+        return null
+    }
 }

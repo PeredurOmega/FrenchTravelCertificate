@@ -26,6 +26,7 @@ import com.pi.attestation.ui.profile.InfoManager
 import com.pi.attestation.ui.tools.DateEditTextFormatter
 import com.pi.attestation.ui.tools.DateValidator
 import com.pi.attestation.ui.tools.TimeEditTextFormatter
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -44,7 +45,7 @@ class DateTimeFragment : Fragment() {
      * Currently selected date.
      * @see Calendar
      */
-    private val date = Calendar.getInstance(Locale.getDefault())
+    private val date = Calendar.getInstance(Locale.FRANCE)
 
     companion object{
 
@@ -162,7 +163,7 @@ class DateTimeFragment : Fragment() {
         val certificate = Certificate(DateTime(dateFormat.format(Date()), timeFormat.format(Date())),
             InfoManager(context).retrieveUserInfo(), exitDateTime, reason)
 
-        CertificateGenerator(context, certificate).execute()
+        CertificateGenerator(context, certificate, true).execute()
     }
 
     /**
@@ -232,6 +233,20 @@ class DateTimeFragment : Fragment() {
         exitDateField.setEndIconOnClickListener {
             val builder = MaterialDatePicker.Builder.datePicker()
             val constraintsBuilder = CalendarConstraints.Builder()
+
+            val currentWrittenDate = exitDateEditText.text
+            if(currentWrittenDate != null){
+                try {
+                    val newDate = dateFormat.parse(currentWrittenDate.toString())
+                    if (newDate != null) {
+                        date.timeInMillis = newDate.time
+                        date.add(Calendar.DAY_OF_MONTH, 1)
+                    }
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+            }
+
             val nowSelection = date.timeInMillis
             constraintsBuilder.setOpenAt(nowSelection)
             constraintsBuilder.setStart(date.timeInMillis)

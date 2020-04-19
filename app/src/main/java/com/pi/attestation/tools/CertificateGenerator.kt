@@ -24,8 +24,13 @@ import java.lang.ref.WeakReference
  * [CertificateViewerActivity]. The generated certificate is stored in a pdf file that contains two
  * filled pages with the second one containing a "big" QR Code. When the pdf file is generated the
  * certificate is auto added to the json file containing all the certificates.
+ * @param mContext [Context] used to display the [LoadingDialog] and retrieve the cache dir.
+ * @param certificate [Certificate] to use to generate its bound pdf.
+ * @param addCertificate [Boolean] True if we want to add the certificate in the json file,
+ * false otherwise.
  */
-class CertificateGenerator(mContext: Context, private val certificate: Certificate) :
+class CertificateGenerator(mContext: Context, private val certificate: Certificate,
+                           private val addCertificate: Boolean) :
     AsyncTask<Void, Void, String?>() {
 
     /**
@@ -54,18 +59,22 @@ class CertificateGenerator(mContext: Context, private val certificate: Certifica
 
         var k = 0
         var fileNew : File
-        do {
-            val fileNewName = "french_certificate_".plus(certificate.creationDateTime.toString())
-                .plus("_").plus(k).plus(".pdf")
-            certificate.pdfPath = fileNewName
-            fileNew = File(context.cacheDir, fileNewName)
-            k++
-        }while (fileNew.exists())
+        if(certificate.pdfPath.isBlank()){
+            do {
+                val fileNewName = "french_certificate_".plus(certificate.creationDateTime.toString())
+                    .plus("_").plus(k).plus(".pdf")
+                certificate.pdfPath = fileNewName
+                fileNew = File(context.cacheDir, fileNewName)
+                k++
+            }while (fileNew.exists())
 
-        if(!file.exists()){
-            context.assets.open(fileName).use { asset ->
-                file.writeBytes(asset.readBytes())
+            if(!file.exists()){
+                context.assets.open(fileName).use { asset ->
+                    file.writeBytes(asset.readBytes())
+                }
             }
+        }else{
+            fileNew = File(context.cacheDir, certificate.pdfPath)
         }
 
         val pdfReader = PdfReader(file.path)
@@ -124,7 +133,9 @@ class CertificateGenerator(mContext: Context, private val certificate: Certifica
         pdfStamper.close()
         pdfReader.close()
 
-        CertificatesManager(context.filesDir).addCertificate(certificate, 0)
+        if(addCertificate){
+            CertificatesManager(context.filesDir).addCertificate(certificate, 0)
+        }
         return fileNew.name
     }
 

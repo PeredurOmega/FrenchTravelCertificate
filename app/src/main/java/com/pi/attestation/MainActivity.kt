@@ -40,13 +40,20 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.AppTheme_NoActionBar)
         setContentView(R.layout.activity_main)
 
+        setUpNavigation()
+
+        checkForUpdate(this)
+    }
+
+    /**
+     * Sets up the the navigation.
+     */
+    private fun setUpNavigation(){
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         val navController = setUpNavController()
         setUpFab(navController)
-
-        checkForUpdate(this)
     }
 
     /**
@@ -161,11 +168,19 @@ class MainActivity : AppCompatActivity() {
             if (fragmentList.size > 0 && fragmentList[0] is SaverFragment) {
                 if ((fragmentList[0] as SaverFragment).shouldNotExit(object : Leaver {
                         override fun onQuit() {
-                            onBackPressed()
+                            backPress()
+                            setUpNavigation()
                         }
                     })) return
             }
         }
+        backPress()
+    }
+
+    /**
+     * Has the same effect as when the user press the back button.
+     */
+    private fun backPress(){
         super.onBackPressed()
     }
 

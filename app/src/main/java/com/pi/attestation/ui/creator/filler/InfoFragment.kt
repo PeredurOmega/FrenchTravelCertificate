@@ -114,6 +114,6 @@ class InfoFragment : Fragment() {
         val certificate = Certificate(DateTime(dateFormat.format(Date()), timeFormat.format(Date())),
             userInfo, exitDateTime, reason)
 
-        CertificateGenerator(context, certificate).execute()
+        CertificateGenerator(context, certificate, true).execute()
     }
 }
