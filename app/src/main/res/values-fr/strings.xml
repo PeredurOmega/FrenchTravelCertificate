@@ -11,6 +11,25 @@
     <string name="profile_saved">Profil sauvegardé</string>
     <string name="create">Créer</string>
     <string name="ok">Ok</string>
+    <string name="email_feedback_subject">Pistes d\'amélioration - Attestation numérique</string>
+    <string name="email_feedback_body">N\'hésitez pas à partager vos pistes d\'amélioration avec
+        nous…</string>
+    <string name="rate">Noter</string>
+    <string name="send_feedback">N\'hésitez pas à envoyer votre retour</string>
+    <string name="your_feedback_matters">Votre avis compte vraiment pour nous. Merci de bien vouloir
+    nous envoyer vos pistes d\'amélioration par email.</string>
+    <string name="send_email">Envoyer un mail</string>
+    <string name="cancel">Annuler</string>
+    <string name="do_not_rate">Ne pas noter</string>
+    <string name="review_the_app">Donner nous votre avis</string>
+    <string name="help_us_by_reviewing">Le meilleur moyen d\'aider l\'application et de remercier
+        ses créateurs est de la noter sur Google Play.</string>
+    <string name="very_satisfied">Très satisfait</string>
+    <string name="satisfied">Satisfait</string>
+    <string name="moderately_satisfied">Moyennement satisfait</string>
+    <string name="unsatisfied">Insatisfait</string>
+    <string name="very_unsatisfied">Très insatisfait</string>
+    <string name="are_you_satisfied">Êtes-vous satisfaits de l\'application ?</string>
     <string name="share_to_your_friends">Partager à vos amis</string>
     <string name="app_shared_text">Pour vos attestations de déplacement utilisez :
         https://play.google.com/store/apps/details?id=com.pi.attestation.

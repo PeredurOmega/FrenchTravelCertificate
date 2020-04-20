@@ -11,6 +11,24 @@
     <string name="profile_saved">Profile saved</string>
     <string name="create">Create</string>
     <string name="ok">OK</string>
+    <string name="email_feedback_subject">Feedback - French travel certificate</string>
+    <string name="email_feedback_body">Feel free to share your ideas with us…</string>
+    <string name="rate">Rate</string>
+    <string name="send_feedback">Feel free to send us your feedback</string>
+    <string name="your_feedback_matters">Your feedback really matters to us. Please send us what
+        you think we should do by email.</string>
+    <string name="cancel">Cancel</string>
+    <string name="send_email">Send us an email</string>
+    <string name="do_not_rate">Don\'t rate</string>
+    <string name="review_the_app">Please give us a review</string>
+    <string name="help_us_by_reviewing">The best way to help the app and to thank its creators is
+        to rate the app on Google Play and to leave a good review.</string>
+    <string name="very_satisfied">Very satisfied</string>
+    <string name="satisfied">Satisfied</string>
+    <string name="moderately_satisfied">Moderately satisfied</string>
+    <string name="unsatisfied">Unsatisfied</string>
+    <string name="very_unsatisfied">Very unsatisfied</string>
+    <string name="are_you_satisfied">Are you satisfied with the app ?</string>
     <string name="share_to_your_friends">Share to your friends</string>
     <string name="app_shared_text">For your travel certificates, use :
         https://play.google.com/store/apps/details?id=com.pi.attestation.
@@ -214,12 +232,14 @@
     <string name="first_name_key" translatable="false">FIRST_NAME</string>
     <string name="last_name_key" translatable="false">LAST_NAME</string>
     <string name="shared_pref" translatable="false">com.pi.attestation.SHARED_PREFERENCES</string>
+    <string name="email" translatable="false">"paul.souteyrat@insa-lyon.com"</string>
     <string name="birth_date_key" translatable="false">BIRTH_DATE</string>
     <string name="birth_place_key" translatable="false">BIRTH_PLACE</string>
     <string name="address_key" translatable="false">ADDRESS</string>
     <string name="postal_code_key" translatable="false">POSTAL_CODE</string>
     <string name="city_key" translatable="false">CITY</string>
     <string name="first_certificate_view_key" translatable="false">FIRST_CERTIFICATE_VIEW</string>
+    <string name="already_rated" translatable="false">ALREADY_RATED</string>
 
     <plurals name="selected_count">
         <item quantity="one">%d selected</item>

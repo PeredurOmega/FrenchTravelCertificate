@@ -22,6 +22,7 @@ import com.pi.attestation.tools.CertificatesGenerator
 import com.pi.attestation.tools.CertificatesManager
 import com.pi.attestation.tools.GeneratorListener
 import com.pi.attestation.ui.profile.InfoManager
+import com.pi.attestation.ui.tools.RatePrompt
 import com.pi.attestation.ui.tools.ViewModelFactory
 import java.io.File
 
@@ -57,6 +58,9 @@ class HomeFragment : Fragment(), ActionModeListener {
 
         homeViewModel.certificates.observe(viewLifecycleOwner, Observer {
             adapter.setItems(it)
+            if(it.size == 3){
+                RatePrompt(fragmentActivity).promptIfNeeded()
+            }
         })
     }
 
