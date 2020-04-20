@@ -112,9 +112,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="75dp"
             android:autoLink="web"
             android:gravity="center_horizontal"
             android:text="@string/people_to_credit" />
+
+        <TextView
+            android:id="@+id/githubLabMILink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="75dp"
+            android:gravity="center_horizontal"
+            android:text="@string/github_lab_mi_link" />
     </LinearLayout>
 </ScrollView>

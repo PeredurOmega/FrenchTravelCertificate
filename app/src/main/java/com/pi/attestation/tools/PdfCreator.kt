@@ -1,6 +1,7 @@
 package com.pi.attestation.tools
 
 import com.itextpdf.text.pdf.BarcodeQRCode
+import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfReader
 import com.itextpdf.text.pdf.PdfStamper
 import com.itextpdf.text.pdf.qrcode.EncodeHintType
@@ -75,7 +76,17 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
         val image = barcodeQRCode.image ?: return null
         image.scalePercent((100f / width) * 100f)
         image.setAbsolutePosition(width - 170f, 155f)
-        pdfStamper.getOverContent(1).addImage(image)
+
+        val overContent = pdfStamper.getOverContent(1)
+        overContent.addImage(image)
+        overContent.beginText()
+        overContent.setFontAndSize(BaseFont.createFont(), 7.5f)
+        overContent.setTextMatrix(width - 160f, 153f)
+        overContent.showText("Date de création:")
+        overContent.setTextMatrix(width - 160f, 145f)
+        overContent.showText(certificate.creationDateTime.date + " à "
+                + certificate.creationDateTime.time.replace(":", "h"))
+        overContent.endText()
 
         image.scalePercent(100f)
         image.setAbsolutePosition(0f, (height / 2) - (width / 2) + 100f)

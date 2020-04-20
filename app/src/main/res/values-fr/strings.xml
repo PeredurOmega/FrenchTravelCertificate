@@ -25,7 +25,7 @@
     <string name="date_can_not_be_in_more_than_one_year">La date doit être dans moins d\'un
         an</string>
     <string name="date_before_today">La date ne peut être avant ajourd\'hui</string>
-    <string name="nonexistent_date">Sate inexistante</string>
+    <string name="nonexistent_date">Date inexistante</string>
     <string name="date_after_today">Entrez une date avant aujourd\'hui</string>
     <string name="date_format">jjmmyyyy</string>
     <string name="help_to_translate">Aider à la traduction</string>
@@ -35,7 +35,7 @@
         l\'application (logo, bannières, mockups…) en cliquant sur le bouton ci-dessous.</string>
     <string name="help_to_code_text">Nous avons besoin de votre aide pour ajouter de nouvelles
         fonctionnalités et nous serons ravi d\'examiner vos "pull requests". Si elles sont
-        approuvées votre nom ou votre pseudo sera ajouter aux crédits.</string>
+        approuvées votre nom ou votre pseudo sera ajouté aux crédits.</string>
     <string name="help_to_translate_text">Nous avons besoin de traduire l\'application pour ne
         laisser personne à  l\'écart. Vous pouvez aussi via ce biais nous indiquer les erreurs
         d\'orthographe ou de frappe dans n\'importe quelle langue. Pour nous aider cliquer sur le
@@ -51,8 +51,7 @@
     <string name="ask_for_creating_a_certificate">Souhaitez vous créer une attestation ?</string>
     <string name="create_a_certificate">Créer une attestation</string>
     <string name="malformed_birthdate">La date de naissance doit être au format jj/mm/aaaa</string>
-    <string name="no_profile_info">Compléter votre profil pour créer une attestation.
-    </string>
+    <string name="no_profile_info">Compléter votre profil pour créer une attestation.</string>
     <string name="fill_profile">Compléter le profil</string>
     <string name="unknown_error">Une erreur inconnue s\'est produite.</string>
     <string name="work_reason_short_name">Déplacements entre le domicile et le travail</string>
@@ -91,13 +90,15 @@
         administrative.</string>
     <string name="general_interest_task_reason_description">Participation à des missions d\'intérêt
         général sur demande de l\'autorité administrative.</string>
+    <string name="people_to_credit">Créateur : Paul SOUTEYRAT. Basé sur le travail réalisé par le
+        Ministère de l\'intérieur ici :</string>
     <string name="create_certificate">Créer l\'attestation</string>
     <string name="fill_certificate">Compléter l\'attestation</string>
     <string name="please_fill_info">Merci de remplir les informations demandées</string>
     <string name="loading_please_wait">Chargement… Merci d\'attendre…</string>
     <string name="please_fill_date_time">Merci d\'indiquer l\'heure et la date</string>
     <string name="menu_settings">Paramètres</string>
-    <string name="save_profile">Sauvergarder</string>
+    <string name="save_profile">Sauvegarder</string>
     <string name="remove_all_certificates">Supprimer les attestations</string>
     <string name="date_time_placeholder">%1$s à %2$s</string>
     <string name="select_exit_date">Sélectionner la date de sortie</string>
@@ -105,15 +106,15 @@
     <string name="ask_remove_all_certificates">Souhaitez vous supprimer toutes vos attestations ?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
-    <string name="save_changes">Sauvergarder les changements</string>
+    <string name="save_changes">Sauvegarder les changements</string>
     <string name="ask_save_changes">Souhaitez vous sauvegarder les changements ?</string>
     <string name="save">Sauvegarder</string>
     <string name="discard">Oublier</string>
     <string name="certificate">Attestation</string>
     <string name="qr_code">QR Code</string>
-    <string name="icon_description">Image contenant un icon pour facilement identifier les raisons
+    <string name="icon_description">Image contenant une icône pour facilement identifier les raisons
         d\'une sortie ou d\'un déplacement.</string>
-    <string name="pdf_view_description">Image utilisé pour afficher un pdf (dans notre cas une
+    <string name="pdf_view_description">Image utilisée pour afficher un pdf (dans notre cas une
         attestation)</string>
     <string name="open_source_code">Code open-source</string>
     <string name="open_source_text">Pour comprendre comment l\'application fonctionne vous pouvez
@@ -129,7 +130,7 @@
     <string name="birth_place">Lieu de naissance</string>
     <string name="address">Adresse actuelle</string>
     <string name="city">Ville actuelle</string>
-    <string name="selected_icon">Icone indiquant la séléction</string>
+    <string name="selected_icon">Icône indiquant la séléction</string>
     <string name="certificate_deleted">Attestation supprimée</string>
     <string name="certificates_deleted">Attestations supprimées</string>
     <string name="undo">Annuler</string>
@@ -235,8 +236,6 @@
         peu que possible de chez vous). Nous espérons que vous utiliserez cette application à bon
         escient.</string>
     <string name="eula_content_part_15">par Paul SOUTEYRAT</string>
-    <string name="people_to_credit">Créateur : Paul SOUTEYRAT. Basé sur le travail réalisé par le
-        Ministère de l\'intérieur ici : https://github.com/LAB-MI/deplacement-covid-19</string>
 
     <plurals name="selected_count">
         <item quantity="one">%d sélectionné</item>

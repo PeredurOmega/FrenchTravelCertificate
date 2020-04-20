@@ -3,12 +3,18 @@ package com.pi.attestation.ui.contribute
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.pi.attestation.R
+
 
 /**
  * [Fragment] used to invite people to contribute to this project by helping for translating, for
@@ -49,5 +55,24 @@ class ContributeFragment : Fragment() {
             i.data = Uri.parse(helpToTranslateUrl)
             startActivity(i)
         }
+
+        val githubLabMILink = view.findViewById<TextView>(R.id.githubLabMILink)
+        val linkName = getString(R.string.github_lab_mi_link)
+        val spannableString = SpannableString(linkName)
+        val clickableSpan: ClickableSpan = object : ClickableSpan() {
+            override fun onClick(textView: View) {
+                val shortenLink = "https://www.tiny.cc/prjcnz"
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse(shortenLink)
+                activity?.startActivity(i)
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = false
+            }
+        }
+        spannableString.setSpan(clickableSpan, 0, spannableString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        githubLabMILink.text = spannableString
     }
 }
