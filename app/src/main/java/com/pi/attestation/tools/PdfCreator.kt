@@ -48,8 +48,6 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
             3 -> form.setField("Déplacements pour motif familial", "Oui")
             4 -> form.setField("Consultations et soins", "Oui")
             5 -> form.setField("Convcation judiciaire ou administrative", "Oui")
-            //TODO CHANGE TO -> JUDICIAL CONVOCATION FOLLOWING
-            // (https://github.com/LAB-MI/deplacement-covid-19/issues/89)
             6 -> form.setField("Mission d'intérêt général", "Oui")
         }
 
