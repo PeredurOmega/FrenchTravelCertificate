@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pi.attestation">
+    package="com.pi.certificate">
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,7 @@
         android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.pi.certificate.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/SplashScreen">
             <intent-filter>
@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.creator.CertificateCreatorActivity"/>
-        <activity android:name=".ui.viewer.CertificateViewerActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name="com.pi.certificate.ui.creator.CertificateCreatorActivity"/>
+        <activity android:name="com.pi.certificate.ui.viewer.CertificateViewerActivity"
+            android:parentActivityName="com.pi.certificate.MainActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}"

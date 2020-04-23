@@ -31,7 +31,7 @@
     <string name="are_you_satisfied">Are you satisfied with the app ?</string>
     <string name="share_to_your_friends">Share to your friends</string>
     <string name="app_shared_text">For your travel certificates, use :
-        https://play.google.com/store/apps/details?id=com.pi.attestation.
+        https://play.google.com/store/apps/details?id=com.pi.certificate.
         Easy to use, fast, free, ad-free and open-source.</string>
     <string name="time_format">HHmm</string>
     <string name="action_delete">Delete</string>
@@ -231,7 +231,7 @@
 
     <string name="first_name_key" translatable="false">FIRST_NAME</string>
     <string name="last_name_key" translatable="false">LAST_NAME</string>
-    <string name="shared_pref" translatable="false">com.pi.attestation.SHARED_PREFERENCES</string>
+    <string name="shared_pref" translatable="false">com.pi.certificate.SHARED_PREFERENCES</string>
     <string name="email" translatable="false">"paul.souteyrat@insa-lyon.com"</string>
     <string name="birth_date_key" translatable="false">BIRTH_DATE</string>
     <string name="birth_place_key" translatable="false">BIRTH_PLACE</string>
