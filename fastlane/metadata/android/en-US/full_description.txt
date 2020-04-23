@@ -1,0 +1,11 @@
+Easily create your travel certificates for France during the quarantine. This app provide a QR Code
+that can be used by a police officer to attest that your "travel" has a valid reason.
+
+With this app you can save your profile (no data collected) in order to auto-fill your certificate
+when you need it.
+
+-Easy to use
+-Fast
+-Open-source
+-No data collection
+-Ad-free

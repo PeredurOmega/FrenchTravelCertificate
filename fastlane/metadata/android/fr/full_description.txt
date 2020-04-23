@@ -1,0 +1,11 @@
+Créez facilement et rapidement vos attestations de déplacements. Gratuit, open-source et sans
+publicité.
+
+Cette application vous permet de sauvegarder votre profil (vos données ne sont pas collectées) afin
+de ne plus avoir besoin de re-remplir votre attestation à chaque fois.
+
+-Très facile à utiliser
+-Rapide
+-Open-source
+-Sans collecte de données
+-Sans publicité
