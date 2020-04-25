@@ -9,3 +9,7 @@ when you need it.
 -Open-source
 -No data collection
 -Ad-free
+
+The app has the "Tracking" AntiFeature because it auto-sends data linked to crashes using ACRA to a
+Tracepot server. To know more about this implementation, feel free to go to
+https://github.com/PeredurOmega/FrenchTravelCertificate/blob/f-droid/app/src/main/java/com/pi/attestation/MyApplication.kt

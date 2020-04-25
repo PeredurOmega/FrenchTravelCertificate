@@ -9,3 +9,8 @@ de ne plus avoir besoin de re-remplir votre attestation à chaque fois.
 -Open-source
 -Sans collecte de données
 -Sans publicité
+
+L'application possède l'AntiFeature "Tracking" car elle envoie automatiquemet les données relatives
+aux plantages à un serveur Tracepot en utilisant ACRA. Pour en savoir plus sur cette implémentation,
+n'hésitez pas à vous rendre sur
+https://github.com/PeredurOmega/FrenchTravelCertificate/blob/f-droid/app/src/main/java/com/pi/attestation/MyApplication.kt
