@@ -7,6 +7,7 @@ import android.os.ParcelFileDescriptor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.github.chrisbanes.photoview.PhotoView
@@ -87,6 +88,9 @@ class PdfViewerFragment : Fragment(){
                         (page.height * density).toInt(), Bitmap.Config.ARGB_8888)
                     page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
                     pdfImageView.setImageBitmap(bitmap)
+                    pdfImageView.post{
+                        pdfImageView.scaleType = ImageView.ScaleType.FIT_START
+                    }
                     if(this.page == 1) pdfImageView.setZoomable(false)
                 }
                 fileDescriptor.close()
