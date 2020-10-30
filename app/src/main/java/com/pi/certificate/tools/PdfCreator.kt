@@ -16,16 +16,17 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
             : String? {
         val userInfo = certificate.userInfo
         var k = 0
-        var fileNew : File
-        if(certificate.pdfFileName.isBlank()){
+        var fileNew: File
+        if (certificate.pdfFileName.isBlank()) {
             do {
-                val fileNewName = "french_certificate_".plus(certificate.creationDateTime.toString())
-                    .plus("_").plus(k).plus(".pdf")
+                val fileNewName =
+                    "french_certificate_".plus(certificate.creationDateTime.toString())
+                        .plus("_").plus(k).plus(".pdf")
                 certificate.pdfFileName = fileNewName
                 fileNew = File(cacheDir, fileNewName)
                 k++
-            }while (fileNew.exists())
-        }else{
+            } while (fileNew.exists())
+        } else {
             fileNew = File(cacheDir, certificate.pdfFileName)
         }
 
@@ -34,36 +35,47 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
 
         val form = pdfStamper.acroFields
         form.isGenerateAppearances = true
-        form.setField("Nom et prénom", userInfo.lastName!!.plus(" ")
-            .plus(userInfo.firstName))
+        form.setField(
+            "Nom et prénom", userInfo.lastName!!.plus(" ")
+                .plus(userInfo.firstName)
+        )
         form.setField("Date de naissance", userInfo.birthDate!!)
         form.setField("Lieu de naissance", userInfo.birthPlace!!)
-        form.setField("Adresse actuelle", userInfo.address!!.plus(" ")
-            .plus(userInfo.postalCode!!).plus(" ").plus(userInfo.city!!))
+        form.setField(
+            "Adresse actuelle", userInfo.address!!.plus(" ")
+                .plus(userInfo.postalCode!!).plus(" ").plus(userInfo.city!!)
+        )
 
-        when(certificate.reason.id){
+        when (certificate.reason.id) {
             0 -> form.setField("Déplacements entre domicile et travail", "Oui")
             1 -> form.setField("Déplacements achats nécéssaires", "Oui")
             2 -> form.setField("Déplacements brefs (activité physique et animaux)", "Oui")
             3 -> form.setField("Déplacements pour motif familial", "Oui")
             4 -> form.setField("Consultations et soins", "Oui")
-            5 -> form.setField("Convcation judiciaire ou administrative", "Oui")
-            //TODO CHANGE TO -> JUDICIAL CONVOCATION FOLLOWING
-            // (https://github.com/LAB-MI/deplacement-covid-19/issues/89)
+            5 -> form.setField("Convocation judiciaire ou administrative", "Oui")
             6 -> form.setField("Mission d'intérêt général", "Oui")
+            7 -> form.setField("Déplacements pour handicap", "Oui")
+            8 -> form.setField("Déplacements pour les scolaires", "Oui")
         }
 
         form.setField("Ville", userInfo.city)
         form.setField("Date", certificate.exitDateTime.date)
-        form.setField("Heure", certificate.exitDateTime.getHours())
-        form.setField("Minute", certificate.exitDateTime.getMinutes())
-        form.setField("Signature", userInfo.lastName.plus(" ")
-            .plus(userInfo.firstName))
+        form.setField(
+            "Heure",
+            certificate.exitDateTime.getHours().plus(":")
+                .plus(certificate.exitDateTime.getMinutes())
+        )
+        form.setField(
+            "Signature", userInfo.lastName.plus(" ")
+                .plus(userInfo.firstName)
+        )
 
         pdfStamper.setFormFlattening(true)
 
-        pdfStamper.insertPage(pdfReader.numberOfPages + 1,
-            pdfReader.getPageSizeWithRotation(1))
+        pdfStamper.insertPage(
+            pdfReader.numberOfPages + 1,
+            pdfReader.getPageSizeWithRotation(1)
+        )
 
         val qrParam: MutableMap<EncodeHintType, Any> = HashMap()
         qrParam[EncodeHintType.ERROR_CORRECTION] = ErrorCorrectionLevel.M
@@ -71,21 +83,25 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
         val pageSize = pdfReader.getPageSize(1)
         val width = pageSize.width
         val height = pageSize.height
-        val barcodeQRCode = BarcodeQRCode(certificate.buildData(), width.toInt(),
-            width.toInt(), qrParam)
+        val barcodeQRCode = BarcodeQRCode(
+            certificate.buildData(), width.toInt(),
+            width.toInt(), qrParam
+        )
         val image = barcodeQRCode.image ?: return null
         image.scalePercent((100f / width) * 100f)
-        image.setAbsolutePosition(width - 170f, 155f)
+        image.setAbsolutePosition(width - 170f, 110f)
 
         val overContent = pdfStamper.getOverContent(1)
         overContent.addImage(image)
         overContent.beginText()
         overContent.setFontAndSize(BaseFont.createFont(), 7.5f)
-        overContent.setTextMatrix(width - 160f, 153f)
+        overContent.setTextMatrix(width - 160f, 108f)
         overContent.showText("Date de création:")
-        overContent.setTextMatrix(width - 160f, 145f)
-        overContent.showText(certificate.creationDateTime.date + " à "
-                + certificate.creationDateTime.time.replace(":", "h"))
+        overContent.setTextMatrix(width - 160f, 100f)
+        overContent.showText(
+            certificate.creationDateTime.date + " à "
+                    + certificate.creationDateTime.time.replace(":", "h")
+        )
         overContent.endText()
 
         image.scalePercent(100f)
