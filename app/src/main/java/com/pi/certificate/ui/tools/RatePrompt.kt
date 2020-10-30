@@ -30,14 +30,18 @@ class RatePrompt(val context: FragmentActivity) {
      * him to rate the app, else we do nothing.
      */
     fun promptIfNeeded(){
-        Thread(Runnable {
+        Thread {
             val resources = context.resources
-            val sharedPref = context.getSharedPreferences(resources.getString(R.string.shared_pref),
-                Context.MODE_PRIVATE)
-            val alreadyRated = sharedPref.getBoolean(resources.getString(R.string.already_rated),
-                false)
-            if(!alreadyRated) context.runOnUiThread {prompt(resources, sharedPref)}
-        }).start()
+            val sharedPref = context.getSharedPreferences(
+                resources.getString(R.string.shared_pref),
+                Context.MODE_PRIVATE
+            )
+            val alreadyRated = sharedPref.getBoolean(
+                resources.getString(R.string.already_rated),
+                false
+            )
+            if (!alreadyRated) context.runOnUiThread { prompt(resources, sharedPref) }
+        }.start()
     }
 
     /**

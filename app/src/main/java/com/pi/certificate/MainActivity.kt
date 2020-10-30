@@ -111,21 +111,24 @@ class MainActivity : AppCompatActivity() {
      * @param activity [Activity] to use.
      */
     private fun checkForUpdate(activity: Activity){
-        Thread(Runnable {
+        Thread {
             val appUpdateManager = AppUpdateManagerFactory.create(activity)
             val appUpdateInfo = appUpdateManager.appUpdateInfo
             appUpdateInfo.addOnSuccessListener {
                 if (it.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                     && it.clientVersionStalenessDays() != null
                     && it.clientVersionStalenessDays() >= 1
-                    && it.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                    && it.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
+                ) {
                     activity.runOnUiThread {
-                        appUpdateManager.startUpdateFlowForResult(it, AppUpdateType.IMMEDIATE,
-                            activity, 123)
+                        appUpdateManager.startUpdateFlowForResult(
+                            it, AppUpdateType.IMMEDIATE,
+                            activity, 123
+                        )
                     }
                 }
             }
-        }).start()
+        }.start()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -47,13 +47,15 @@ class CertificateViewerActivity : AppCompatActivity() {
      * [CertificateViewerActivity] before.
      */
     private fun showExplanationsIfNeeded(){
-        Thread(Runnable {
-            val sharedPref = getSharedPreferences(getString(R.string.shared_pref),
-                Context.MODE_PRIVATE)
+        Thread {
+            val sharedPref = getSharedPreferences(
+                getString(R.string.shared_pref),
+                Context.MODE_PRIVATE
+            )
             val showExplanations =
                 sharedPref.getBoolean(getString(R.string.first_certificate_view_key), true)
 
-            if(showExplanations){
+            if (showExplanations) {
                 val editor = sharedPref.edit()
                 editor.putBoolean(getString(R.string.first_certificate_view_key), false)
                 editor.apply()
@@ -66,7 +68,7 @@ class CertificateViewerActivity : AppCompatActivity() {
                         .show()
                 }
             }
-        }).start()
+        }.start()
     }
 
     /**
@@ -80,15 +82,13 @@ class CertificateViewerActivity : AppCompatActivity() {
         if(fileName != null){
             val stateAdapter = CertificateStateAdapter(this, fileName)
             viewPager.adapter = stateAdapter
-            TabLayoutMediator(tabLayout, viewPager,
-                TabConfigurationStrategy { tab: TabLayout.Tab, position: Int ->
-                    if (position == 0) {
-                        tab.text = getString(R.string.certificate)
-                    } else {
-                        tab.text = getString(R.string.qr_code)
-                    }
+            TabLayoutMediator(tabLayout, viewPager) { tab: TabLayout.Tab, position: Int ->
+                if (position == 0) {
+                    tab.text = getString(R.string.certificate)
+                } else {
+                    tab.text = getString(R.string.qr_code)
                 }
-            ).attach()
+            }.attach()
         }
     }
 

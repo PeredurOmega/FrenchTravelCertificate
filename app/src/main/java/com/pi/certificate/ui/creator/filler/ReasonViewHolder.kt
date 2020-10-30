@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.pi.certificate.R
@@ -19,7 +20,8 @@ import com.pi.certificate.objects.Reason
  * @param reasonListener [ReasonListener] to notify in case of change.
  * @see ReasonListener
  */
-class ReasonViewHolder(itemView: View, private val reasonListener: ReasonListener) : RecyclerView.ViewHolder(itemView) {
+class ReasonViewHolder(itemView: View, private val reasonListener: ReasonListener) :
+    RecyclerView.ViewHolder(itemView) {
 
     /**
      * [ImageView] where the icon of the [Reason] is displayed.
@@ -68,14 +70,20 @@ class ReasonViewHolder(itemView: View, private val reasonListener: ReasonListene
      * Binds the provided reason to this [ReasonViewHolder].
      * @param reason [Reason] to bind to this [ReasonViewHolder].
      */
-    fun bindReason(reason: Reason){
+    fun bindReason(reason: Reason) {
         shortName.text = reason.shortName
 
         val context = itemView.context
 
-        iconView.setImageDrawable(context.getDrawable(
-            context.resources.getIdentifier(reason.iconName, "drawable",
-                context.packageName)))
+        iconView.setImageDrawable(
+            ContextCompat.getDrawable(
+                context,
+                context.resources.getIdentifier(
+                    reason.iconName, "drawable",
+                    context.packageName
+                )
+            )
+        )
 
         iconView.backgroundTintList = ColorStateList.valueOf(reason.color)
 
@@ -83,7 +91,7 @@ class ReasonViewHolder(itemView: View, private val reasonListener: ReasonListene
             run {
                 description.text = reason.fullDescription
                 detailView.visibility = if (detailView.visibility == View.VISIBLE) View.GONE
-                                        else View.VISIBLE
+                else View.VISIBLE
                 onGlobalLayoutListener = OnGlobalLayoutListener {
                     if (detailView.visibility == View.VISIBLE) {
                         reasonListener.onDetailsOpened(reason.id)

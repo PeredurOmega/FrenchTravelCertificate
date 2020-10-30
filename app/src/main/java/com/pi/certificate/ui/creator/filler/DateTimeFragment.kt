@@ -184,7 +184,7 @@ class DateTimeFragment : Fragment() {
 
         exitTimeField.setEndIconOnClickListener {
             val timePicker = TimePickerDialog(context, R.style.TimePickerTheme,
-                OnTimeSetListener { _, selectedHour, selectedMinute ->
+                { _, selectedHour, selectedMinute ->
                     date.set(Calendar.HOUR_OF_DAY, selectedHour)
                     date.set(Calendar.MINUTE, selectedMinute)
                     exitTimeEditText.setText(timeFormat.format(date.time))

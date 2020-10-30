@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.pi.certificate.R
 import com.pi.certificate.objects.Certificate
@@ -20,7 +21,7 @@ import com.pi.certificate.ui.viewer.CertificateViewerActivity
  * action bar.
  */
 class CertificateViewHolder(itemView: View, private val itemClickListener: ItemClickListener) :
-    RecyclerView.ViewHolder(itemView), SelectedListener{
+    RecyclerView.ViewHolder(itemView), SelectedListener {
 
     /**
      * [ImageView] where the icon of the bound [Certificate]'s  [com.pi.certificate.objects.Reason]
@@ -39,7 +40,7 @@ class CertificateViewHolder(itemView: View, private val itemClickListener: ItemC
      * Indicating whether or not this item is currently selected. Null means that this item has not
      * been bound.
      */
-    private var selected : Boolean? = null
+    private var selected: Boolean? = null
 
     /**
      * [TextView] where the creation time and the creation date of the bound [Certificate] is
@@ -60,7 +61,7 @@ class CertificateViewHolder(itemView: View, private val itemClickListener: ItemC
      * @param certificate [Certificate] to bind to this [CertificateViewHolder].
      * @param selectedNow [Boolean] True if the item is selected, false otherwise.
      */
-    fun bindToCertificate(certificate: Certificate, position: Int, selectedNow : Boolean){
+    fun bindToCertificate(certificate: Certificate, position: Int, selectedNow: Boolean) {
         val context = itemView.context
 
         when {
@@ -69,19 +70,29 @@ class CertificateViewHolder(itemView: View, private val itemClickListener: ItemC
             !selectedNow && selectedNow != selected -> unselected(true)
         }
 
-        iconView.setImageDrawable(context.getDrawable(
-            context.resources.getIdentifier(certificate.reason.iconName, "drawable",
-                context.packageName)))
+        iconView.setImageDrawable(
+            ContextCompat.getDrawable(
+                context, context.resources.getIdentifier(
+                    certificate.reason.iconName, "drawable",
+                    context.packageName
+                )
+            )
+        )
 
         iconView.backgroundTintList = ColorStateList.valueOf(certificate.reason.color)
 
-        timeAndDate.text = timeAndDate.context.getString(R.string.date_time_placeholder,
-            certificate.creationDateTime.date, certificate.creationDateTime.time)
+        timeAndDate.text = timeAndDate.context.getString(
+            R.string.date_time_placeholder,
+            certificate.creationDateTime.date, certificate.creationDateTime.time
+        )
         shortName.text = certificate.reason.shortName
 
         itemView.setOnClickListener {
-            if(!itemClickListener.selectedForActionMode(position, this,
-                    it.resources)){
+            if (!itemClickListener.selectedForActionMode(
+                    position, this,
+                    it.resources
+                )
+            ) {
                 val intent = Intent(it.context, CertificateViewerActivity::class.java)
                 intent.putExtra(CertificateViewerActivity.FILE_PATH, certificate.pdfFileName)
                 it.context.startActivity(intent)
@@ -99,14 +110,14 @@ class CertificateViewHolder(itemView: View, private val itemClickListener: ItemC
         iconSelectedView.visibility = View.VISIBLE
         iconSelectedView.alpha = 1f
         selected = true
-        if(animate) FlipAnimator().flipView(iconSelectedView, iconView, true)
+        if (animate) FlipAnimator().flipView(iconSelectedView, iconView, true)
     }
 
-    override fun unselected(animate: Boolean){
+    override fun unselected(animate: Boolean) {
         iconSelectedView.visibility = View.GONE
         iconView.visibility = View.VISIBLE
         iconView.alpha = 1f
         selected = false
-        if(animate) FlipAnimator().flipView(iconSelectedView, iconView, false)
+        if (animate) FlipAnimator().flipView(iconSelectedView, iconView, false)
     }
 }

@@ -90,7 +90,7 @@ abstract class SaverFragment : Fragment() {
     private fun askForSaving(leaver: Leaver) {
         val context = context
         if (context != null) {
-            MaterialAlertDialogBuilder(getContext())
+            MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.save_changes)
                 .setMessage(R.string.ask_save_changes)
                 .setPositiveButton(R.string.save) { _, _ -> saveChanges(leaver) }

@@ -56,7 +56,7 @@ class HomeFragment : Fragment(), ActionModeListener {
         recyclerView.adapter = adapter
         enableSwipeToDelete(view, recyclerView)
 
-        homeViewModel.certificates.observe(viewLifecycleOwner, Observer {
+        homeViewModel.certificates.observe(viewLifecycleOwner, {
             adapter.setItems(it)
             if(it.size == 3){
                 RatePrompt(fragmentActivity).promptIfNeeded()
