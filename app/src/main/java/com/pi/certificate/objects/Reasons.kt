@@ -1,6 +1,7 @@
 package com.pi.certificate.objects
 
 import android.content.res.Resources
+import android.graphics.Color
 import com.pi.certificate.R
 
 /**
@@ -14,7 +15,7 @@ class Reasons(private val resources: Resources) {
      * Number of reasons contained. Should match the number of reasons on the "paper" certificate
      * provided by the French Ministry of Home Affairs.
      */
-    private val size = 7
+    private val size = 9
 
     /**
      * [Array] created by using [Reasons#getReason]. The size of this [Array] matches
@@ -46,9 +47,15 @@ class Reasons(private val resources: Resources) {
             5 -> Reason(resources.getString(R.string.judicial_or_administrative_reason_short_name),
                 resources.getString(R.string.judicial_or_administrative_reason_description),
                 "law_96px", -0x98c549, 5, "judiciaire")
-            else -> Reason(resources.getString(R.string.general_interest_task_reason_short_name),
+            6 -> Reason(resources.getString(R.string.general_interest_task_reason_short_name),
                 resources.getString(R.string.general_interest_task_reason_description),
                 "work_96px",  -0x3223c7, 6, "missions")
+            7 -> Reason(resources.getString(R.string.handicap_reason_short_name),
+                resources.getString(R.string.handicap_reason_description),
+                "wheelchair_96px",  -8825528, 7, "handicap")
+            else -> Reason(resources.getString(R.string.school_reason_short_name),
+                resources.getString(R.string.school_reason_description),
+                "crosswalk_96px",  -769226, 8, "school")
         }
     }
 

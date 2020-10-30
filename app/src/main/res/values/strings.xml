@@ -77,22 +77,32 @@
     <string name="judicial_or_administrative_reason_short_name">Judicial or administrative
         convocation</string>
     <string name="general_interest_task_reason_short_name">General interest task</string>
-    <string name="work_reason_description">Travel between my home and my work, when remote work
-        isn\'t an option (you\'ll also have to fill the work travel document) or work travels
-        can\'t be canceled.</string>
-    <string name="purchase_of_necessities_reason_description">Travel to purchase essential goods
-        within the nearest authorized facilities (list available at gouvernement.fr).</string>
-    <string name="health_reason_description">Travels for medical consultations that can\'t be done
-        remotely.</string>
-    <string name="family_reason_description">Travels for family reasons, to assist vulnerable
-        individuals, or for child care.</string>
-    <string name="sports_or_animals_reason_description">Short travels, close to home, for
-        individual physical activity (excluding group sports or proximity with other individuals),
-        or for walking pets.</string>
+    <string name="handicap_reason_short_name">Disability</string>
+    <string name="school_reason_short_name">School and extracurricular activities</string>
+    <string name="work_reason_description">Commuting to and from work or university and training
+        places; business trips that can not be delayed (to be used by self-employed workers, when
+        they cannot get a travel document from their employer).</string>
+    <string name="purchase_of_necessities_reason_description">Running necessary errands to purchase
+        items for professional activity, or basic commodities (including the acquisition of free
+        commodities (food distribution, etc.) and trips related to the receipt of social benefits
+        and cash withdrawals) available in the businesses allowed to provide service, order
+        withdrawal or home deliveries.</string>
+    <string name="health_reason_description">Consults and provision of care that cannot be done
+        remotely; medication purchase.</string>
+    <string name="family_reason_description">Imperative family reasons, assisting vulnerable
+        persons, persons in a precarious situation or taking care of children.</string>
+    <string name="sports_or_animals_reason_description">Individual outdoor exercise (collective
+        physical activity is not allowed), walking out with only the people living in the same
+        household or walking out a pet, within 1km of one\'s place of residence and for one
+        hour.</string>
     <string name="judicial_or_administrative_reason_description">Judicial or administrative
-        convocation.</string>
-    <string name="general_interest_task_reason_description">Participation to general interest
-        missions commissioned by an administrative authority.</string>
+        summons; appointment to public service offices.</string>
+    <string name="general_interest_task_reason_description">Participating in a mission of general
+        interest upon request from an administrative authority.</string>
+    <string name="handicap_reason_description">Persons with a disability and their accompanying
+        person.</string>
+    <string name="school_reason_description">Taking children to and picking them up from school or
+        after-school activity.</string>
     <string name="create_certificate">Create certificate</string>
     <string name="create_a_certificate">Create a certificate</string>
     <string name="fill_certificate">Fill certificate</string>

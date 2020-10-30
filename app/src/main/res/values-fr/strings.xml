@@ -83,32 +83,37 @@
     <string name="judicial_or_administrative_reason_short_name">Convocation judiciaire ou
         administrative</string>
     <string name="general_interest_task_reason_short_name">Mission d\'intérêt général</string>
-    <string name="work_reason_description">Déplacements entre le domicile et le lieu d\'exercice de
-        l’activité professionnelle, lorsqu\'ils sont indispensables à l\'exercice d’activités ne
-        pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant
-        être différés (à utiliser par les travailleurs non-salariés, lorsqu\'ils ne peuvent disposer
-        d\'un justificatif de déplacement établi par leur employeur).</string>
+    <string name="handicap_reason_short_name">Handicap</string>
+    <string name="school_reason_short_name">École et activités périscolaires</string>
+    <string name="work_reason_description">Déplacements entre le domicile et le lieu d’exercice de
+        l’activité professionnelle ou un établissement d’enseignement ou de formation, déplacements
+        professionnels ne pouvant être différés (à utiliser par les travailleurs non-salariés,
+        lorsqu\'ils ne peuvent disposer d\'un justificatif de déplacement établi par leur
+        employeur) et déplacements pour un concours ou un examen.</string>
     <string name="purchase_of_necessities_reason_description">Déplacements pour effectuer des
         achats de fournitures nécessaires à l\'activité professionnelle et des achats de première
         nécessité (y compris les acquisitions à titre gratuit (distribution de denrées
         alimentaires…) et les déplacements liés à la perception de prestations sociales et au
         retrait d’espèces) dans des établissements dont les activités demeurent autorisées (liste
-        sur gouvernement.fr).</string>
-    <string name="health_reason_description">Consultations et soins ne pouvant être assurés à
-        distance et ne pouvant être différés; consultations et soins des patients atteints d\'une
-        affection de longue durée.</string>
+        sur gouvernement.fr), le retrait de commande et les livraisons à domicile.</string>
+    <string name="health_reason_description">Consultations, examens et soins ne pouvant être
+        assurés à distance et l\'achat de médicaments.</string>
     <string name="family_reason_description">Déplacements pour motif familial impérieux, pour
-        l\'assistance aux personnes vulnérables ou la garde d’enfants.</string>
+        l\'assistance aux personnes vulnérables et précaires ou la garde d\'enfant.</string>
     <string name="sports_or_animals_reason_description">Déplacements brefs, dans la limite d\'une
         heure quotidienne et dans un rayon maximal d\'un kilomètre autour du domicile, liés soit à
         l\'activité physique individuelle des personnes, à l\'exclusion de toute pratique sportive
         collective et de toute proximité avec d\'autres personnes, soit à la promenade avec les
         seules personnes regroupées dans un même domicile, soit aux besoins des animaux de
-        compagnie.</string>
+        compagnie. </string>
     <string name="judicial_or_administrative_reason_description">Convocation judiciaire ou
-        administrative.</string>
+        administrative et pour se rendre dans un service public.</string>
     <string name="general_interest_task_reason_description">Participation à des missions d\'intérêt
         général sur demande de l\'autorité administrative.</string>
+    <string name="handicap_reason_description">Déplacement des personnes en situation de handicap
+        et leur accompagnant.</string>
+    <string name="school_reason_description">Déplacement pour chercher les enfants à l’école et à
+        l’occasion de leurs activités périscolaires.</string>
     <string name="people_to_credit">Créateur : Paul SOUTEYRAT. Basé sur le travail réalisé par le
         Ministère de l\'intérieur ici :</string>
     <string name="create_certificate">Créer l\'attestation</string>
