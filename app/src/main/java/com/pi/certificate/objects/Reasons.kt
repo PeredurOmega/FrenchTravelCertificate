@@ -1,7 +1,6 @@
 package com.pi.certificate.objects
 
 import android.content.res.Resources
-import android.graphics.Color
 import com.pi.certificate.R
 
 /**
@@ -34,10 +33,10 @@ class Reasons(private val resources: Resources) {
                 "business_96px",  -0xff6978, 0, "travail")
             1 -> Reason(resources.getString(R.string.purchase_of_necessities_reason_short_name),
                 resources.getString(R.string.purchase_of_necessities_reason_description),
-                "buy_96px",  -0xa5fa, 1, "courses")
+                "buy_96px",  -0xa5fa, 1, "achats")
             2 -> Reason(resources.getString(R.string.sports_or_animals_reason_short_name),
                 resources.getString(R.string.sports_or_animals_reason_description),
-                "exercise_96px", -0xb350b0, 2, "sport")
+                "exercise_96px", -0xb350b0, 2, "sport_animaux")
             3 -> Reason(resources.getString(R.string.family_reason_short_name),
                 resources.getString(R.string.family_reason_description),
                 "family_96px",  -0x16e19d, 3, "famille")
@@ -46,7 +45,7 @@ class Reasons(private val resources: Resources) {
                 "caduceus_96px",  -0xfc560c, 4, "sante")
             5 -> Reason(resources.getString(R.string.judicial_or_administrative_reason_short_name),
                 resources.getString(R.string.judicial_or_administrative_reason_description),
-                "law_96px", -0x98c549, 5, "judiciaire")
+                "law_96px", -0x98c549, 5, "convocation")
             6 -> Reason(resources.getString(R.string.general_interest_task_reason_short_name),
                 resources.getString(R.string.general_interest_task_reason_description),
                 "work_96px",  -0x3223c7, 6, "missions")
@@ -55,7 +54,7 @@ class Reasons(private val resources: Resources) {
                 "wheelchair_96px",  -8825528, 7, "handicap")
             else -> Reason(resources.getString(R.string.school_reason_short_name),
                 resources.getString(R.string.school_reason_description),
-                "crosswalk_96px",  -769226, 8, "school")
+                "crosswalk_96px",  -769226, 8, "enfants")
         }
     }
 

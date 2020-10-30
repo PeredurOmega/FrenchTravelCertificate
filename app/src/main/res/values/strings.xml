@@ -67,7 +67,7 @@
     <string name="no_profile_info">Please fill your profile to create a certificate.</string>
     <string name="fill_profile">Fill profile</string>
     <string name="unknown_error">An unknown error occurred.</string>
-    <string name="work_reason_short_name">Travel between home and work</string>
+    <string name="work_reason_short_name">Commuting to and from work</string>
     <string name="purchase_of_necessities_reason_short_name">Travel to purchase essential goods
     </string>
     <string name="health_reason_short_name">Medical consultations and care</string>
