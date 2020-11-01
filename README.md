@@ -1,5 +1,11 @@
 # FrenchTravelCertificate / Attestation de déplacement dérogatoire - Android App
 
+## Downloading
+
+The app is currently available at: https://play.google.com/store/apps/details?id=com.pi.fcertif.
+
+It's only available for Android devices (with Android version greater than 6.0).
+
 ## Pull Requests
 
 This Android app is open-source and you are welcome to make pull requests especially for adding

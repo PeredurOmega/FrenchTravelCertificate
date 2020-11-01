@@ -15,15 +15,17 @@ import com.pi.fcertif.ui.creator.CertificateCreatorActivity
  * the [RecyclerView].
  * @param itemView [View] to use to create this [RecyclerView.ViewHolder].
  */
-class CreateWhenNoneCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+class CreateWhenNoneCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     init {
         val createCertificateButton =
             itemView.findViewById<MaterialButton>(R.id.createCertificateButton)
-        createCertificateButton.setOnClickListener{
+        createCertificateButton.setOnClickListener {
             val context = itemView.context
-            startActivity(context,
-                Intent(context, CertificateCreatorActivity::class.java), null)
+            startActivity(
+                context,
+                Intent(context, CertificateCreatorActivity::class.java), null
+            )
         }
     }
 }

@@ -37,10 +37,10 @@ class HomeViewModel(private val filesDir: File) : ViewModel() {
      */
     fun addItem(certificate: Certificate, position: Int) {
         val certificates = _certificates.value
-        if(certificates != null){
+        if (certificates != null) {
             certificates.add(position, certificate)
             _certificates.postValue(certificates)
-        }else{
+        } else {
             _certificates.postValue(ArrayList(Collections.singleton(certificate)))
         }
     }
@@ -52,7 +52,7 @@ class HomeViewModel(private val filesDir: File) : ViewModel() {
      */
     fun removeItem(position: Int) {
         val certificates = _certificates.value
-        if(certificates != null){
+        if (certificates != null) {
             certificates.removeAt(position)
             _certificates.postValue(certificates)
         }
@@ -77,10 +77,10 @@ class HomeViewModel(private val filesDir: File) : ViewModel() {
         val certificates = _certificates.value ?: return null
         val certificatesToRemove = ArrayList<Certificate>()
         try {
-            for(adapterPosition in adapterPositions){
+            for (adapterPosition in adapterPositions) {
                 certificatesToRemove.add(certificates[adapterPosition - 1])
             }
-        }catch (e: IndexOutOfBoundsException){
+        } catch (e: IndexOutOfBoundsException) {
             return null
         }
         return certificatesToRemove
@@ -92,10 +92,10 @@ class HomeViewModel(private val filesDir: File) : ViewModel() {
      * @param adapterPositions [ArrayList] of [Int] containing positions in the adapter of each
      * [Certificate] to remove.
      */
-    fun removeItems(adapterPositions: ArrayList<Int>){
+    fun removeItems(adapterPositions: ArrayList<Int>) {
         val certificates = _certificates.value ?: return
         var corrector = 1
-        for(adapterPosition in adapterPositions){
+        for (adapterPosition in adapterPositions) {
             certificates.removeAt(adapterPosition - corrector)
             corrector++
         }
@@ -111,12 +111,12 @@ class HomeViewModel(private val filesDir: File) : ViewModel() {
      */
     fun addItems(certificatesToAdd: ArrayList<Certificate>, adapterPositions: ArrayList<Int>) {
         val certificates = _certificates.value
-        if(certificates != null && certificatesToAdd.size == adapterPositions.size){
-            for(i in 0 until certificatesToAdd.size){
+        if (certificates != null && certificatesToAdd.size == adapterPositions.size) {
+            for (i in 0 until certificatesToAdd.size) {
                 certificates.add(adapterPositions[i] - 1, certificatesToAdd[i])
             }
             _certificates.postValue(certificates)
-        }else{
+        } else {
             _certificates.postValue(ArrayList(certificatesToAdd))
         }
     }

@@ -17,11 +17,13 @@ class InfoManager(private val context: Context) {
      * @see [android.content.SharedPreferences]
      */
     fun retrieveUserInfo(): UserInfo {
-        val sharedPref = context.getSharedPreferences(context.getString(R.string.shared_pref),
-            Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(
+            context.getString(R.string.shared_pref),
+            Context.MODE_PRIVATE
+        )
         val firstName = sharedPref.getString(context.getString(R.string.first_name_key), "")
         val lastName = sharedPref.getString(context.getString(R.string.last_name_key), "")
-        val birthDate = sharedPref.getString(context.getString(R.string.birth_date_key),"")
+        val birthDate = sharedPref.getString(context.getString(R.string.birth_date_key), "")
         val birthPlace = sharedPref.getString(context.getString(R.string.birth_place_key), "")
         val address = sharedPref.getString(context.getString(R.string.address_key), "")
         val city = sharedPref.getString(context.getString(R.string.city_key), "")
@@ -34,7 +36,7 @@ class InfoManager(private val context: Context) {
      * @param userInfo [UserInfo] to check.
      * @return [Boolean] True if the provided [UserInfo] is fully filled, false otherwise.
      */
-    fun hasBeenFilled(userInfo: UserInfo): Boolean{
+    fun hasBeenFilled(userInfo: UserInfo): Boolean {
         return !userInfo.firstName.isNullOrBlank() && !userInfo.lastName.isNullOrBlank() &&
                 !userInfo.birthDate.isNullOrBlank() && !userInfo.birthPlace.isNullOrBlank() &&
                 !userInfo.address.isNullOrBlank() && !userInfo.city.isNullOrBlank() &&
@@ -47,8 +49,10 @@ class InfoManager(private val context: Context) {
      * @see [android.content.SharedPreferences]
      */
     fun saveUserInfo(userInfo: UserInfo) {
-        val sharedPref = context.getSharedPreferences(context.getString(R.string.shared_pref),
-            Context.MODE_PRIVATE)
+        val sharedPref = context.getSharedPreferences(
+            context.getString(R.string.shared_pref),
+            Context.MODE_PRIVATE
+        )
         val editor = sharedPref.edit()
         editor.putString(context.getString(R.string.first_name_key), userInfo.firstName)
         editor.putString(context.getString(R.string.last_name_key), userInfo.lastName)

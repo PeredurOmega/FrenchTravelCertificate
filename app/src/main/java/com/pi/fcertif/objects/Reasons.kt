@@ -20,41 +20,59 @@ class Reasons(private val resources: Resources) {
      * [Array] created by using [Reasons#getReason]. The size of this [Array] matches
      * [Reasons#size].
      */
-    private val reasons = Array(size){ getReason(it) }
+    private val reasons = Array(size) { getReason(it) }
 
     /**
      * Utility method used to populates [Reasons#reasons].
      * @param position [Int] Position of the reason in the [Array].
      */
-    private fun getReason(position: Int): Reason{
-        return when (position){
-            0 -> Reason(resources.getString(R.string.work_reason_short_name),
+    private fun getReason(position: Int): Reason {
+        return when (position) {
+            0 -> Reason(
+                resources.getString(R.string.work_reason_short_name),
                 resources.getString(R.string.work_reason_description),
-                "business_96px",  -0xff6978, 0, "travail")
-            1 -> Reason(resources.getString(R.string.purchase_of_necessities_reason_short_name),
+                "business_96px", -0xff6978, 0, "travail"
+            )
+            1 -> Reason(
+                resources.getString(R.string.purchase_of_necessities_reason_short_name),
                 resources.getString(R.string.purchase_of_necessities_reason_description),
-                "buy_96px",  -0xa5fa, 1, "achats")
-            2 -> Reason(resources.getString(R.string.sports_or_animals_reason_short_name),
+                "buy_96px", -0xa5fa, 1, "achats"
+            )
+            2 -> Reason(
+                resources.getString(R.string.sports_or_animals_reason_short_name),
                 resources.getString(R.string.sports_or_animals_reason_description),
-                "exercise_96px", -0xb350b0, 2, "sport_animaux")
-            3 -> Reason(resources.getString(R.string.family_reason_short_name),
+                "exercise_96px", -0xb350b0, 2, "sport_animaux"
+            )
+            3 -> Reason(
+                resources.getString(R.string.family_reason_short_name),
                 resources.getString(R.string.family_reason_description),
-                "family_96px",  -0x16e19d, 3, "famille")
-            4 -> Reason(resources.getString(R.string.health_reason_short_name),
+                "family_96px", -0x16e19d, 3, "famille"
+            )
+            4 -> Reason(
+                resources.getString(R.string.health_reason_short_name),
                 resources.getString(R.string.health_reason_description),
-                "caduceus_96px",  -0xfc560c, 4, "sante")
-            5 -> Reason(resources.getString(R.string.judicial_or_administrative_reason_short_name),
+                "caduceus_96px", -0xfc560c, 4, "sante"
+            )
+            5 -> Reason(
+                resources.getString(R.string.judicial_or_administrative_reason_short_name),
                 resources.getString(R.string.judicial_or_administrative_reason_description),
-                "law_96px", -0x98c549, 5, "convocation")
-            6 -> Reason(resources.getString(R.string.general_interest_task_reason_short_name),
+                "law_96px", -0x98c549, 5, "convocation"
+            )
+            6 -> Reason(
+                resources.getString(R.string.general_interest_task_reason_short_name),
                 resources.getString(R.string.general_interest_task_reason_description),
-                "work_96px",  -0x3223c7, 6, "missions")
-            7 -> Reason(resources.getString(R.string.handicap_reason_short_name),
+                "work_96px", -0x3223c7, 6, "missions"
+            )
+            7 -> Reason(
+                resources.getString(R.string.handicap_reason_short_name),
                 resources.getString(R.string.handicap_reason_description),
-                "wheelchair_96px",  -8825528, 7, "handicap")
-            else -> Reason(resources.getString(R.string.school_reason_short_name),
+                "wheelchair_96px", -8825528, 7, "handicap"
+            )
+            else -> Reason(
+                resources.getString(R.string.school_reason_short_name),
                 resources.getString(R.string.school_reason_description),
-                "crosswalk_96px",  -769226, 8, "enfants")
+                "crosswalk_96px", -769226, 8, "enfants"
+            )
         }
     }
 
@@ -62,7 +80,7 @@ class Reasons(private val resources: Resources) {
      * Operator used to retrieve a [Reason] the same way we would for an [Array].
      * @param position [Int] Position of the [Reason] to retrieve.
      */
-    operator fun get(position: Int): Reason{
+    operator fun get(position: Int): Reason {
         return reasons[position]
     }
 

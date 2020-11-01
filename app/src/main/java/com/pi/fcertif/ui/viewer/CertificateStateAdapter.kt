@@ -11,15 +11,15 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
  * [androidx.viewpager2.widget.ViewPager2]
  * @param filePath [String] Path of the pdf.
  */
-class CertificateStateAdapter(fragmentActivity: FragmentActivity, private val filePath: String)
-    : FragmentStateAdapter(fragmentActivity){
+class CertificateStateAdapter(fragmentActivity: FragmentActivity, private val filePath: String) :
+    FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int {
         return 2
     }
 
     override fun createFragment(position: Int): Fragment {
-        return if(position == 0) PdfViewerFragment.newInstance(filePath, 0)
-                else PdfViewerFragment.newInstance(filePath, 1)
+        return if (position == 0) PdfViewerFragment.newInstance(filePath, 0)
+        else PdfViewerFragment.newInstance(filePath, 1)
     }
 }

@@ -12,9 +12,10 @@ import com.pi.fcertif.R
 /**
  * [Dialog] that should be displayed while we are loading content.
  */
-class LoadingDialog(context: Context, cancelable: Boolean,
-                    cancelListener: DialogInterface.OnCancelListener?)
-    : Dialog(context, cancelable, cancelListener) {
+class LoadingDialog(
+    context: Context, cancelable: Boolean,
+    cancelListener: DialogInterface.OnCancelListener?
+) : Dialog(context, cancelable, cancelListener) {
 
     init {
         val titleLL = LinearLayout(context)

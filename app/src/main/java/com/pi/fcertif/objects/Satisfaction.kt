@@ -38,7 +38,7 @@ enum class Satisfaction {
      * @return [Int] pointing to the string text corresponding to this [Satisfaction].
      */
     fun refinedValue(): Int {
-        return when(this){
+        return when (this) {
             PERFECT -> R.string.very_satisfied
             GOOD -> R.string.satisfied
             AVERAGE -> R.string.moderately_satisfied

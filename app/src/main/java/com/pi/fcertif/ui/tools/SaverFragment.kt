@@ -38,7 +38,7 @@ abstract class SaverFragment : Fragment() {
                     }
                 })) {
                 result = false
-            }else navigate(item, navView, navController, fragmentActivity)
+            } else navigate(item, navView, navController, fragmentActivity)
             result
         }
     }
@@ -52,8 +52,10 @@ abstract class SaverFragment : Fragment() {
      * @see NavController
      * @see NavigationView
      */
-    private fun navigate(item: MenuItem, navView: NavigationView, navController: NavController,
-                         fragmentActivity: FragmentActivity) {
+    private fun navigate(
+        item: MenuItem, navView: NavigationView, navController: NavController,
+        fragmentActivity: FragmentActivity
+    ) {
         NavigationUI.setupWithNavController(navView, navController)
         val drawer: DrawerLayout = fragmentActivity.findViewById(R.id.drawer_layout)
         drawer.closeDrawers()
@@ -94,7 +96,7 @@ abstract class SaverFragment : Fragment() {
                 .setTitle(R.string.save_changes)
                 .setMessage(R.string.ask_save_changes)
                 .setPositiveButton(R.string.save) { _, _ -> saveChanges(leaver) }
-                .setNegativeButton(R.string.discard) {_, _ -> leaver.onQuit() }
+                .setNegativeButton(R.string.discard) { _, _ -> leaver.onQuit() }
                 .show()
         }
         hideKeyboard()
@@ -112,7 +114,8 @@ abstract class SaverFragment : Fragment() {
      * @param view [View] from which we should exit the keyboard.
      */
     private fun Context.hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 

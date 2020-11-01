@@ -14,9 +14,10 @@ import kotlin.collections.ArrayList
  * different info will be displayed.
  * @param actionModeListener [ActionModeListener] used to interact with the [ActionMode].
  */
-class CertificatesAdapter(private val profileFilled : Boolean,
-                          private val actionModeListener: ActionModeListener)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>(), ItemClickListener {
+class CertificatesAdapter(
+    private val profileFilled: Boolean,
+    private val actionModeListener: ActionModeListener
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), ItemClickListener {
 
     companion object {
 
@@ -46,7 +47,7 @@ class CertificatesAdapter(private val profileFilled : Boolean,
     /**
      * [ActionMode] currently in use. Null means there is currently no [ActionMode].
      */
-    private var actionMode : ActionMode? = null
+    private var actionMode: ActionMode? = null
 
     /**
      * [ArrayList] of [Int] positions the selected items in this adapter .
@@ -89,22 +90,26 @@ class CertificatesAdapter(private val profileFilled : Boolean,
             actionMode = null
             val changedPositions = ArrayList(selectedItemList)
             selectedItemList.clear()
-            for(position in changedPositions){
+            for (position in changedPositions) {
                 notifyItemChanged(position)
             }
         }
     }
 
-    override fun selectedForActionMode(position: Int, selectedListener: SelectedListener,
-                                       resources: Resources): Boolean {
-        if(actionMode == null) return false
+    override fun selectedForActionMode(
+        position: Int, selectedListener: SelectedListener,
+        resources: Resources
+    ): Boolean {
+        if (actionMode == null) return false
         onLongClick(position, selectedListener, resources)
         return true
     }
 
-    override fun onLongClick(position: Int, selectedListener: SelectedListener,
-                             resources: Resources) {
-        if(selectedItemList.contains(position)){
+    override fun onLongClick(
+        position: Int, selectedListener: SelectedListener,
+        resources: Resources
+    ) {
+        if (selectedItemList.contains(position)) {
             selectedItemList.remove(position)
             selectedListener.unselected(true)
         } else {
@@ -113,34 +118,44 @@ class CertificatesAdapter(private val profileFilled : Boolean,
         }
 
         val currentSize = selectedItemList.size
-        if(currentSize > 0 && actionMode == null){
+        if (currentSize > 0 && actionMode == null) {
             actionMode = actionModeListener.startActionMode(actionModeCallback)
-        }else if(currentSize == 0 && actionMode != null){
+        } else if (currentSize == 0 && actionMode != null) {
             actionMode!!.finish()
         }
-        if(actionMode != null){
-            actionMode!!.title = resources.getQuantityString(R.plurals.selected_count, currentSize,
-                currentSize)
+        if (actionMode != null) {
+            actionMode!!.title = resources.getQuantityString(
+                R.plurals.selected_count, currentSize,
+                currentSize
+            )
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             FILL_PROFILE_CARD_TYPE -> {
-                FillProfileCardViewHolder(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.fill_profile_card, parent, false))
+                FillProfileCardViewHolder(
+                    LayoutInflater.from(parent.context)
+                        .inflate(R.layout.fill_profile_card, parent, false)
+                )
             }
             CREATE_CERTIFICATE_WHEN_NONE_CARD_TYPE -> {
-                CreateWhenNoneCardViewHolder(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.create_when_none_card, parent, false))
+                CreateWhenNoneCardViewHolder(
+                    LayoutInflater.from(parent.context)
+                        .inflate(R.layout.create_when_none_card, parent, false)
+                )
             }
             CREATE_CERTIFICATE_CARD_TYPE -> {
-                BasicCreateCardViewHolder(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.basic_create_card, parent, false))
+                BasicCreateCardViewHolder(
+                    LayoutInflater.from(parent.context)
+                        .inflate(R.layout.basic_create_card, parent, false)
+                )
             }
             else -> {
-                CertificateViewHolder(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.certificate_card, parent, false), this)
+                CertificateViewHolder(
+                    LayoutInflater.from(parent.context)
+                        .inflate(R.layout.certificate_card, parent, false), this
+                )
             }
         }
     }
@@ -150,17 +165,19 @@ class CertificatesAdapter(private val profileFilled : Boolean,
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if(position == 0) return
-        else (holder as CertificateViewHolder).bindToCertificate(certificates[position - 1],
-            position, selectedItemList.contains(position))
+        if (position == 0) return
+        else (holder as CertificateViewHolder).bindToCertificate(
+            certificates[position - 1],
+            position, selectedItemList.contains(position)
+        )
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == 0){
-            if(profileFilled){
-                if(itemCount == 1) CREATE_CERTIFICATE_WHEN_NONE_CARD_TYPE
+        return if (position == 0) {
+            if (profileFilled) {
+                if (itemCount == 1) CREATE_CERTIFICATE_WHEN_NONE_CARD_TYPE
                 else CREATE_CERTIFICATE_CARD_TYPE
-            }else FILL_PROFILE_CARD_TYPE
+            } else FILL_PROFILE_CARD_TYPE
         } else 0
     }
 
@@ -170,8 +187,12 @@ class CertificatesAdapter(private val profileFilled : Boolean,
      */
     fun setItems(certificates: ArrayList<Certificate>?) {
         actionMode?.finish()
-        val diffResult = DiffUtil.calculateDiff(CertificatesDiffCallback(this.certificates,
-            certificates ?: ArrayList()))
+        val diffResult = DiffUtil.calculateDiff(
+            CertificatesDiffCallback(
+                this.certificates,
+                certificates ?: ArrayList()
+            )
+        )
         this.certificates.clear()
         this.certificates.addAll(certificates ?: ArrayList())
         diffResult.dispatchUpdatesTo(this)

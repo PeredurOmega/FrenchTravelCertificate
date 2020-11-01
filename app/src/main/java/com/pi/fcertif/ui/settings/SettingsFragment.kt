@@ -8,16 +8,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.pi.fcertif.R
 import com.pi.fcertif.tools.CertificatesManager
+import com.pi.fcertif.ui.tools.RatePrompt
 
 /**
  * [Fragment] displaying the available settings.
  */
 class SettingsFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
@@ -35,8 +39,14 @@ class SettingsFragment : Fragment() {
                     CertificatesManager(fragmentActivity.filesDir)
                         .removeAll(fragmentActivity.cacheDir)
                 }
-                .setNegativeButton(R.string.no) {_, _ ->}
+                .setNegativeButton(R.string.no) { _, _ -> }
                 .show()
+        }
+
+        val rateApp = view.findViewById<MaterialButton>(R.id.rateApp)
+        rateApp.setOnClickListener {
+            val firebaseAnalytics = FirebaseAnalytics.getInstance(fragmentActivity)
+            RatePrompt(fragmentActivity).rate(firebaseAnalytics)
         }
 
         val shareApp = view.findViewById<MaterialButton>(R.id.shareApp)

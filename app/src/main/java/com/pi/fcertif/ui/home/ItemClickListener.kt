@@ -13,8 +13,10 @@ interface ItemClickListener {
      * @param selectedListener [SelectedListener] to use in case of selection change.
      * @param resources [Resources] to use to retrieve a quantity string.
      */
-    fun selectedForActionMode(position : Int, selectedListener: SelectedListener,
-                              resources: Resources) : Boolean
+    fun selectedForActionMode(
+        position: Int, selectedListener: SelectedListener,
+        resources: Resources
+    ): Boolean
 
     /**
      * Performs a long click.
@@ -22,5 +24,5 @@ interface ItemClickListener {
      * @param selectedListener [SelectedListener] to use in case of selection change.
      * @param resources [Resources] to use to retrieve a quantity string.
      */
-    fun onLongClick(position : Int, selectedListener: SelectedListener, resources: Resources)
+    fun onLongClick(position: Int, selectedListener: SelectedListener, resources: Resources)
 }

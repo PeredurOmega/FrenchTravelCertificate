@@ -11,19 +11,19 @@ import java.util.*
  * @param date [String] date matching dd/mm/yyyy.
  * @param time [String] time matching HH:mm.
  */
-class DateTime(val date: String, val time: String) : Serializable{
+class DateTime(val date: String, val time: String) : Serializable {
 
     /**
      * @return [String] representing the hours field of the time.
      */
-    fun getHours(): String{
+    fun getHours(): String {
         return time.split(":")[0]
     }
 
     /**
      * @return [String] representing the minutes field of the time.
      */
-    fun getMinutes(): String{
+    fun getMinutes(): String {
         return time.split(":")[1]
     }
 
@@ -40,37 +40,39 @@ class DateTime(val date: String, val time: String) : Serializable{
      * @return True if the [DateTime] is malformed, false otherwise.
      */
     fun isMalformed(): Boolean {
-        if(!date.contains("/")) return true
-        if(!time.contains(":")) return true
+        if (!date.contains("/")) return true
+        if (!time.contains(":")) return true
         val dateFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
-            Locale.getDefault())
+            Locale.getDefault()
+        )
         val timeFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),
-            Locale.getDefault())
+            Locale.getDefault()
+        )
         try {
             dateFormat.parse(date)
             timeFormat.parse(time)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return true
         }
         val splitDate = date.split("/")
-        if(splitDate.size != 3) return true
+        if (splitDate.size != 3) return true
 
         val day = splitDate[0].toIntOrNull()
         val month = splitDate[1].toIntOrNull()
 
-        if(day == null || day < 1 || day > 31) return true
-        if(month == null || month < 1 || month > 12) return true
+        if (day == null || day < 1 || day > 31) return true
+        if (month == null || month < 1 || month > 12) return true
 
         val splitTime = time.split(":")
-        if(splitTime.size != 2) return true
+        if (splitTime.size != 2) return true
 
         val hours = splitTime[0].toIntOrNull()
         val minutes = splitTime[1].toIntOrNull()
 
-        if(hours == null || hours < 0 || hours > 24) return true
-        if(minutes == null || minutes < 0 || minutes > 60) return true
+        if (hours == null || hours < 0 || hours > 24) return true
+        if (minutes == null || minutes < 0 || minutes > 60) return true
 
         return false
     }

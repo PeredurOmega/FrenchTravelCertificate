@@ -23,8 +23,10 @@ import java.lang.ref.WeakReference
  * false otherwise.
  * @see PdfCreator
  */
-class CertificateGenerator(mContext: Context, private val certificate: Certificate,
-                           private val addCertificate: Boolean) :
+class CertificateGenerator(
+    mContext: Context, private val certificate: Certificate,
+    private val addCertificate: Boolean
+) :
     AsyncTask<Void, Void, String?>() {
 
     /**
@@ -51,7 +53,7 @@ class CertificateGenerator(mContext: Context, private val certificate: Certifica
         val cacheDir = context.cacheDir
         val originalCertificate = File(cacheDir, originalCertificateName)
 
-        if(!originalCertificate.exists()){
+        if (!originalCertificate.exists()) {
             context.assets.open(originalCertificateName).use { asset ->
                 originalCertificate.writeBytes(asset.readBytes())
             }
@@ -59,7 +61,7 @@ class CertificateGenerator(mContext: Context, private val certificate: Certifica
 
         val newFileName = PdfCreator(cacheDir, originalCertificate).generatePdf(certificate)
 
-        if(addCertificate){
+        if (addCertificate) {
             CertificatesManager(context.filesDir).addCertificate(certificate, 0)
         }
 
@@ -69,17 +71,12 @@ class CertificateGenerator(mContext: Context, private val certificate: Certifica
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
         val context = context.get()
+        loadingDialog?.dismiss()
 
-        if(context != null && result != null){
+        if (context != null && result != null) {
             val intent = Intent(context, CertificateViewerActivity::class.java)
             intent.putExtra(CertificateViewerActivity.FILE_PATH, result)
             context.startActivity(intent)
-            /**
-             * The [LoadingDialog] is auto dismissed when a new activity is launched.
-             */
-        }else{
-            Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show()
-            loadingDialog?.dismiss()
-        }
+        } else Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show()
     }
 }

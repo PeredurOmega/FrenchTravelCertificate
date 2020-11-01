@@ -53,7 +53,8 @@ class InfoEditionWatcher : EditedListener {
             Pair(birthPlaceEditText, myInfo.birthPlace),
             Pair(addressEditText, myInfo.address),
             Pair(cityEditText, myInfo.city),
-            Pair(postalCodeEditText, myInfo.postalCode))
+            Pair(postalCodeEditText, myInfo.postalCode)
+        )
     }
 
     /**
@@ -82,16 +83,19 @@ class InfoEditionWatcher : EditedListener {
      * the birth date of the user.
      * @param birthDate [String?] of the currently registered birth date of the user.
      */
-    private fun setUpBirthDate(birthDateEditText: TextInputEditText,
-                               birthDateField: TextInputLayout,
-                               birthDate: String?): String? {
+    private fun setUpBirthDate(
+        birthDateEditText: TextInputEditText,
+        birthDateField: TextInputLayout,
+        birthDate: String?
+    ): String? {
         var originalDate = birthDate
         val dateFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
-            Locale.getDefault())
+            Locale.getDefault()
+        )
         val birthCalendar = Calendar.getInstance(Locale.FRANCE)
 
-        if(birthDate != null){
+        if (birthDate != null) {
             try {
                 val date = dateFormat.parse(birthDate)
                 if (date != null) {
@@ -122,7 +126,7 @@ class InfoEditionWatcher : EditedListener {
 
         birthDateField.setEndIconOnClickListener {
             val currentWrittenDate = birthDateEditText.text
-            if(currentWrittenDate != null){
+            if (currentWrittenDate != null) {
                 try {
                     val newDate = dateFormat.parse(currentWrittenDate.toString())
                     if (newDate != null) {
@@ -143,10 +147,12 @@ class InfoEditionWatcher : EditedListener {
                 }
 
             val context = it.context
-            if(context != null){
-                val datePickerDialog = DatePickerDialog(context, R.style.TimePickerTheme,
+            if (context != null) {
+                val datePickerDialog = DatePickerDialog(
+                    context, R.style.TimePickerTheme,
                     dateListener, birthCalendar.get(Calendar.YEAR),
-                    birthCalendar.get(Calendar.MONTH), birthCalendar.get(Calendar.DAY_OF_MONTH))
+                    birthCalendar.get(Calendar.MONTH), birthCalendar.get(Calendar.DAY_OF_MONTH)
+                )
                 datePickerDialog.show()
                 val datePicker = datePickerDialog.datePicker
                 datePicker.firstDayOfWeek = Calendar.MONDAY
@@ -163,8 +169,10 @@ class InfoEditionWatcher : EditedListener {
             }
         }
 
-        DateEditTextFormatter(birthDateEditText, originalDate ?: "", birthDateField,
-            dateValidator)
+        DateEditTextFormatter(
+            birthDateEditText, originalDate ?: "", birthDateField,
+            dateValidator
+        )
         return originalDate
     }
 }

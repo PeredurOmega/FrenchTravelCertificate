@@ -46,7 +46,7 @@ class DateTimeFragment : Fragment() {
      */
     private val date = Calendar.getInstance(Locale.FRANCE)
 
-    companion object{
+    companion object {
 
         /**
          * Key value for retrieving [DateTimeFragment#reason].
@@ -59,7 +59,7 @@ class DateTimeFragment : Fragment() {
          * @param reason [Reason] previously selected.
          * @return New [DateTimeFragment].
          */
-        fun newInstance(reason: Reason): DateTimeFragment{
+        fun newInstance(reason: Reason): DateTimeFragment {
             val args = Bundle()
             args.putSerializable(REASON, reason)
             val fragment = DateTimeFragment()
@@ -73,8 +73,10 @@ class DateTimeFragment : Fragment() {
         reason = arguments?.get(REASON) as Reason
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_date_time_filler, container, false)
     }
 
@@ -90,13 +92,15 @@ class DateTimeFragment : Fragment() {
      * Sets up the create button.
      * @param view [View] where to find needed components for creation.
      */
-    private fun setUpCreation(view: View){
+    private fun setUpCreation(view: View) {
         val useProfile = view.findViewById<SwitchMaterial>(R.id.useProfile)
         val createButton = view.findViewById<MaterialButton>(R.id.createButton)
         useProfile.setOnCheckedChangeListener { _, isChecked ->
             run {
-                createButton.setText(if (isChecked) R.string.create_certificate
-                                    else R.string.fill_certificate)
+                createButton.setText(
+                    if (isChecked) R.string.create_certificate
+                    else R.string.fill_certificate
+                )
             }
         }
 
@@ -110,22 +114,22 @@ class DateTimeFragment : Fragment() {
      * or false if we should create a new temporary profile just for this certificate.
      * @param view [View] where to find needed components for creation.
      */
-    private fun tryToCreateCertificate(useProfile: Boolean, view: View){
+    private fun tryToCreateCertificate(useProfile: Boolean, view: View) {
         val exitDateEditText = view.findViewById<TextInputEditText>(R.id.exitDateEditText)
         val exitTimeEditText = view.findViewById<TextInputEditText>(R.id.exitTimeEditText)
 
         val exitDate: String? = exitDateEditText.text.toString()
         val exitTime: String? = exitTimeEditText.text.toString()
 
-        if(!exitDate.isNullOrEmpty() && ! exitTime.isNullOrEmpty()){
+        if (!exitDate.isNullOrEmpty() && !exitTime.isNullOrEmpty()) {
             val exitDateTime = DateTime(exitDate, exitTime)
-            if(exitDateTime.isMalformed()){
+            if (exitDateTime.isMalformed()) {
                 Toast.makeText(context, R.string.date_time_match_error, Toast.LENGTH_SHORT).show()
-            }else{
-                if(useProfile) createCertificate(exitDateTime, view.context)
+            } else {
+                if (useProfile) createCertificate(exitDateTime, view.context)
                 else goFillCertificate(exitDateTime)
             }
-        }else Toast.makeText(context, R.string.please_fill_date_time, Toast.LENGTH_SHORT).show()
+        } else Toast.makeText(context, R.string.please_fill_date_time, Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -135,7 +139,7 @@ class DateTimeFragment : Fragment() {
      * @param exitDateTime [DateTime] representing the date and the time of the exit considered in
      * this certificate.
      */
-    private fun goFillCertificate(exitDateTime: DateTime){
+    private fun goFillCertificate(exitDateTime: DateTime) {
         val fragmentManager = parentFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentContainer, InfoFragment.newInstance(reason, exitDateTime))
@@ -150,17 +154,21 @@ class DateTimeFragment : Fragment() {
      * @param context [Context] used to generate a certificate with [CertificateGenerator].
      * @see [CertificateGenerator]
      */
-    private fun createCertificate(exitDateTime: DateTime, context: Context){
+    private fun createCertificate(exitDateTime: DateTime, context: Context) {
         val timeFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),
-            Locale.getDefault())
+            Locale.getDefault()
+        )
 
         val dateFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
-            Locale.getDefault())
+            Locale.getDefault()
+        )
 
-        val certificate = Certificate(DateTime(dateFormat.format(Date()), timeFormat.format(Date())),
-            InfoManager(context).retrieveUserInfo(), exitDateTime, reason)
+        val certificate = Certificate(
+            DateTime(dateFormat.format(Date()), timeFormat.format(Date())),
+            InfoManager(context).retrieveUserInfo(), exitDateTime, reason
+        )
 
         CertificateGenerator(context, certificate, true).execute()
     }
@@ -170,24 +178,27 @@ class DateTimeFragment : Fragment() {
      * @param view [View] where to find the time [TextInputEditText] and the time [TextInputLayout].
      * @see DateTimeFragment.setUpDateField
      */
-    private fun setUpTimeField(view: View){
+    private fun setUpTimeField(view: View) {
         val exitTimeEditText = view.findViewById<TextInputEditText>(R.id.exitTimeEditText)
         val exitTimeField = view.findViewById<TextInputLayout>(R.id.exitTimeField)
 
         val timeFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),
-            Locale.getDefault())
+            Locale.getDefault()
+        )
 
         val now = timeFormat.format(date.time)
         exitTimeEditText.setText(now)
 
         exitTimeField.setEndIconOnClickListener {
-            val timePicker = TimePickerDialog(context, R.style.TimePickerTheme,
+            val timePicker = TimePickerDialog(
+                context, R.style.TimePickerTheme,
                 { _, selectedHour, selectedMinute ->
                     date.set(Calendar.HOUR_OF_DAY, selectedHour)
                     date.set(Calendar.MINUTE, selectedMinute)
                     exitTimeEditText.setText(timeFormat.format(date.time))
-                }, date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), true)
+                }, date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), true
+            )
             timePicker.show()
         }
 
@@ -200,13 +211,14 @@ class DateTimeFragment : Fragment() {
      * @param view [View] where to find the date [TextInputEditText] and the date [TextInputLayout].
      * @see DateTimeFragment.setUpDateField
      */
-    private fun setUpDateField(view: View){
+    private fun setUpDateField(view: View) {
         val exitDateEditText = view.findViewById<TextInputEditText>(R.id.exitDateEditText)
         val exitDateField = view.findViewById<TextInputLayout>(R.id.exitDateField)
 
         val dateFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
-            Locale.getDefault())
+            Locale.getDefault()
+        )
 
         val now = dateFormat.format(date.time)
         exitDateEditText.setText(now)
@@ -232,7 +244,7 @@ class DateTimeFragment : Fragment() {
 
         exitDateField.setEndIconOnClickListener {
             val currentWrittenDate = exitDateEditText.text
-            if(currentWrittenDate != null){
+            if (currentWrittenDate != null) {
                 try {
                     val newDate = dateFormat.parse(currentWrittenDate.toString())
                     if (newDate != null) {
@@ -243,19 +255,21 @@ class DateTimeFragment : Fragment() {
                 }
             }
 
-            val dateListener = OnDateSetListener{_: DatePicker?, year: Int, monthOfYear: Int,
-                                         dayOfMonth: Int ->
-                    date.set(Calendar.YEAR, year)
-                    date.set(Calendar.MONTH, monthOfYear)
-                    date.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                    exitDateEditText.setText(dateFormat.format(date.time))
-                }
+            val dateListener = OnDateSetListener { _: DatePicker?, year: Int, monthOfYear: Int,
+                                                   dayOfMonth: Int ->
+                date.set(Calendar.YEAR, year)
+                date.set(Calendar.MONTH, monthOfYear)
+                date.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                exitDateEditText.setText(dateFormat.format(date.time))
+            }
 
             val context = it.context
-            if(context != null){
-                val datePickerDialog = DatePickerDialog(context, R.style.TimePickerTheme,
+            if (context != null) {
+                val datePickerDialog = DatePickerDialog(
+                    context, R.style.TimePickerTheme,
                     dateListener, date.get(Calendar.YEAR), date.get(Calendar.MONTH),
-                    date.get(Calendar.DAY_OF_MONTH))
+                    date.get(Calendar.DAY_OF_MONTH)
+                )
                 datePickerDialog.show()
                 val datePicker = datePickerDialog.datePicker
                 datePicker.firstDayOfWeek = Calendar.MONDAY

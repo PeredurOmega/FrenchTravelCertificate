@@ -11,20 +11,22 @@ import java.lang.StringBuilder
  * @param exitDateTime [DateTime] of the exit mentioned int this certificate.
  * @param reason [Reason] of the exit.
  */
-class Certificate(val creationDateTime: DateTime, val userInfo: UserInfo,
-                  val exitDateTime: DateTime, val reason: Reason) : Serializable{
+class Certificate(
+    val creationDateTime: DateTime, val userInfo: UserInfo,
+    val exitDateTime: DateTime, val reason: Reason
+) : Serializable {
 
     /**
      * [String] Name of the pdf that has been generated once the certificate has been created.
      */
-    var pdfFileName : String = ""
+    var pdfFileName: String = ""
 
     /**
      * Builds the data to put in the QR Code content. This data can be used by the police to check
      * whether or not the certificate is valid.
      * @return [String] containing all the information needed by the police in the right format.
      */
-    fun buildData(): String{
+    fun buildData(): String {
         val dataBuilder = StringBuilder()
         dataBuilder.append("Cree le: ")
             .append(creationDateTime.date)
@@ -54,7 +56,9 @@ class Certificate(val creationDateTime: DateTime, val userInfo: UserInfo,
     }
 
     override fun equals(other: Any?): Boolean {
-        return if(other is Certificate){ other.pdfFileName == pdfFileName }else false
+        return if (other is Certificate) {
+            other.pdfFileName == pdfFileName
+        } else false
     }
 
     override fun hashCode(): Int {

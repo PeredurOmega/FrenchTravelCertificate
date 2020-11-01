@@ -22,8 +22,10 @@ import com.pi.fcertif.R
  */
 class ContributeFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_contribute, container, false)
     }
 
@@ -72,7 +74,12 @@ class ContributeFragment : Fragment() {
                 ds.isUnderlineText = false
             }
         }
-        spannableString.setSpan(clickableSpan, 0, spannableString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(
+            clickableSpan,
+            0,
+            spannableString.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         githubLabMILink.text = spannableString
     }
 }

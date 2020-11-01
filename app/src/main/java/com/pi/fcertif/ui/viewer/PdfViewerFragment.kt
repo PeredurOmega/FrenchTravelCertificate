@@ -22,7 +22,7 @@ import java.io.FileNotFoundException
 /**
  * [Fragment] used to display one page of a pdf.
  */
-class PdfViewerFragment : Fragment(){
+class PdfViewerFragment : Fragment() {
 
     /**
      * [String] File path of the pdf to display.
@@ -34,7 +34,7 @@ class PdfViewerFragment : Fragment(){
      */
     private var page: Int? = null
 
-    companion object{
+    companion object {
 
         /**
          * Key value for retrieving [PdfViewerFragment#page]
@@ -49,7 +49,7 @@ class PdfViewerFragment : Fragment(){
          * @param page [Int] Number of the page to display (starting from 0).
          * @return
          */
-        fun newInstance(filePath: String, page: Int): PdfViewerFragment{
+        fun newInstance(filePath: String, page: Int): PdfViewerFragment {
             val args = Bundle()
             args.putString(FILE_PATH, filePath)
             args.putInt(PAGE, page)
@@ -65,8 +65,10 @@ class PdfViewerFragment : Fragment(){
         page = arguments?.getInt(PAGE)!!
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_pdf_viewer, container, false)
     }
 
@@ -77,27 +79,30 @@ class PdfViewerFragment : Fragment(){
         val dirFile = context.cacheDir
         val file = File(dirFile, filePath)
 
-        if(page != null){
+        if (page != null) {
             try {
-                val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY).also {
-                    val pdfRenderer = PdfRenderer(it)
-                    val page = pdfRenderer.openPage(page!!)
-                    val pdfImageView = view.findViewById<PhotoView>(R.id.pdfView)
-                    val density = resources.displayMetrics.density
-                    val bitmap = Bitmap.createBitmap((page.width * density).toInt(),
-                        (page.height * density).toInt(), Bitmap.Config.ARGB_8888)
-                    page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
-                    pdfImageView.setImageBitmap(bitmap)
-                    pdfImageView.post {
-                        pdfImageView.scaleType = ImageView.ScaleType.FIT_START
+                val fileDescriptor =
+                    ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY).also {
+                        val pdfRenderer = PdfRenderer(it)
+                        val page = pdfRenderer.openPage(page!!)
+                        val pdfImageView = view.findViewById<PhotoView>(R.id.pdfView)
+                        val density = resources.displayMetrics.density
+                        val bitmap = Bitmap.createBitmap(
+                            (page.width * density).toInt(),
+                            (page.height * density).toInt(), Bitmap.Config.ARGB_8888
+                        )
+                        page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+                        pdfImageView.setImageBitmap(bitmap)
+                        pdfImageView.post {
+                            pdfImageView.scaleType = ImageView.ScaleType.FIT_START
+                        }
+                        if (this.page == 1) pdfImageView.setZoomable(false)
                     }
-                    if(this.page == 1) pdfImageView.setZoomable(false)
-                }
                 fileDescriptor.close()
-            }catch (e: FileNotFoundException){
+            } catch (e: FileNotFoundException) {
                 val certificate = CertificatesManager(context.filesDir).getCertificate(filePath)
-                if(certificate != null) CertificateGenerator(context, certificate, false).execute()
-                else{
+                if (certificate != null) CertificateGenerator(context, certificate, false).execute()
+                else {
                     Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show()
                     activity?.onBackPressed()
                 }

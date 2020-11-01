@@ -13,13 +13,15 @@ import com.pi.fcertif.ui.creator.CertificateCreatorActivity
  * card to be displayed in the [RecyclerView].
  * @param itemView [View] to use to create this [RecyclerView.ViewHolder].
  */
-class BasicCreateCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+class BasicCreateCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     init {
-        itemView.setOnClickListener{
+        itemView.setOnClickListener {
             val context = it.context
-            startActivity(context,
-                Intent(context, CertificateCreatorActivity::class.java), null)
+            startActivity(
+                context,
+                Intent(context, CertificateCreatorActivity::class.java), null
+            )
         }
     }
 }

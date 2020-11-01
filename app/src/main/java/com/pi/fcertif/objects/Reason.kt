@@ -12,5 +12,7 @@ import java.io.Serializable
  * @param id [Int] Position / Id of this reason.
  * @param value [String] Official value of this reason.
  */
-class Reason (val shortName: String, val fullDescription: String, val iconName: String,
-              val color: Int, val id: Int, val value : String) : Serializable
+class Reason(
+    val shortName: String, val fullDescription: String, val iconName: String,
+    val color: Int, val id: Int, val value: String
+) : Serializable

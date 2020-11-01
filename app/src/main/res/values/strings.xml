@@ -14,6 +14,7 @@
     <string name="email_feedback_subject">Feedback - French travel certificate</string>
     <string name="email_feedback_body">Feel free to share your ideas with us…</string>
     <string name="rate">Rate</string>
+    <string name="rate_on_google">Rate on Google Play</string>
     <string name="send_feedback">Feel free to send us your feedback</string>
     <string name="your_feedback_matters">Your feedback really matters to us. Please send us what
         you think we should do by email.</string>

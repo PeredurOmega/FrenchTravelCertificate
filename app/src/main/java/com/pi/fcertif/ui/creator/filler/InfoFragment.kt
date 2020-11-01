@@ -36,7 +36,7 @@ class InfoFragment : Fragment() {
      */
     private lateinit var exitDateTime: DateTime
 
-    companion object{
+    companion object {
 
         /**
          * Key value for retrieving [InfoFragment#reason].
@@ -55,7 +55,7 @@ class InfoFragment : Fragment() {
          * @param exitDateTime [DateTime] previously selected.
          * @return New [InfoFragment].
          */
-        fun newInstance(reason: Reason, exitDateTime: DateTime): InfoFragment{
+        fun newInstance(reason: Reason, exitDateTime: DateTime): InfoFragment {
             val args = Bundle()
             args.putSerializable(REASON, reason)
             args.putSerializable(EXIT_DATE_TIME, exitDateTime)
@@ -71,26 +71,33 @@ class InfoFragment : Fragment() {
         exitDateTime = arguments?.get(EXIT_DATE_TIME) as DateTime
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val fragmentActivity = activity
-        if(fragmentActivity != null){
+        if (fragmentActivity != null) {
             val infoEditionWatcher = InfoEditionWatcher()
-            infoEditionWatcher.build(view, UserInfo(null, null, null,
-                null, null, null, null)
+            infoEditionWatcher.build(
+                view, UserInfo(
+                    null, null, null,
+                    null, null, null, null
+                )
             )
             val createCertificateButton =
                 view.findViewById<MaterialButton>(R.id.createCertificateButton)
             createCertificateButton.setOnClickListener {
                 val userInfo = infoEditionWatcher.info
                 val infoManager = InfoManager(fragmentActivity)
-                if(userInfo != null && infoManager.hasBeenFilled(userInfo)){
+                if (userInfo != null && infoManager.hasBeenFilled(userInfo)) {
                     createCertificate(fragmentActivity, userInfo)
-                }else{
+                } else {
                     Toast.makeText(context, R.string.please_fill_info, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -102,17 +109,21 @@ class InfoFragment : Fragment() {
      * @param context [Context] to provide to the [CertificateGenerator].
      * @param userInfo [UserInfo] attached to the [Certificate] to create.
      */
-    private fun createCertificate(context: Context, userInfo: UserInfo){
+    private fun createCertificate(context: Context, userInfo: UserInfo) {
         val timeFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),
-            Locale.getDefault())
+            Locale.getDefault()
+        )
 
         val dateFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
-            Locale.getDefault())
+            Locale.getDefault()
+        )
 
-        val certificate = Certificate(DateTime(dateFormat.format(Date()), timeFormat.format(Date())),
-            userInfo, exitDateTime, reason)
+        val certificate = Certificate(
+            DateTime(dateFormat.format(Date()), timeFormat.format(Date())),
+            userInfo, exitDateTime, reason
+        )
 
         CertificateGenerator(context, certificate, true).execute()
     }

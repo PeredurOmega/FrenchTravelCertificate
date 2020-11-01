@@ -28,7 +28,7 @@ class CertificatesManager(dirFile: File) {
      * @param certificate [Certificate] to add.
      * @param position [Int] where to add the [Certificate].
      */
-    fun addCertificate(certificate: Certificate, position: Int){
+    fun addCertificate(certificate: Certificate, position: Int) {
         val certificates = getExistingCertificates()
         certificates.add(position, certificate)
         saveCertificates(certificates)
@@ -41,10 +41,13 @@ class CertificatesManager(dirFile: File) {
      * @param adapterPositions [ArrayList] of [Int] positions where to add [ArrayList] of
      * [Certificate].
      */
-    fun addCertificates(certificatesToAdd: ArrayList<Certificate>, adapterPositions: ArrayList<Int>) {
-        if(certificatesToAdd.size != adapterPositions.size) return
+    fun addCertificates(
+        certificatesToAdd: ArrayList<Certificate>,
+        adapterPositions: ArrayList<Int>
+    ) {
+        if (certificatesToAdd.size != adapterPositions.size) return
         val certificates = getExistingCertificates()
-        for (i in 0 until certificatesToAdd.size){
+        for (i in 0 until certificatesToAdd.size) {
             certificates.add(adapterPositions[i] - 1, certificatesToAdd[i])
         }
         saveCertificates(certificates)
@@ -54,11 +57,11 @@ class CertificatesManager(dirFile: File) {
      * Removes a [Certificate].
      * @param certificateToRemove [Certificate] to remove.
      */
-    fun removeCertificate(certificateToRemove: Certificate){
+    fun removeCertificate(certificateToRemove: Certificate) {
         val certificates = getExistingCertificates()
-        if(certificates.size == 0) return
+        if (certificates.size == 0) return
         var index = 0
-        while (index < certificates.size && certificates[index] != certificateToRemove){
+        while (index < certificates.size && certificates[index] != certificateToRemove) {
             index++
         }
         certificates.removeAt(index)
@@ -72,7 +75,7 @@ class CertificatesManager(dirFile: File) {
      * certificates should contain.
      * @see getExistingCertificates
      */
-    private fun saveCertificates(certificates: ArrayList<Certificate>){
+    private fun saveCertificates(certificates: ArrayList<Certificate>) {
         val gson = Gson()
         val fileOutputStream = FileOutputStream(certificatesFile)
         fileOutputStream.write(gson.toJson(certificates).toByteArray())
@@ -116,7 +119,7 @@ class CertificatesManager(dirFile: File) {
     fun removeAll(cacheDir: File) {
         val certificates = getExistingCertificates()
         certificatesFile.delete()
-        for(certificate in certificates){
+        for (certificate in certificates) {
             deletePdf(certificate, cacheDir)
         }
     }
@@ -127,11 +130,11 @@ class CertificatesManager(dirFile: File) {
      */
     fun removeCertificates(certificatesToRemove: ArrayList<Certificate>) {
         val certificates = getExistingCertificates()
-        for(certificateToRemove in certificatesToRemove){
+        for (certificateToRemove in certificatesToRemove) {
             var index = 0
             val certificatesCount = certificates.size
-            if(certificatesCount == 0) break
-            while (index < certificates.size && certificates[index] != certificateToRemove){
+            if (certificatesCount == 0) break
+            while (index < certificates.size && certificates[index] != certificateToRemove) {
                 index++
             }
             certificates.removeAt(index)
@@ -159,8 +162,8 @@ class CertificatesManager(dirFile: File) {
      * certificates should also be deleted when this action is done.
      * @param cacheDir [File] where to find pdf files.
      */
-    fun deletePdfFiles(certificatesToDelete: ArrayList<Certificate>, cacheDir: File){
-        for (certificateToDelete in certificatesToDelete){
+    fun deletePdfFiles(certificatesToDelete: ArrayList<Certificate>, cacheDir: File) {
+        for (certificateToDelete in certificatesToDelete) {
             deletePdf(certificateToDelete, cacheDir)
         }
     }
@@ -171,10 +174,10 @@ class CertificatesManager(dirFile: File) {
      * @return A [Certificate] matching with the specified pdf file's path. Returns null in case no
      * certificate was found (should never occur).
      */
-    fun getCertificate(pdfFileName: String) : Certificate?{
+    fun getCertificate(pdfFileName: String): Certificate? {
         val certificates = getExistingCertificates()
-        for(certificate in certificates){
-            if(certificate.pdfFileName == pdfFileName) return certificate
+        for (certificate in certificates) {
+            if (certificate.pdfFileName == pdfFileName) return certificate
         }
         return null
     }

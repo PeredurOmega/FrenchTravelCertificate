@@ -11,7 +11,7 @@ interface ActionModeListener {
      * Starts action mode with a designated [ActionMode.Callback] and returns the [ActionMode].
      * @param actionModeCallback [ActionMode.Callback] to use.
      */
-    fun startActionMode(actionModeCallback : ActionMode.Callback) : ActionMode?
+    fun startActionMode(actionModeCallback: ActionMode.Callback): ActionMode?
 
     /**
      * Deletes a list of items according to their positions in the adapter.

@@ -19,6 +19,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/rateApp"
+        android:layout_marginTop="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/rate_on_google"/>
+
+    <com.google.android.material.button.MaterialButton
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/shareApp"
         app:icon="@drawable/share_icon"
         android:layout_marginTop="35dp"
@@ -26,4 +37,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/share_to_your_friends"/>
+
 </LinearLayout>

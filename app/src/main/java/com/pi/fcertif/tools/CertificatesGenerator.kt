@@ -21,8 +21,10 @@ import java.lang.ref.WeakReference
  * @param certificates [ArrayList] of [Certificate] to use to generate their bound pdf.
  * @see PdfCreator
  */
-class CertificatesGenerator(mContext: Context, private val certificates: ArrayList<Certificate>,
-                            private val generatorListener: GeneratorListener?) :
+class CertificatesGenerator(
+    mContext: Context, private val certificates: ArrayList<Certificate>,
+    private val generatorListener: GeneratorListener?
+) :
     AsyncTask<Void, Void, ArrayList<String?>?>() {
 
     /**
@@ -49,7 +51,7 @@ class CertificatesGenerator(mContext: Context, private val certificates: ArrayLi
         val cacheDir = context.cacheDir
         val originalCertificate = File(cacheDir, originalCertificateName)
 
-        if(!originalCertificate.exists()){
+        if (!originalCertificate.exists()) {
             context.assets.open(originalCertificateName).use { asset ->
                 originalCertificate.writeBytes(asset.readBytes())
             }
@@ -59,7 +61,7 @@ class CertificatesGenerator(mContext: Context, private val certificates: ArrayLi
 
         val pdfCreator = PdfCreator(cacheDir, originalCertificate)
 
-        for(certificate in certificates){
+        for (certificate in certificates) {
             val newFileName = pdfCreator.generatePdf(certificate)
             newPdfFileNames.add(newFileName)
         }
@@ -73,7 +75,7 @@ class CertificatesGenerator(mContext: Context, private val certificates: ArrayLi
 
         loadingDialog?.dismiss()
 
-        if(context != null && result != null) generatorListener?.onGenerated()
+        if (context != null && result != null) generatorListener?.onGenerated()
         else Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show()
     }
 }

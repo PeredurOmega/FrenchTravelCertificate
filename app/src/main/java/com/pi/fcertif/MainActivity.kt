@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * @see AppBarConfiguration
      */
-    private lateinit var appBarConfiguration : AppBarConfiguration
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Sets up the the navigation.
      */
-    private fun setUpNavigation(){
+    private fun setUpNavigation() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -62,13 +62,17 @@ class MainActivity : AppCompatActivity() {
      * ProfileFragment and will be shown for other destinations.
      * @return [NavController] fully configured.
      */
-    private fun setUpNavController(): NavController{
+    private fun setUpNavController(): NavController {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
 
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_home, R.id.nav_profile,
-            R.id.nav_eula, R.id.nav_settings, R.id.nav_contribute), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home, R.id.nav_profile,
+                R.id.nav_eula, R.id.nav_settings, R.id.nav_contribute
+            ), drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
@@ -89,13 +93,13 @@ class MainActivity : AppCompatActivity() {
      * [com.pi.fcertif.ui.profile.ProfileFragment] in case of click on the
      * [FloatingActionButton] while the profile is incomplete.
      */
-    private fun setUpFab(navController: NavController){
+    private fun setUpFab(navController: NavController) {
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             val infoManager = InfoManager(this)
-            if(infoManager.hasBeenFilled(infoManager.retrieveUserInfo())){
+            if (infoManager.hasBeenFilled(infoManager.retrieveUserInfo())) {
                 startActivity(Intent(this, CertificateCreatorActivity::class.java))
-            }else{
+            } else {
                 Snackbar.make(view, R.string.no_profile_info, Snackbar.LENGTH_LONG)
                     .setAction(R.string.fill_profile) {
                         navController.navigate(R.id.nav_profile)
@@ -110,7 +114,7 @@ class MainActivity : AppCompatActivity() {
      * of the change brought regularly by the Ministry of Home Affairs.
      * @param activity [Activity] to use.
      */
-    private fun checkForUpdate(activity: Activity){
+    private fun checkForUpdate(activity: Activity) {
         Thread {
             val appUpdateManager = AppUpdateManagerFactory.create(activity)
             val appUpdateInfo = appUpdateManager.appUpdateInfo
@@ -183,12 +187,12 @@ class MainActivity : AppCompatActivity() {
     /**
      * Has the same effect as when the user press the back button.
      */
-    private fun backPress(){
+    private fun backPress() {
         super.onBackPressed()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.action_settings -> {
                 val navController = findNavController(R.id.nav_host_fragment)
                 navController.navigate(R.id.nav_settings)

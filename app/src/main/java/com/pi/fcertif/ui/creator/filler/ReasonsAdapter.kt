@@ -12,16 +12,19 @@ import com.pi.fcertif.objects.Reasons
  * @param resources [Resources] used to create [Reasons] in [ReasonsAdapter#reasons].
  * @param reasonListener [ReasonListener] to provide to [ReasonViewHolder].
  */
-class ReasonsAdapter(resources: Resources, private val reasonListener: ReasonListener): RecyclerView.Adapter<ReasonViewHolder>() {
+class ReasonsAdapter(resources: Resources, private val reasonListener: ReasonListener) :
+    RecyclerView.Adapter<ReasonViewHolder>() {
 
     /**
      * [Reasons] to show in the [RecyclerView]
      */
-    private val reasons =  Reasons(resources)
+    private val reasons = Reasons(resources)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReasonViewHolder {
-        return ReasonViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.reason_card, parent, false), reasonListener)
+        return ReasonViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.reason_card, parent, false), reasonListener
+        )
     }
 
     override fun onBindViewHolder(holder: ReasonViewHolder, position: Int) {

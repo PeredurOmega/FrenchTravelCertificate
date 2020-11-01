@@ -16,33 +16,36 @@ import java.util.*
  * @param city [String] Current city where the user lives.
  * @param postalCode [String] Current postal code of the city where the user lives.
  */
-class UserInfo(val firstName: String?, val lastName: String?, val birthDate: String?,
-               val birthPlace: String?, val address: String?, val city: String?,
-               val postalCode: String?) : Serializable {
+class UserInfo(
+    val firstName: String?, val lastName: String?, val birthDate: String?,
+    val birthPlace: String?, val address: String?, val city: String?,
+    val postalCode: String?
+) : Serializable {
 
     /**
      * Checks whether or not the birthdate is malformed.
      * @return [Boolean] True if the birthdate is malformed, false otherwise.
      */
     fun hasMalformedBirthdate(): Boolean {
-        if(birthDate.isNullOrBlank()) return false
-        if(!birthDate.contains("/")) return true
+        if (birthDate.isNullOrBlank()) return false
+        if (!birthDate.contains("/")) return true
         val dateFormat = SimpleDateFormat(
             DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
-            Locale.getDefault())
+            Locale.getDefault()
+        )
         try {
             dateFormat.parse(birthDate)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return true
         }
         val splitDate = birthDate.split("/")
-        if(splitDate.size != 3) return true
+        if (splitDate.size != 3) return true
 
         val day = splitDate[0].toIntOrNull()
         val month = splitDate[1].toIntOrNull()
 
-        if(day == null || day < 1 || day > 31) return true
-        if(month == null || month < 1 || month > 12) return true
+        if (day == null || day < 1 || day > 31) return true
+        if (month == null || month < 1 || month > 12) return true
         return false
     }
 

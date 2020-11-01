@@ -11,9 +11,9 @@ import com.pi.fcertif.R
 class FlipAnimator {
 
     private var leftIn: AnimatorSet? = null
-    private var rightOut:AnimatorSet? = null
-    private var leftOut:AnimatorSet? = null
-    private var rightIn:AnimatorSet? = null
+    private var rightOut: AnimatorSet? = null
+    private var leftOut: AnimatorSet? = null
+    private var rightIn: AnimatorSet? = null
 
     /**
      * Performs flip animation on two views.

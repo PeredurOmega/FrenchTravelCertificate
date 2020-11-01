@@ -56,35 +56,46 @@ abstract class SwipeToDeleteCallback internal constructor(context: Context) :
 
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder)
             : Int {
-        if(viewHolder.itemViewType == FILL_PROFILE_CARD_TYPE
+        if (viewHolder.itemViewType == FILL_PROFILE_CARD_TYPE
             || viewHolder.itemViewType == CREATE_CERTIFICATE_WHEN_NONE_CARD_TYPE
-            || viewHolder.itemViewType == CREATE_CERTIFICATE_CARD_TYPE) return 0
-        return makeMovementFlags(0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+            || viewHolder.itemViewType == CREATE_CERTIFICATE_CARD_TYPE
+        ) return 0
+        return makeMovementFlags(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        )
     }
 
-    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
-                        viewHolder1: RecyclerView.ViewHolder): Boolean {
+    override fun onMove(
+        recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
+        viewHolder1: RecyclerView.ViewHolder
+    ): Boolean {
         return false
     }
 
 
-    override fun onChildDraw(c: Canvas, recyclerView: RecyclerView,
-                             viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float,
-                             actionState: Int, isCurrentlyActive: Boolean) {
+    override fun onChildDraw(
+        c: Canvas, recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float,
+        actionState: Int, isCurrentlyActive: Boolean
+    ) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
         val swipingToTheRight = dX > 0
         val itemView: View = viewHolder.itemView
         val itemHeight: Int = itemView.height
         val isCancelled = dX == 0f && !isCurrentlyActive
         if (isCancelled) {
-            clearCanvas(c, itemView.right + dX, itemView.top.toFloat(),
-                itemView.right.toFloat(), itemView.bottom.toFloat())
+            clearCanvas(
+                c, itemView.right + dX, itemView.top.toFloat(),
+                itemView.right.toFloat(), itemView.bottom.toFloat()
+            )
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
             return
         }
-        background?.setBounds(itemView.left, itemView.top, itemView.right,
-            itemView.bottom)
+        background?.setBounds(
+            itemView.left, itemView.top, itemView.right,
+            itemView.bottom
+        )
         background?.draw(c)
 
         val drawableHeight = (itemHeight.toDouble() / 2).toInt()
@@ -92,13 +103,15 @@ abstract class SwipeToDeleteCallback internal constructor(context: Context) :
 
         val deleteIconTop: Int = itemView.top + (itemHeight - drawableHeight) / 2
         val deleteIconMargin = (itemHeight - drawableHeight) / 2
-        val deleteIconLeft: Int = if(swipingToTheRight) itemView.left + deleteIconMargin
-                                    else itemView.right - deleteIconMargin - drawableWidth
-        val deleteIconRight: Int = if(swipingToTheRight) deleteIconLeft + drawableWidth
-                                    else itemView.right - deleteIconMargin
+        val deleteIconLeft: Int = if (swipingToTheRight) itemView.left + deleteIconMargin
+        else itemView.right - deleteIconMargin - drawableWidth
+        val deleteIconRight: Int = if (swipingToTheRight) deleteIconLeft + drawableWidth
+        else itemView.right - deleteIconMargin
         val deleteIconBottom = deleteIconTop + drawableHeight
-        deleteDrawable?.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight,
-            deleteIconBottom)
+        deleteDrawable?.setBounds(
+            deleteIconLeft, deleteIconTop, deleteIconRight,
+            deleteIconBottom
+        )
         deleteDrawable?.draw(c)
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }

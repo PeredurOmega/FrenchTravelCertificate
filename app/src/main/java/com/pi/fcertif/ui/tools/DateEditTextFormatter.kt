@@ -15,9 +15,11 @@ import java.util.*
  * @param dateValidator [dateValidator] Used to check whether or not a date (well formatted) is
  * valid.
  */
-class DateEditTextFormatter(private val editText: TextInputEditText, original: String,
-                            private val textInputLayout : TextInputLayout,
-                            private val dateValidator : DateValidator) : TextWatcher{
+class DateEditTextFormatter(
+    private val editText: TextInputEditText, original: String,
+    private val textInputLayout: TextInputLayout,
+    private val dateValidator: DateValidator
+) : TextWatcher {
 
     /**
      * Current text in the edit text.
@@ -59,9 +61,9 @@ class DateEditTextFormatter(private val editText: TextInputEditText, original: S
 
             var malformed = 0
 
-            if(clean.length >= 2){
+            if (clean.length >= 2) {
                 val day = clean.substring(0, 2).toInt()
-                val sDay = if (day > 31 || day < 1){
+                val sDay = if (day > 31 || day < 1) {
                     malformed = R.string.day_between_1_31
                     format.substring(0, 2)
                 } else clean.substring(0, 2)
@@ -69,9 +71,9 @@ class DateEditTextFormatter(private val editText: TextInputEditText, original: S
                 clean = sDay + clean.substring(2)
             }
 
-            if(clean.length >= 4){
+            if (clean.length >= 4) {
                 val month = clean.substring(2, 4).toInt()
-                val sMonth = if (month < 1 || month > 12){
+                val sMonth = if (month < 1 || month > 12) {
                     malformed = R.string.month_between_1_12
                     format.substring(2, 4)
                 } else clean.substring(2, 4)
@@ -79,41 +81,44 @@ class DateEditTextFormatter(private val editText: TextInputEditText, original: S
                 clean = clean.substring(0, 2) + sMonth + clean.substring(4)
             }
 
-            if(clean.length == 8){
+            if (clean.length == 8) {
                 val year = clean.substring(4, 8).toInt()
                 cal[Calendar.YEAR] = year
                 val isValid = dateValidator.isValid(cal)
-                val sYear = if(isValid != null) {
-                        malformed = isValid
-                        format.substring(4, 8)
-                }else clean.substring(4, 8)
+                val sYear = if (isValid != null) {
+                    malformed = isValid
+                    format.substring(4, 8)
+                } else clean.substring(4, 8)
 
                 clean = clean.substring(0, 4) + sYear
-                if(malformed == 0){
+                if (malformed == 0) {
                     val day = clean.substring(0, 2).toInt()
-                    val sDay = if (day > cal.getActualMaximum(Calendar.DATE) || day < 1){
+                    val sDay = if (day > cal.getActualMaximum(Calendar.DATE) || day < 1) {
                         malformed = R.string.nonexistent_date
                         format.substring(0, 2)
                     } else {
                         cal[Calendar.DAY_OF_MONTH] = day
 
                         val isValidDate = dateValidator.isValid(cal)
-                        if(isValidDate != null){
+                        if (isValidDate != null) {
                             malformed = isValidDate
                             format.substring(0, 2)
-                        }else clean.substring(0, 2)
+                        } else clean.substring(0, 2)
                     }
                     clean = sDay + clean.substring(2)
                 }
-            }else if (clean.length < 8) clean += format.substring(clean.length)
+            } else if (clean.length < 8) clean += format.substring(clean.length)
 
-            clean = String.format("%s/%s/%s", clean.substring(0, 2), clean.substring(2, 4),
-                clean.substring(4, 8))
+            clean = String.format(
+                "%s/%s/%s", clean.substring(0, 2), clean.substring(2, 4),
+                clean.substring(4, 8)
+            )
             sel = if (sel < 0) 0 else sel
             current = clean
             editText.setText(current)
             editText.setSelection(if (sel < current.length) sel else current.length)
-            if(malformed != 0) textInputLayout.error = textInputLayout.resources.getString(malformed)
+            if (malformed != 0) textInputLayout.error =
+                textInputLayout.resources.getString(malformed)
             else textInputLayout.error = ""
         }
     }

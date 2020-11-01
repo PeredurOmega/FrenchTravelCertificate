@@ -36,7 +36,8 @@ internal class UserInfoBuilder(
     private var birthPlaceEditText: Pair<TextInputEditText, String>,
     private var addressEditText: Pair<TextInputEditText, String>,
     private var cityEditText: Pair<TextInputEditText, String>,
-    private var postalCodeEditText: Pair<TextInputEditText, String>) {
+    private var postalCodeEditText: Pair<TextInputEditText, String>
+) {
 
     init {
         setUpTextInfo()
@@ -90,8 +91,11 @@ internal class UserInfoBuilder(
         if (pair.first != null) {
             val editable = pair.first!!.text
             return if (editable != null) {
-                if (TextUtils.isEmpty(pair.second) && TextUtils.isEmpty(editable.toString()
-                        .replace("[^\\d.]|\\.".toRegex(), ""))) false
+                if (TextUtils.isEmpty(pair.second) && TextUtils.isEmpty(
+                        editable.toString()
+                            .replace("[^\\d.]|\\.".toRegex(), "")
+                    )
+                ) false
                 else editable.toString() != pair.second
             } else !TextUtils.isEmpty(pair.second)
         }
@@ -104,16 +108,18 @@ internal class UserInfoBuilder(
      * @return [UserInfo] built according the user's input.
      */
     fun buildUserInfo(): UserInfo {
-        return UserInfo(firstNameEditText.getText(), lastNameEditText.getText(),
+        return UserInfo(
+            firstNameEditText.getText(), lastNameEditText.getText(),
             birthDateEditText.getText(), birthPlaceEditText.getText(), addressEditText.getText(),
-            cityEditText.getText(), postalCodeEditText.getText())
+            cityEditText.getText(), postalCodeEditText.getText()
+        )
     }
 
     /**
      * Extension returning the text content of a [Pair].
      * @return [String] Text content of the [TextInputEditText] in this [Pair].
      */
-    private fun Pair<TextInputEditText, String>.getText() : String{
+    private fun Pair<TextInputEditText, String>.getText(): String {
         return this.first?.text.toString()
     }
 

@@ -32,10 +32,12 @@ import java.io.File
  */
 class HomeFragment : Fragment(), ActionModeListener {
 
-    private lateinit var homeViewModel : HomeViewModel
+    private lateinit var homeViewModel: HomeViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -44,22 +46,24 @@ class HomeFragment : Fragment(), ActionModeListener {
 
         val fragmentActivity = activity ?: return
 
-        homeViewModel = ViewModelProvider(this,
-            ViewModelFactory(fragmentActivity.filesDir))
+        homeViewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(fragmentActivity.filesDir)
+        )
             .get(HomeViewModel::class.java)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.certificatesRV)
         val infoManager = InfoManager(fragmentActivity)
-        val adapter = CertificatesAdapter(infoManager.hasBeenFilled(infoManager.retrieveUserInfo()),
-            this)
+        val adapter = CertificatesAdapter(
+            infoManager.hasBeenFilled(infoManager.retrieveUserInfo()),
+            this
+        )
         recyclerView.adapter = adapter
         enableSwipeToDelete(view, recyclerView)
 
         homeViewModel.certificates.observe(viewLifecycleOwner, {
             adapter.setItems(it)
-            if(it.size == 3){
-                RatePrompt(fragmentActivity).promptIfNeeded()
-            }
+            if (it.size == 3) RatePrompt(fragmentActivity).promptIfNeeded()
         })
     }
 
@@ -72,12 +76,12 @@ class HomeFragment : Fragment(), ActionModeListener {
      * @param recyclerView [RecyclerView] where the feature should be enabled.
      * @see SwipeToDeleteCallback
      */
-    private fun enableSwipeToDelete(view: View, recyclerView: RecyclerView){
+    private fun enableSwipeToDelete(view: View, recyclerView: RecyclerView) {
         val swipeToDeleteCallback: SwipeToDeleteCallback =
             object : SwipeToDeleteCallback(view.context) {
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, i: Int) {
                     val position = viewHolder.adapterPosition - 1
-                    if(position < 0) return
+                    if (position < 0) return
                     val certificate = homeViewModel.getCertificate(position) ?: return
                     val fragmentActivity = activity
                     if (fragmentActivity != null) {
@@ -90,22 +94,29 @@ class HomeFragment : Fragment(), ActionModeListener {
                                 recyclerView.scrollToPosition(position)
                                 CertificatesManager(dirFile).addCertificate(certificate, position)
                             }.addCallback(object : Snackbar.Callback() {
-                                override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                                override fun onDismissed(
+                                    transientBottomBar: Snackbar?,
+                                    event: Int
+                                ) {
                                     if (event != DISMISS_EVENT_ACTION) {
-                                        CertificatesManager(dirFile).deletePdf(certificate,
-                                            fragmentActivity.cacheDir)
+                                        CertificatesManager(dirFile).deletePdf(
+                                            certificate,
+                                            fragmentActivity.cacheDir
+                                        )
                                     }
                                 }
                             }).show()
-                    }else Toast.makeText(view.context, R.string.unknown_error,
-                        Toast.LENGTH_SHORT).show()
+                    } else Toast.makeText(
+                        view.context, R.string.unknown_error,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    override fun startActionMode(actionModeCallback: ActionMode.Callback) : ActionMode? {
+    override fun startActionMode(actionModeCallback: ActionMode.Callback): ActionMode? {
         return activity?.startActionMode(actionModeCallback)
     }
 
@@ -119,23 +130,27 @@ class HomeFragment : Fragment(), ActionModeListener {
             CertificatesManager(dirFile).removeCertificates(certificates)
 
             val view = view
-            if(view != null){
-                Snackbar.make(view, if(toBeRemovedList.size == 1) R.string.certificate_deleted
-                                    else R.string.certificates_deleted,
-                    Snackbar.LENGTH_LONG)
+            if (view != null) {
+                Snackbar.make(
+                    view, if (toBeRemovedList.size == 1) R.string.certificate_deleted
+                    else R.string.certificates_deleted,
+                    Snackbar.LENGTH_LONG
+                )
                     .setAction(R.string.undo) {
                         homeViewModel.addItems(certificates, adapterPositions)
                         CertificatesManager(dirFile).addCertificates(certificates, adapterPositions)
                     }.addCallback(object : Snackbar.Callback() {
                         override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                             if (event != DISMISS_EVENT_ACTION) {
-                                CertificatesManager(dirFile).deletePdfFiles(certificates,
-                                    fragmentActivity.cacheDir)
+                                CertificatesManager(dirFile).deletePdfFiles(
+                                    certificates,
+                                    fragmentActivity.cacheDir
+                                )
                             }
                         }
                     }).show()
             }
-        }else Toast.makeText(fragmentActivity, R.string.unknown_error, Toast.LENGTH_SHORT)
+        } else Toast.makeText(fragmentActivity, R.string.unknown_error, Toast.LENGTH_SHORT)
             .show()
     }
 
@@ -147,9 +162,9 @@ class HomeFragment : Fragment(), ActionModeListener {
             var generated = true
 
             val pdfPaths = ArrayList<Uri>()
-            for(certificate in certificates){
+            for (certificate in certificates) {
                 val pdfFile = File(fragmentActivity.cacheDir, certificate.pdfFileName)
-                if(!pdfFile.exists()) generated = false
+                if (!pdfFile.exists()) generated = false
                 val pdfUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     getUriForFile(fragmentActivity, fragmentActivity.packageName, pdfFile)
                 } else Uri.fromFile(pdfFile)
@@ -182,9 +197,9 @@ class HomeFragment : Fragment(), ActionModeListener {
                 }
             }
 
-            if(generated) generatorListener.onGenerated()
+            if (generated) generatorListener.onGenerated()
             else CertificatesGenerator(fragmentActivity, certificates, generatorListener).execute()
-        }else Toast.makeText(fragmentActivity, R.string.unknown_error, Toast.LENGTH_SHORT)
+        } else Toast.makeText(fragmentActivity, R.string.unknown_error, Toast.LENGTH_SHORT)
             .show()
     }
 }

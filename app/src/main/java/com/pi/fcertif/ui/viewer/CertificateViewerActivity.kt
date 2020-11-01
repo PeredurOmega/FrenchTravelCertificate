@@ -18,7 +18,7 @@ import com.pi.fcertif.R
  */
 class CertificateViewerActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
         /**
          * Key value for the file path of the pdf.
          */
@@ -45,7 +45,7 @@ class CertificateViewerActivity : AppCompatActivity() {
      * Shows an explanation of how to use the app this app if the user never opened
      * [CertificateViewerActivity] before.
      */
-    private fun showExplanationsIfNeeded(){
+    private fun showExplanationsIfNeeded() {
         Thread {
             val sharedPref = getSharedPreferences(
                 getString(R.string.shared_pref),
@@ -78,7 +78,7 @@ class CertificateViewerActivity : AppCompatActivity() {
      */
     private fun setAdapter(viewPager: ViewPager2, tabLayout: TabLayout) {
         val fileName = intent.getStringExtra(FILE_PATH)
-        if(fileName != null){
+        if (fileName != null) {
             val stateAdapter = CertificateStateAdapter(this, fileName)
             viewPager.adapter = stateAdapter
             TabLayoutMediator(tabLayout, viewPager) { tab: TabLayout.Tab, position: Int ->

@@ -16,8 +16,10 @@ import com.pi.fcertif.objects.Reason
 @Suppress("unused")
 class ReasonPickerFragment : Fragment(), ReasonListener {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_reasons_picker, container, false)
     }
 
@@ -38,7 +40,7 @@ class ReasonPickerFragment : Fragment(), ReasonListener {
 
     override fun onDetailsOpened(position: Int) {
         val view = view
-        if(view != null){
+        if (view != null) {
             val reasonsRecyclerView = view.findViewById<RecyclerView>(R.id.reasonsRecyclerView)
             reasonsRecyclerView.smoothScrollToPosition(position)
         }

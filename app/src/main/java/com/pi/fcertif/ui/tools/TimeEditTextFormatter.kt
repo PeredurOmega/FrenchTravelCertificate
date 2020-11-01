@@ -12,8 +12,10 @@ import com.pi.fcertif.R
  * @param original [String] Text that was in this edit text in the first place.
  * @param textInputLayout [TextInputLayout] to use to throw malformation errors.
  */
-class TimeEditTextFormatter(private val editText: TextInputEditText, original: String,
-                            private val textInputLayout : TextInputLayout) : TextWatcher{
+class TimeEditTextFormatter(
+    private val editText: TextInputEditText, original: String,
+    private val textInputLayout: TextInputLayout
+) : TextWatcher {
 
     /**
      * Current text in the edit text.
@@ -50,23 +52,23 @@ class TimeEditTextFormatter(private val editText: TextInputEditText, original: S
 
             var malformed = 0
 
-            if(clean.length >= 2){
+            if (clean.length >= 2) {
                 val hours = clean.substring(0, 2).toInt()
-                val sHours = if (hours >= 24 || hours < 0){
+                val sHours = if (hours >= 24 || hours < 0) {
                     malformed = R.string.hours_between_0_23
                     format.substring(0, 2)
                 } else clean.substring(0, 2)
                 clean = sHours + clean.substring(2)
             }
 
-            if(clean.length == 4){
+            if (clean.length == 4) {
                 val minutes = clean.substring(2, 4).toInt()
-                val sMinutes = if (minutes < 0 || minutes >= 60){
+                val sMinutes = if (minutes < 0 || minutes >= 60) {
                     malformed = R.string.minutes_between_0_59
                     format.substring(2, 4)
                 } else clean.substring(2, 4)
                 clean = clean.substring(0, 2) + sMinutes
-            }else if(clean.length < 4){
+            } else if (clean.length < 4) {
                 clean += format.substring(clean.length)
             }
 
@@ -75,7 +77,8 @@ class TimeEditTextFormatter(private val editText: TextInputEditText, original: S
             current = clean
             editText.setText(current)
             editText.setSelection(if (sel < current.length) sel else current.length)
-            if(malformed != 0) textInputLayout.error = textInputLayout.resources.getString(malformed)
+            if (malformed != 0) textInputLayout.error =
+                textInputLayout.resources.getString(malformed)
             else textInputLayout.error = ""
         }
     }

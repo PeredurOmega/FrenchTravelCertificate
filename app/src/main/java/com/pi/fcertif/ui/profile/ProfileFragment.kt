@@ -22,14 +22,18 @@ import com.pi.fcertif.ui.tools.SaverFragment
  */
 class ProfileFragment : SaverFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val fragmentActivity = activity
-        if(fragmentActivity != null){
+        if (fragmentActivity != null) {
             val infoEditionWatcher = InfoEditionWatcher()
             infoEditionWatcher.build(view, InfoManager(fragmentActivity).retrieveUserInfo())
             setEditedListener(infoEditionWatcher)
@@ -44,10 +48,14 @@ class ProfileFragment : SaverFragment() {
                             .setTitle(R.string.create_a_certificate)
                             .setMessage(R.string.ask_for_creating_a_certificate)
                             .setPositiveButton(R.string.create) { _, _ ->
-                                fragmentActivity.startActivity(Intent(fragmentActivity,
-                                    CertificateCreatorActivity::class.java))
+                                fragmentActivity.startActivity(
+                                    Intent(
+                                        fragmentActivity,
+                                        CertificateCreatorActivity::class.java
+                                    )
+                                )
                             }
-                            .setNegativeButton(R.string.no) {_, _ -> }
+                            .setNegativeButton(R.string.no) { _, _ -> }
                             .show()
                     }
                 })
@@ -80,15 +88,17 @@ class ProfileFragment : SaverFragment() {
      * @see [InfoEditionWatcher]
      * @see [Leaver]
      */
-    private fun saveInfo(context: Context, editionWatcher: InfoEditionWatcher, leaver: Leaver?,
-                         userInfo: UserInfo) {
+    private fun saveInfo(
+        context: Context, editionWatcher: InfoEditionWatcher, leaver: Leaver?,
+        userInfo: UserInfo
+    ) {
         hideKeyboard()
-        if(userInfo.incomplete()){
+        if (userInfo.incomplete()) {
             Toast.makeText(context, R.string.incomplete_profile, Toast.LENGTH_SHORT).show()
-        }else{
-            if(userInfo.hasMalformedBirthdate()){
+        } else {
+            if (userInfo.hasMalformedBirthdate()) {
                 Toast.makeText(context, R.string.malformed_birthdate, Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 InfoManager(context).saveUserInfo(userInfo)
                 editionWatcher.registerEdition()
                 Toast.makeText(context, R.string.profile_saved, Toast.LENGTH_SHORT).show()

@@ -12,11 +12,11 @@ import com.pi.fcertif.R
  * is incomplete. This card should always be the first card to be displayed in the [RecyclerView].
  * @param itemView [View] to use to create this [RecyclerView.ViewHolder].
  */
-class FillProfileCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+class FillProfileCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     init {
         val noCertificateButton = itemView.findViewById<MaterialButton>(R.id.fillProfile)
-        noCertificateButton.setOnClickListener{
+        noCertificateButton.setOnClickListener {
             val navController = Navigation.findNavController((itemView.parent.parent) as View)
             navController.navigate(R.id.nav_profile)
         }
