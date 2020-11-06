@@ -155,21 +155,8 @@ class DateTimeFragment : Fragment() {
      * @see [CertificateGenerator]
      */
     private fun createCertificate(exitDateTime: DateTime, context: Context) {
-        val timeFormat = SimpleDateFormat(
-            DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),
-            Locale.getDefault()
-        )
-
-        val dateFormat = SimpleDateFormat(
-            DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
-            Locale.getDefault()
-        )
-
-        val certificate = Certificate(
-            DateTime(dateFormat.format(Date()), timeFormat.format(Date())),
-            InfoManager(context).retrieveUserInfo(), exitDateTime, reason
-        )
-
+        val certificate =
+            Certificate(context, InfoManager(context).retrieveUserInfo(), exitDateTime, reason)
         CertificateGenerator(context, certificate, true).execute()
     }
 

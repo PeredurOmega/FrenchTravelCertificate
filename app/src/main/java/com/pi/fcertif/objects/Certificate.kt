@@ -1,20 +1,58 @@
 package com.pi.fcertif.objects
 
+import android.content.Context
+import android.text.format.DateFormat
+import com.pi.fcertif.R
 import java.io.Serializable
 import java.lang.StringBuilder
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Object that contains all the info needed for an official certificate. This object is able to
  * auto-build its data for the QR Code.
- * @param creationDateTime [DateTime] of creation.
+ * @param context [Context] Used to retrieve shared preferences.
  * @param userInfo [UserInfo] contained in this certificate.
  * @param exitDateTime [DateTime] of the exit mentioned int this certificate.
  * @param reason [Reason] of the exit.
  */
 class Certificate(
-    val creationDateTime: DateTime, val userInfo: UserInfo,
-    val exitDateTime: DateTime, val reason: Reason
+    context: Context,
+    val userInfo: UserInfo,
+    val exitDateTime: DateTime,
+    val reason: Reason
 ) : Serializable {
+
+    /**
+     * [DateTime] of creation of the PDF
+     */
+    val creationDateTime: DateTime
+
+    init {
+        val timeFormat = SimpleDateFormat(
+            DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),
+            Locale.getDefault()
+        )
+
+        val dateFormat = SimpleDateFormat(
+            DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
+            Locale.getDefault()
+        )
+
+        val sharedPref = context.getSharedPreferences(
+            context.resources.getString(R.string.shared_pref),
+            Context.MODE_PRIVATE
+        )
+        val creationTimeAhead = sharedPref.getBoolean(
+            context.resources.getString(R.string.creation_time_ahead),
+            false
+        )
+
+        val now = Date()
+        if (creationTimeAhead) now.time -= 900000
+
+        creationDateTime = DateTime(dateFormat.format(now), timeFormat.format(now))
+    }
 
     /**
      * [String] Name of the pdf that has been generated once the certificate has been created.

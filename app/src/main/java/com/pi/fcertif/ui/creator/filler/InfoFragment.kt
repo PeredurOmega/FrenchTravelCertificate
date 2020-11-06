@@ -110,21 +110,7 @@ class InfoFragment : Fragment() {
      * @param userInfo [UserInfo] attached to the [Certificate] to create.
      */
     private fun createCertificate(context: Context, userInfo: UserInfo) {
-        val timeFormat = SimpleDateFormat(
-            DateFormat.getBestDateTimePattern(Locale.FRANCE, "HH mm"),
-            Locale.getDefault()
-        )
-
-        val dateFormat = SimpleDateFormat(
-            DateFormat.getBestDateTimePattern(Locale.FRANCE, "MM dd yyyy"),
-            Locale.getDefault()
-        )
-
-        val certificate = Certificate(
-            DateTime(dateFormat.format(Date()), timeFormat.format(Date())),
-            userInfo, exitDateTime, reason
-        )
-
+        val certificate = Certificate(context, userInfo, exitDateTime, reason)
         CertificateGenerator(context, certificate, true).execute()
     }
 }

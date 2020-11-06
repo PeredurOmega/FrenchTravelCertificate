@@ -1,5 +1,6 @@
 package com.pi.fcertif.ui.settings
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.pi.fcertif.R
 import com.pi.fcertif.tools.CertificatesManager
@@ -58,6 +60,28 @@ class SettingsFragment : Fragment() {
             }
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
+        }
+
+        val sharedPref = fragmentActivity.getSharedPreferences(
+            fragmentActivity.resources.getString(R.string.shared_pref),
+            Context.MODE_PRIVATE
+        )
+        val creationTimeAhead = sharedPref.getBoolean(
+            fragmentActivity.resources.getString(R.string.creation_time_ahead),
+            false
+        )
+
+        val before15Minutes = view.findViewById<SwitchMaterial>(R.id.before15Minutes)
+        before15Minutes.isChecked = creationTimeAhead
+        before15Minutes.setOnCheckedChangeListener { _, isChecked ->
+            run {
+                context?.let {
+                    val resources = it.resources
+                    val editor = sharedPref.edit()
+                    editor.putBoolean(resources.getString(R.string.creation_time_ahead), isChecked)
+                    editor.apply()
+                }
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.pi.fcertif.ui.viewer
 
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.pdf.PdfRenderer
 import android.os.Bundle
 import android.os.ParcelFileDescriptor
@@ -92,7 +94,16 @@ class PdfViewerFragment : Fragment() {
                             (page.height * density).toInt(), Bitmap.Config.ARGB_8888
                         )
                         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
-                        pdfImageView.setImageBitmap(bitmap)
+
+                        val newBitmap = Bitmap.createBitmap(
+                            bitmap.width,
+                            bitmap.height, bitmap.config
+                        )
+                        val canvas = Canvas(newBitmap)
+                        canvas.drawColor(Color.WHITE)
+                        canvas.drawBitmap(bitmap, 0f, 0f, null)
+
+                        pdfImageView.setImageBitmap(newBitmap)
                         pdfImageView.post {
                             pdfImageView.scaleType = ImageView.ScaleType.FIT_START
                         }

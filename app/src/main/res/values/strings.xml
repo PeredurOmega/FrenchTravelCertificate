@@ -139,6 +139,7 @@
     <string name="incomplete_profile">Incomplete profile. All fields must be filled.</string>
     <string name="exit_date">Exit date (dd/mm/yyyy)</string>
     <string name="exit_time">Exit time (HH:mm)</string>
+    <string name="time_15_before">Creation time 15 min in advance</string>
     <string name="fill_with_profile">Fill with profile</string>
     <string name="last_name">Last name</string>
     <string name="first_name">First name</string>
@@ -251,6 +252,7 @@
     <string name="city_key" translatable="false">CITY</string>
     <string name="first_certificate_view_key" translatable="false">FIRST_CERTIFICATE_VIEW</string>
     <string name="already_rated" translatable="false">ALREADY_RATED</string>
+    <string name="creation_time_ahead" translatable="false">CREATION_TIME_AHEAD</string>
 
     <plurals name="selected_count">
         <item quantity="one">%d selected</item>

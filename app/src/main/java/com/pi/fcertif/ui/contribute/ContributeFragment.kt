@@ -39,7 +39,7 @@ class ContributeFragment : Fragment() {
             val helpToCodeUrl = helpDir + "HELP_TO_CODE.md"
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(helpToCodeUrl)
-            startActivity(i)
+            activity?.startActivity(i)
         }
 
         val helpToDesign = view.findViewById<MaterialButton>(R.id.helpToDesign)
@@ -47,7 +47,7 @@ class ContributeFragment : Fragment() {
             val helpToDesignUrl = helpDir + "HELP_TO_DESIGN.md"
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(helpToDesignUrl)
-            startActivity(i)
+            activity?.startActivity(i)
         }
 
         val helpToTranslate = view.findViewById<MaterialButton>(R.id.helpToTranslate)
@@ -55,7 +55,7 @@ class ContributeFragment : Fragment() {
             val helpToTranslateUrl = helpDir + "HELP_TO_TRANSLATE.md"
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(helpToTranslateUrl)
-            startActivity(i)
+            activity?.startActivity(i)
         }
 
         val githubLabMILink = view.findViewById<TextView>(R.id.githubLabMILink)

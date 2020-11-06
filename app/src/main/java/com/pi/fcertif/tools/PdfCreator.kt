@@ -1,19 +1,20 @@
 package com.pi.fcertif.tools
 
-import com.itextpdf.text.pdf.BarcodeQRCode
-import com.itextpdf.text.pdf.BaseFont
-import com.itextpdf.text.pdf.PdfReader
-import com.itextpdf.text.pdf.PdfStamper
+import com.itextpdf.text.BaseColor
+import com.itextpdf.text.ExceptionConverter
+import com.itextpdf.text.PageSize
+import com.itextpdf.text.Rectangle
+import com.itextpdf.text.pdf.*
 import com.itextpdf.text.pdf.qrcode.EncodeHintType
 import com.itextpdf.text.pdf.qrcode.ErrorCorrectionLevel
 import com.pi.fcertif.objects.Certificate
 import java.io.File
 import java.io.FileOutputStream
 
+
 class PdfCreator(private val cacheDir: File, private val originalCertificate: File) {
 
-    internal fun generatePdf(certificate: Certificate)
-            : String? {
+    internal fun generatePdf(certificate: Certificate): String? {
         val userInfo = certificate.userInfo
         var k = 0
         var fileNew: File
@@ -26,9 +27,7 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
                 fileNew = File(cacheDir, fileNewName)
                 k++
             } while (fileNew.exists())
-        } else {
-            fileNew = File(cacheDir, certificate.pdfFileName)
-        }
+        } else fileNew = File(cacheDir, certificate.pdfFileName)
 
         val pdfReader = PdfReader(originalCertificate.path)
         val pdfStamper = PdfStamper(pdfReader, FileOutputStream(fileNew.path))
@@ -62,8 +61,8 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
         form.setField("Date", certificate.exitDateTime.date)
         form.setField(
             "Heure",
-            certificate.exitDateTime.getHours().plus(":")
-                .plus(certificate.exitDateTime.getMinutes())
+            certificate.creationDateTime.getHours().plus(":")
+                .plus(certificate.creationDateTime.getMinutes())
         )
         form.setField(
             "Signature", userInfo.lastName.plus(" ")
@@ -72,9 +71,11 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
 
         pdfStamper.setFormFlattening(true)
 
+        val layout = Rectangle(PageSize.A4)
+        layout.backgroundColor = BaseColor.PINK
         pdfStamper.insertPage(
             pdfReader.numberOfPages + 1,
-            pdfReader.getPageSizeWithRotation(1)
+            layout
         )
 
         val qrParam: MutableMap<EncodeHintType, Any> = HashMap()
@@ -108,8 +109,12 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
         image.setAbsolutePosition(0f, (height / 2) - (width / 2) + 100f)
         pdfStamper.getOverContent(2).addImage(image)
 
-        pdfStamper.close()
-        pdfReader.close()
+        try {
+            pdfStamper.close()
+            pdfReader.close()
+        } catch (e: ExceptionConverter){
+            e.printStackTrace()
+        }
 
         return fileNew.name
     }

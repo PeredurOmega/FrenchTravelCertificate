@@ -1,5 +1,6 @@
 package com.pi.fcertif.tools
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
@@ -70,10 +71,10 @@ class CertificateGenerator(
 
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
-        val context = context.get()
+        val context = context.get() ?: return
         loadingDialog?.dismiss()
 
-        if (context != null && result != null) {
+        if (result != null) {
             val intent = Intent(context, CertificateViewerActivity::class.java)
             intent.putExtra(CertificateViewerActivity.FILE_PATH, result)
             context.startActivity(intent)

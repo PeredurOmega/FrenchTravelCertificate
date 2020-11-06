@@ -137,7 +137,7 @@ class CertificatesManager(dirFile: File) {
             while (index < certificates.size && certificates[index] != certificateToRemove) {
                 index++
             }
-            certificates.removeAt(index)
+            if(index < certificates.size) certificates.removeAt(index)
         }
         saveCertificates(certificates)
     }
