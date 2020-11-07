@@ -61,8 +61,8 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
         form.setField("Date", certificate.exitDateTime.date)
         form.setField(
             "Heure",
-            certificate.creationDateTime.getHours().plus(":")
-                .plus(certificate.creationDateTime.getMinutes())
+            certificate.exitDateTime.getHours().plus(":")
+                .plus(certificate.exitDateTime.getMinutes())
         )
         form.setField(
             "Signature", userInfo.lastName.plus(" ")
