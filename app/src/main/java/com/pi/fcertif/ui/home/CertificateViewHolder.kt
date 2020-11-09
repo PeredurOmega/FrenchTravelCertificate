@@ -83,7 +83,7 @@ class CertificateViewHolder(itemView: View, private val itemClickListener: ItemC
 
         timeAndDate.text = timeAndDate.context.getString(
             R.string.date_time_placeholder,
-            certificate.creationDateTime.date, certificate.creationDateTime.time
+            certificate.exitDateTime.date, certificate.exitDateTime.time
         )
         shortName.text = certificate.reason.shortName
 
