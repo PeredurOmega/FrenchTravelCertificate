@@ -2,6 +2,7 @@ package com.pi.fcertif
 
 import android.app.Activity
 import android.content.Intent
+import android.content.IntentSender
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -69,8 +70,8 @@ class MainActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_profile,
-                R.id.nav_eula, R.id.nav_settings, R.id.nav_contribute
+                R.id.nav_home, R.id.nav_profiles,
+                R.id.nav_eula, R.id.nav_settings, R.id.nav_contribute, R.id.nav_profile
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -78,7 +79,9 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             run {
-                if ((destination.label)?.equals(getString(R.string.menu_profile)) == true) hideFab()
+                if ((destination.label)?.equals(getString(R.string.menu_profiles)) == true ||
+                    (destination.label)?.equals(getString(R.string.menu_profile)) == true
+                ) hideFab()
                 else showFab()
             }
         }
@@ -97,12 +100,12 @@ class MainActivity : AppCompatActivity() {
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             val infoManager = InfoManager(this)
-            if (infoManager.hasBeenFilled(infoManager.retrieveUserInfo())) {
+            if (infoManager.hasOneValidProfile()) {
                 startActivity(Intent(this, CertificateCreatorActivity::class.java))
             } else {
                 Snackbar.make(view, R.string.no_profile_info, Snackbar.LENGTH_LONG)
                     .setAction(R.string.fill_profile) {
-                        navController.navigate(R.id.nav_profile)
+                        navController.navigate(R.id.nav_profiles)
                     }.show()
             }
         }
@@ -125,10 +128,14 @@ class MainActivity : AppCompatActivity() {
                     && it.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
                 ) {
                     activity.runOnUiThread {
-                        appUpdateManager.startUpdateFlowForResult(
-                            it, AppUpdateType.IMMEDIATE,
-                            activity, 123
-                        )
+                        try {
+                            appUpdateManager.startUpdateFlowForResult(
+                                it, AppUpdateType.IMMEDIATE,
+                                activity, 123
+                            )
+                        }catch (e: IntentSender.SendIntentException){
+                            e.printStackTrace()
+                        }
                     }
                 }
             }

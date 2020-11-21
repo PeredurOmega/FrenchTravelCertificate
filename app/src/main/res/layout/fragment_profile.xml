@@ -13,11 +13,20 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/mainProfile"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_profile"
+            android:checked="true"
+            android:textSize="16sp" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/firstNameField"
             android:hint="@string/first_name"
-            style="@style/MaterialTextField"
-            android:layout_marginTop="15dp">
+            style="@style/MaterialTextField">
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/EditText"

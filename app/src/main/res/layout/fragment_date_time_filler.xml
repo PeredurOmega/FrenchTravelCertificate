@@ -47,14 +47,27 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/MaterialDropdown"
+            android:layout_marginTop="10dp"
+            android:hint="@string/select_a_profile">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/profile_selector"
+                android:inputType="none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!---<com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/useProfile"
             android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/fill_with_profile"
             android:checked="true"
-            android:textSize="16sp" />
+            android:textSize="16sp" />-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/createButton"

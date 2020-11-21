@@ -5,6 +5,7 @@ import android.text.format.DateFormat
 import android.view.View
 import android.widget.DatePicker
 import androidx.core.util.Pair
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pi.fcertif.R
@@ -31,8 +32,12 @@ class InfoEditionWatcher : EditedListener {
      * Builds the [InfoEditionWatcher] by binding the view to the info.
      * @param view [View] currently displayed in the [androidx.fragment.app.Fragment].
      * @param myInfo [UserInfo] to bind to the view. Contains all the user's info.
+     * @param multipleProfiles [Boolean] True if we should display the feature to set this profile
+     * as a main profile and false otherwise.
      */
-    fun build(view: View, myInfo: UserInfo) {
+    fun build(view: View, myInfo: UserInfo, multipleProfiles: Boolean) {
+        val mainProfile: SwitchMaterial = view.findViewById(R.id.mainProfile)
+        if (!multipleProfiles) mainProfile.visibility = View.GONE
         val firstNameEditText: TextInputEditText = view.findViewById(R.id.firstNameEditText)
         val lastNameEditText: TextInputEditText = view.findViewById(R.id.lastNameEditText)
         val birthDateEditText: TextInputEditText = view.findViewById(R.id.birthDateEditText)
@@ -40,20 +45,22 @@ class InfoEditionWatcher : EditedListener {
         val addressEditText: TextInputEditText = view.findViewById(R.id.addressEditText)
         val cityEditText: TextInputEditText = view.findViewById(R.id.cityEditText)
         val postalCodeEditText: TextInputEditText = view.findViewById(R.id.postalCodeEditText)
-
         val birthDateField: TextInputLayout = view.findViewById(R.id.birthDateField)
         val originalBirthDate = myInfo.birthDate
 
         val birthDate = setUpBirthDate(birthDateEditText, birthDateField, originalBirthDate)
 
+        mainProfile.isChecked = myInfo.id == "0"
+
         userInfoBuilder = UserInfoBuilder(
+            Pair(mainProfile, myInfo.id),
             Pair(firstNameEditText, myInfo.firstName),
             Pair(lastNameEditText, myInfo.lastName),
             Pair(birthDateEditText, birthDate),
             Pair(birthPlaceEditText, myInfo.birthPlace),
             Pair(addressEditText, myInfo.address),
             Pair(cityEditText, myInfo.city),
-            Pair(postalCodeEditText, myInfo.postalCode)
+            Pair(postalCodeEditText, myInfo.postalCode),
         )
     }
 

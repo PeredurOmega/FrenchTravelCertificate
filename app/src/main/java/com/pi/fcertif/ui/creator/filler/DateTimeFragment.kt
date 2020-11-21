@@ -9,17 +9,19 @@ import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pi.fcertif.R
 import com.pi.fcertif.objects.Certificate
 import com.pi.fcertif.objects.DateTime
 import com.pi.fcertif.objects.Reason
+import com.pi.fcertif.objects.UserInfo
 import com.pi.fcertif.tools.CertificateGenerator
 import com.pi.fcertif.ui.profile.InfoManager
 import com.pi.fcertif.ui.tools.DateEditTextFormatter
@@ -28,6 +30,7 @@ import com.pi.fcertif.ui.tools.TimeEditTextFormatter
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 /**
  * [Fragment] used to indicate the date and the time of the exit considered with the current reason.
@@ -89,32 +92,53 @@ class DateTimeFragment : Fragment() {
     }
 
     /**
-     * Sets up the create button.
+     * Sets up the create button and the profile selector dropdown.
      * @param view [View] where to find needed components for creation.
      */
     private fun setUpCreation(view: View) {
-        val useProfile = view.findViewById<SwitchMaterial>(R.id.useProfile)
-        val createButton = view.findViewById<MaterialButton>(R.id.createButton)
-        useProfile.setOnCheckedChangeListener { _, isChecked ->
-            run {
-                createButton.setText(
-                    if (isChecked) R.string.create_certificate
-                    else R.string.fill_certificate
-                )
-            }
+        val context = view.context
+        val infoManager = InfoManager(context)
+        val profiles = ArrayList(infoManager.retrieveUsersInfo().filter {
+            infoManager.hasBeenFilled(it)
+        })
+        profiles.add(
+            UserInfo(
+                context.getString(R.string.create_a_new_profile),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "new"
+            )
+        )
+        profiles.sortedBy {
+            it.id
         }
 
-        createButton.setOnClickListener { tryToCreateCertificate(useProfile.isChecked, view) }
+        val profileNames = profiles.map { it.firstName + " " + it.lastName }
+        val adapter = ArrayAdapter(context, R.layout.dropdown_item, profileNames)
+
+        val profileSelector: AutoCompleteTextView = view.findViewById(R.id.profile_selector)
+        profileSelector.setAdapter(adapter)
+        profileSelector.setText(profileNames[0], false)
+
+        val createButton = view.findViewById<MaterialButton>(R.id.createButton)
+
+        createButton.setOnClickListener {
+            val index = profileNames.indexOf(profileSelector.text.toString())
+            tryToCreateCertificate(profiles[index], view)
+        }
     }
 
     /**
      * Tries to create a certificate. If information are malformed or missing a [Toast] will be
      * displayed to the user.
-     * @param useProfile [Boolean] True if we should use the user's profile (registered information)
-     * or false if we should create a new temporary profile just for this certificate.
+     * @param profile [UserInfo] to use to fill the certificate.
      * @param view [View] where to find needed components for creation.
      */
-    private fun tryToCreateCertificate(useProfile: Boolean, view: View) {
+    private fun tryToCreateCertificate(profile: UserInfo, view: View) {
         val exitDateEditText = view.findViewById<TextInputEditText>(R.id.exitDateEditText)
         val exitTimeEditText = view.findViewById<TextInputEditText>(R.id.exitTimeEditText)
 
@@ -126,8 +150,8 @@ class DateTimeFragment : Fragment() {
             if (exitDateTime.isMalformed()) {
                 Toast.makeText(context, R.string.date_time_match_error, Toast.LENGTH_SHORT).show()
             } else {
-                if (useProfile) createCertificate(exitDateTime, view.context)
-                else goFillCertificate(exitDateTime)
+                if (profile.id == "new") goFillCertificate(exitDateTime)
+                else createCertificate(exitDateTime, profile, view.context)
             }
         } else Toast.makeText(context, R.string.please_fill_date_time, Toast.LENGTH_SHORT).show()
     }
@@ -154,9 +178,8 @@ class DateTimeFragment : Fragment() {
      * @param context [Context] used to generate a certificate with [CertificateGenerator].
      * @see [CertificateGenerator]
      */
-    private fun createCertificate(exitDateTime: DateTime, context: Context) {
-        val certificate =
-            Certificate(context, InfoManager(context).retrieveUserInfo(), exitDateTime, reason)
+    private fun createCertificate(exitDateTime: DateTime, userInfo: UserInfo, context: Context) {
+        val certificate = Certificate(context, userInfo, exitDateTime, reason)
         CertificateGenerator(context, certificate, true).execute()
     }
 

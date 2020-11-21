@@ -15,11 +15,13 @@ import java.util.*
  * @param address [String] Current address where the user lives.
  * @param city [String] Current city where the user lives.
  * @param postalCode [String] Current postal code of the city where the user lives.
+ * @param id [String] Id of the profile (used to retrieve the profile in shared preferences).
  */
-class UserInfo(
+@kotlinx.serialization.Serializable
+data class UserInfo(
     val firstName: String?, val lastName: String?, val birthDate: String?,
     val birthPlace: String?, val address: String?, val city: String?,
-    val postalCode: String?
+    val postalCode: String?, var id: String?
 ) : Serializable {
 
     /**

@@ -2,7 +2,6 @@ package com.pi.fcertif.ui.creator.filler
 
 import android.content.Context
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,8 +16,6 @@ import com.pi.fcertif.objects.UserInfo
 import com.pi.fcertif.tools.CertificateGenerator
 import com.pi.fcertif.ui.profile.InfoEditionWatcher
 import com.pi.fcertif.ui.profile.InfoManager
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * [Fragment] that is used to prompt the user for information. This fragment is only reached when
@@ -86,9 +83,9 @@ class InfoFragment : Fragment() {
             val infoEditionWatcher = InfoEditionWatcher()
             infoEditionWatcher.build(
                 view, UserInfo(
-                    null, null, null,
-                    null, null, null, null
-                )
+                    "", "", "",
+                    "", "", "", "", "new"
+                ), false
             )
             val createCertificateButton =
                 view.findViewById<MaterialButton>(R.id.createCertificateButton)
@@ -96,6 +93,7 @@ class InfoFragment : Fragment() {
                 val userInfo = infoEditionWatcher.info
                 val infoManager = InfoManager(fragmentActivity)
                 if (userInfo != null && infoManager.hasBeenFilled(userInfo)) {
+                    infoManager.saveUserInfo(userInfo)
                     createCertificate(fragmentActivity, userInfo)
                 } else {
                     Toast.makeText(context, R.string.please_fill_info, Toast.LENGTH_SHORT).show()

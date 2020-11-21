@@ -3,6 +3,7 @@
     <string name="action_settings">Paramètres</string>
     <string name="action_share">Partager</string>
     <string name="menu_certificates">Attestations</string>
+    <string name="menu_profiles">Profils</string>
     <string name="menu_profile">Profil</string>
     <string name="menu_eula">CGU</string>
     <string name="menu_contribute">Aider</string>
@@ -10,6 +11,8 @@
     <string name="header_sub_title">de déplacement dérogatoire</string>
     <string name="profile_saved">Profil sauvegardé</string>
     <string name="create">Créer</string>
+    <string name="create_a_new_profile">Créer un nouveau profil</string>
+    <string name="new_profile">Nouveau profil</string>
     <string name="ok">Ok</string>
     <string name="email_feedback_subject">Pistes d\'amélioration - Attestation numérique</string>
     <string name="email_feedback_body">N\'hésitez pas à partager vos pistes d\'amélioration avec
@@ -118,6 +121,7 @@
     <string name="people_to_credit">Créateur : Paul SOUTEYRAT. Basé sur le travail réalisé par le
         Ministère de l\'intérieur ici :</string>
     <string name="create_certificate">Créer l\'attestation</string>
+    <string name="select_a_profile">Sélectionner un profil</string>
     <string name="fill_certificate">Compléter l\'attestation</string>
     <string name="please_fill_info">Merci de remplir les informations demandées</string>
     <string name="loading_please_wait">Chargement… Merci d\'attendre…</string>
@@ -152,6 +156,7 @@
     <string name="time_15_before">Heure de création avec 15 min d\'avance</string>
     <string name="last_name">Nom de famille</string>
     <string name="first_name">Prénom</string>
+    <string name="main_profile">Profil principal</string>
     <string name="birth_date">Date de naissance (jj/mm/aaaa)</string>
     <string name="birth_place">Lieu de naissance</string>
     <string name="address">Adresse actuelle</string>
@@ -159,6 +164,8 @@
     <string name="selected_icon">Icône indiquant la séléction</string>
     <string name="certificate_deleted">Attestation supprimée</string>
     <string name="certificates_deleted">Attestations supprimées</string>
+    <string name="profile_deleted">Profil supprimé</string>
+    <string name="profiles_deleted">Profils supprimés</string>
     <string name="undo">Annuler</string>
     <string name="postal_code">Code postal actuel</string>
     <string name="no_certificate">Vous n\'avez aucune attestation</string>

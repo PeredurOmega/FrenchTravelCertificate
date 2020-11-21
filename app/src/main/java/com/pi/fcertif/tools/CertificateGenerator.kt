@@ -1,6 +1,5 @@
 package com.pi.fcertif.tools
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
@@ -10,6 +9,7 @@ import com.pi.fcertif.objects.Certificate
 import com.pi.fcertif.ui.creator.filler.LoadingDialog
 import com.pi.fcertif.ui.viewer.CertificateViewerActivity
 import java.io.File
+import java.lang.IllegalArgumentException
 import java.lang.ref.WeakReference
 
 /**
@@ -72,7 +72,11 @@ class CertificateGenerator(
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
         val context = context.get() ?: return
-        loadingDialog?.dismiss()
+        try {
+            loadingDialog?.dismiss()
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        }
 
         if (result != null) {
             val intent = Intent(context, CertificateViewerActivity::class.java)

@@ -2,11 +2,15 @@ package com.pi.fcertif.ui.profile
 
 import android.text.TextUtils
 import androidx.core.util.Pair
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import com.pi.fcertif.objects.UserInfo
 
 /**
  * Toolkit class used for displaying user's info.
+ * @param idAndSwitch [Pair] containing as first parameter the [SwitchMaterial] where the
+ * user can set this profile as the main profile and as second parameter the [String] of the id of
+ * the profile.
  * @param firstNameEditText [Pair] containing as first parameter the [TextInputEditText] where the
  * user can write his first name and as second parameter the [String] of the previously saved first
  * name.
@@ -30,6 +34,7 @@ import com.pi.fcertif.objects.UserInfo
  * saved postal code.
  */
 internal class UserInfoBuilder(
+    private var idAndSwitch: Pair<SwitchMaterial, String>,
     private var firstNameEditText: Pair<TextInputEditText, String>,
     private var lastNameEditText: Pair<TextInputEditText, String>,
     private var birthDateEditText: Pair<TextInputEditText, String>,
@@ -111,7 +116,9 @@ internal class UserInfoBuilder(
         return UserInfo(
             firstNameEditText.getText(), lastNameEditText.getText(),
             birthDateEditText.getText(), birthPlaceEditText.getText(), addressEditText.getText(),
-            cityEditText.getText(), postalCodeEditText.getText()
+            cityEditText.getText(), postalCodeEditText.getText(),
+            if (mainProfileStatusEdited()) "new0${idAndSwitch.second}"
+            else idAndSwitch.second
         )
     }
 
@@ -124,6 +131,17 @@ internal class UserInfoBuilder(
     }
 
     /**
+     * Checks if the status of main profile has been edited or not.
+     * @return [Boolean] True if the status of main profile has been edited and false otherwise.
+     */
+    private fun mainProfileStatusEdited(): Boolean {
+        idAndSwitch.first?.let {
+            return it.isChecked != (idAndSwitch.second == "0")
+        }
+        return false
+    }
+
+    /**
      * Checks whether or not the current info has been updated / edited.
      * @return [Boolean] True if one of the fields has been edited, false otherwise.
      */
@@ -131,7 +149,7 @@ internal class UserInfoBuilder(
         return fieldEdited(firstNameEditText) || fieldEdited(lastNameEditText) ||
                 dateFieldEdited(birthDateEditText) || fieldEdited(birthPlaceEditText) ||
                 fieldEdited(addressEditText) || fieldEdited(cityEditText)
-                || fieldEdited(postalCodeEditText)
+                || fieldEdited(postalCodeEditText) || mainProfileStatusEdited()
     }
 
     /**
@@ -146,6 +164,9 @@ internal class UserInfoBuilder(
         addressEditText = registerEdition(addressEditText)
         cityEditText = registerEdition(cityEditText)
         postalCodeEditText = registerEdition(postalCodeEditText)
+        if (mainProfileStatusEdited() && idAndSwitch.first?.isChecked == true) {
+            idAndSwitch = Pair(idAndSwitch.first, "0")
+        }
     }
 
     /**

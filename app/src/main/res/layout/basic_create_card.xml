@@ -33,6 +33,7 @@
             android:contentDescription="@string/icon_description"/>
 
         <TextView
+            android:id="@+id/createText"
             app:layout_constraintStart_toEndOf="@id/icon"
             android:layout_marginStart="20dp"
             android:textSize="18sp"

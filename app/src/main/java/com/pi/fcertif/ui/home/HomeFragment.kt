@@ -49,13 +49,12 @@ class HomeFragment : Fragment(), ActionModeListener {
         homeViewModel = ViewModelProvider(
             this,
             ViewModelFactory(fragmentActivity.filesDir)
-        )
-            .get(HomeViewModel::class.java)
+        ).get(HomeViewModel::class.java)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.certificatesRV)
         val infoManager = InfoManager(fragmentActivity)
         val adapter = CertificatesAdapter(
-            infoManager.hasBeenFilled(infoManager.retrieveUserInfo()),
+            infoManager.hasOneValidProfile(),
             this
         )
         recyclerView.adapter = adapter

@@ -22,6 +22,15 @@ import com.pi.fcertif.ui.tools.SaverFragment
  */
 class ProfileFragment : SaverFragment() {
 
+    companion object {
+
+        /**
+         * Key value for retrieving the id of the profile to edit if this argument is not provided
+         * a new profile will be created from scratch.
+         */
+        const val PROFILE = "PROFILE"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +44,13 @@ class ProfileFragment : SaverFragment() {
         val fragmentActivity = activity
         if (fragmentActivity != null) {
             val infoEditionWatcher = InfoEditionWatcher()
-            infoEditionWatcher.build(view, InfoManager(fragmentActivity).retrieveUserInfo())
+            val infoManager = InfoManager(fragmentActivity)
+            val profileCount = infoManager.profileCount()
+            infoEditionWatcher.build(
+                view,
+                infoManager.retrieveUserInfo(id = arguments?.getString(PROFILE) ?: "new"),
+                profileCount > 1 || (profileCount == 1 && arguments?.getString(PROFILE) == null)
+            )
             setEditedListener(infoEditionWatcher)
 
             val createCertificateButton =
@@ -89,7 +104,9 @@ class ProfileFragment : SaverFragment() {
      * @see [Leaver]
      */
     private fun saveInfo(
-        context: Context, editionWatcher: InfoEditionWatcher, leaver: Leaver?,
+        context: Context,
+        editionWatcher: InfoEditionWatcher,
+        leaver: Leaver?,
         userInfo: UserInfo
     ) {
         hideKeyboard()

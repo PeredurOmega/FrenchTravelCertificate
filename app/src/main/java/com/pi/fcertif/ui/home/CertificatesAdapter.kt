@@ -9,7 +9,7 @@ import com.pi.fcertif.objects.Certificate
 import kotlin.collections.ArrayList
 
 /**
- * [RecyclerView.Adapter] used to populate the [RecyclerView] contained certificates.
+ * [RecyclerView.Adapter] used to populate the [RecyclerView] containing certificates.
  * @param profileFilled [Boolean] whether or not the profile is properly filled. According to this,
  * different info will be displayed.
  * @param actionModeListener [ActionModeListener] used to interact with the [ActionMode].

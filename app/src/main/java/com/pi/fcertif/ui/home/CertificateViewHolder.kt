@@ -85,7 +85,8 @@ class CertificateViewHolder(itemView: View, private val itemClickListener: ItemC
             R.string.date_time_placeholder,
             certificate.exitDateTime.date, certificate.exitDateTime.time
         )
-        shortName.text = certificate.reason.shortName
+        val fullName = certificate.userInfo.firstName + " - " + certificate.reason.shortName
+        shortName.text = fullName
 
         itemView.setOnClickListener {
             if (!itemClickListener.selectedForActionMode(

@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home"/>
 
     <fragment
+        android:id="@+id/nav_profiles"
+        android:name="com.pi.fcertif.ui.profiles.ProfilesFragment"
+        android:label="@string/menu_profiles"
+        tools:layout="@layout/fragment_profiles" />
+
+    <fragment
         android:id="@+id/nav_profile"
         android:name="com.pi.fcertif.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"

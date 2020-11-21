@@ -11,9 +11,9 @@
             android:icon="@drawable/test_passed_icon"
             android:title="@string/menu_certificates" />
         <item
-            android:id="@+id/nav_profile"
+            android:id="@+id/nav_profiles"
             android:icon="@drawable/profile_icon"
-            android:title="@string/menu_profile" />
+            android:title="@string/menu_profiles" />
     </group>
 
     <group
