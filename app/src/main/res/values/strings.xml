@@ -12,7 +12,6 @@
     <string name="profile_saved">Profile saved</string>
     <string name="create">Create</string>
     <string name="create_a_new_profile">Create a new profile</string>
-    <string name="new_profile">New profile</string>
     <string name="ok">OK</string>
     <string name="email_feedback_subject">Feedback - French travel certificate</string>
     <string name="email_feedback_body">Feel free to share your ideas with us…</string>
@@ -110,7 +109,6 @@
     <string name="create_certificate">Create certificate</string>
     <string name="select_a_profile">Select a profile</string>
     <string name="create_a_certificate">Create a certificate</string>
-    <string name="fill_certificate">Fill certificate</string>
     <string name="please_fill_info">Please fill info</string>
     <string name="loading_please_wait">Loading… Please wait…</string>
     <string name="please_fill_date_time">Please fill date and time fields</string>
@@ -118,8 +116,6 @@
     <string name="save_profile">Save profile</string>
     <string name="remove_all_certificates">Remove all certificates</string>
     <string name="date_time_placeholder">%1$s at %2$s</string>
-    <string name="select_exit_date">Select exit date</string>
-    <string name="select_your_birthdate">Select your birthdate</string>
     <string name="ask_remove_all_certificates">Do you want to remove all certificates ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -145,7 +141,6 @@
     <string name="exit_date">Exit date (dd/mm/yyyy)</string>
     <string name="exit_time">Exit time (HH:mm)</string>
     <string name="time_15_before">Creation time 15 min in advance</string>
-    <string name="fill_with_profile">Fill with profile</string>
     <string name="last_name">Last name</string>
     <string name="first_name">First name</string>
     <string name="main_profile">Main profile</string>

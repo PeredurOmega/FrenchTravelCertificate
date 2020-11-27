@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     private fun setUpNavController(): NavController {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navController = findNavController()
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity() {
                                 it, AppUpdateType.IMMEDIATE,
                                 activity, 123
                             )
-                        }catch (e: IntentSender.SendIntentException){
+                        } catch (e: IntentSender.SendIntentException) {
                             e.printStackTrace()
                         }
                     }
@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navController = findNavController()
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
@@ -176,7 +176,8 @@ class MainActivity : AppCompatActivity() {
      * usual).
      */
     override fun onBackPressed() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
         if (navHostFragment != null) {
             val fragmentList = navHostFragment.childFragmentManager.fragments
             if (fragmentList.size > 0 && fragmentList[0] is SaverFragment) {
@@ -198,10 +199,16 @@ class MainActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
+    private fun findNavController(): NavController {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        return navHostFragment.navController
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> {
-                val navController = findNavController(R.id.nav_host_fragment)
+                val navController = findNavController()
                 navController.navigate(R.id.nav_settings)
             }
         }

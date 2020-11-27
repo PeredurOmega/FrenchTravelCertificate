@@ -3,7 +3,6 @@
     <color name="colorPrimary">#0055A4</color>
     <color name="colorPrimaryDark">#003A70</color>
     <color name="colorAccent">#EF4135</color>
-    <color name="colorAccentFaded">#66EF4135</color>
     <color name="titleColor">#FFFFFF</color>
     <color name="textColor">#444444</color>
     <color name="lightBackground">#EEEEEE</color>

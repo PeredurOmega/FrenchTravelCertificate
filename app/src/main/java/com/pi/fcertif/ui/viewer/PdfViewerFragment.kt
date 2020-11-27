@@ -109,7 +109,7 @@ class PdfViewerFragment : Fragment() {
                         pdfImageView.post {
                             pdfImageView.scaleType = ImageView.ScaleType.FIT_START
                         }
-                        if (this.page == 1) pdfImageView.setZoomable(false)
+                        if (this.page == 1) pdfImageView.isZoomable = false
                     }
                 fileDescriptor.close()
             } catch (e: FileNotFoundException) {

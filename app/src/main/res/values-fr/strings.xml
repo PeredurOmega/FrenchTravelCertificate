@@ -12,7 +12,6 @@
     <string name="profile_saved">Profil sauvegardé</string>
     <string name="create">Créer</string>
     <string name="create_a_new_profile">Créer un nouveau profil</string>
-    <string name="new_profile">Nouveau profil</string>
     <string name="ok">Ok</string>
     <string name="email_feedback_subject">Pistes d\'amélioration - Attestation numérique</string>
     <string name="email_feedback_body">N\'hésitez pas à partager vos pistes d\'amélioration avec
@@ -122,7 +121,6 @@
         Ministère de l\'intérieur ici :</string>
     <string name="create_certificate">Créer l\'attestation</string>
     <string name="select_a_profile">Sélectionner un profil</string>
-    <string name="fill_certificate">Compléter l\'attestation</string>
     <string name="please_fill_info">Merci de remplir les informations demandées</string>
     <string name="loading_please_wait">Chargement… Merci d\'attendre…</string>
     <string name="please_fill_date_time">Merci d\'indiquer l\'heure et la date</string>
@@ -130,8 +128,6 @@
     <string name="save_profile">Sauvegarder</string>
     <string name="remove_all_certificates">Supprimer les attestations</string>
     <string name="date_time_placeholder">%1$s à %2$s</string>
-    <string name="select_exit_date">Sélectionner la date de sortie</string>
-    <string name="select_your_birthdate">Sélectionner votre date de naissance</string>
     <string name="ask_remove_all_certificates">Souhaitez vous supprimer toutes vos attestations ?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
@@ -153,7 +149,6 @@
     <string name="pick">Choisir</string>
     <string name="exit_date">Date de sortie (jj/mm/aaaa)</string>
     <string name="exit_time">Heure de sortie (HH:mm)</string>
-    <string name="fill_with_profile">Compléter avec le profil</string>
     <string name="time_15_before">Heure de création avec 15 min d\'avance</string>
     <string name="last_name">Nom de famille</string>
     <string name="first_name">Prénom</string>

@@ -142,8 +142,8 @@ class DateTimeFragment : Fragment() {
         val exitDateEditText = view.findViewById<TextInputEditText>(R.id.exitDateEditText)
         val exitTimeEditText = view.findViewById<TextInputEditText>(R.id.exitTimeEditText)
 
-        val exitDate: String? = exitDateEditText.text.toString()
-        val exitTime: String? = exitTimeEditText.text.toString()
+        val exitDate: String? = exitDateEditText.text?.toString()
+        val exitTime: String? = exitTimeEditText.text?.toString()
 
         if (!exitDate.isNullOrEmpty() && !exitTime.isNullOrEmpty()) {
             val exitDateTime = DateTime(exitDate, exitTime)
