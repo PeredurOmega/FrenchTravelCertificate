@@ -74,8 +74,7 @@ class ProfileViewHolder(itemView: View, private val itemClickListener: ItemClick
             )
         )
 
-        val short = "${userInfo.firstName} ${userInfo.lastName}"
-        shortName.text = short
+        shortName.text = userInfo.shortName()
 
         itemView.setOnClickListener {
             if (!itemClickListener.selectedForActionMode(
@@ -84,7 +83,6 @@ class ProfileViewHolder(itemView: View, private val itemClickListener: ItemClick
                 )
             ) {
                 val navController = Navigation.findNavController((itemView.parent.parent) as View)
-                println("PE WOW ${userInfo.id}")
                 navController.navigate(
                     R.id.nav_profile,
                     bundleOf(ProfileFragment.PROFILE to userInfo.id)

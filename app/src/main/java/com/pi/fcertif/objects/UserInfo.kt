@@ -21,7 +21,7 @@ import java.util.*
 data class UserInfo(
     val firstName: String?, val lastName: String?, val birthDate: String?,
     val birthPlace: String?, val address: String?, val city: String?,
-    val postalCode: String?, var id: String?
+    val postalCode: String?, var id: String?, var uniqueNameID: Int = 1
 ) : Serializable {
 
     /**
@@ -49,6 +49,14 @@ data class UserInfo(
         if (day == null || day < 1 || day > 31) return true
         if (month == null || month < 1 || month > 12) return true
         return false
+    }
+
+    /**
+     * Returns the short name of this profile.
+     * @return [String] short name of this profile.
+     */
+    fun shortName(): String {
+        return firstName + " " + lastName + if (uniqueNameID != 1) " $uniqueNameID" else ""
     }
 
     /**

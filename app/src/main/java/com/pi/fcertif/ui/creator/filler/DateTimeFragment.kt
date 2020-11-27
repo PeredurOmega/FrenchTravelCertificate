@@ -113,11 +113,8 @@ class DateTimeFragment : Fragment() {
                 "new"
             )
         )
-        profiles.sortedBy {
-            it.id
-        }
 
-        val profileNames = profiles.map { it.firstName + " " + it.lastName }
+        val profileNames = profiles.map { it.shortName() }
         val adapter = ArrayAdapter(context, R.layout.dropdown_item, profileNames)
 
         val profileSelector: AutoCompleteTextView = view.findViewById(R.id.profile_selector)

@@ -33,7 +33,15 @@ class InfoManager(private val context: Context) {
                 saveUserInfo(legacyProfile)
             }
         } else {
-            for (id in ids) users.add(retrieveUserInfo(sharedPref, id))
+            val sortedIds = ids.sorted()
+            for (id in sortedIds) users.add(retrieveUserInfo(sharedPref, id))
+        }
+        val shortNames = ArrayList<String>()
+        users.forEach {
+            while (shortNames.contains(it.shortName())) {
+                it.uniqueNameID++
+            }
+            shortNames.add(it.shortName())
         }
         return users
     }
