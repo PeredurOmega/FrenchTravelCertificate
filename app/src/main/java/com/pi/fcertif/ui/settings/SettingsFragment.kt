@@ -83,5 +83,23 @@ class SettingsFragment : Fragment() {
                 }
             }
         }
+
+        val noDescription = sharedPref.getBoolean(
+            fragmentActivity.resources.getString(R.string.no_description_pref),
+            false
+        )
+
+        val noDescriptionSwitch = view.findViewById<SwitchMaterial>(R.id.noDescription)
+        noDescriptionSwitch.isChecked = noDescription
+        noDescriptionSwitch.setOnCheckedChangeListener { _, isChecked ->
+            run {
+                context?.let {
+                    val resources = it.resources
+                    val editor = sharedPref.edit()
+                    editor.putBoolean(resources.getString(R.string.no_description_pref), isChecked)
+                    editor.apply()
+                }
+            }
+        }
     }
 }

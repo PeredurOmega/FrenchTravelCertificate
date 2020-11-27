@@ -37,14 +37,22 @@
         android:layout_height="wrap_content"
         android:text="@string/share_to_your_friends"/>
 
-
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/before15Minutes"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/time_15_before"
+        android:checked="false"
+        android:textSize="16sp" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/noDescription"
         android:layout_margin="20dp"
         android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/time_15_before"
+        android:text="@string/no_description"
         android:checked="false"
         android:textSize="16sp" />
 

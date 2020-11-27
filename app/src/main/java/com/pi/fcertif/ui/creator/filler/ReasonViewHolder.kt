@@ -89,16 +89,20 @@ class ReasonViewHolder(itemView: View, private val reasonListener: ReasonListene
 
         shortView.setOnClickListener {
             run {
-                description.text = reason.fullDescription
-                detailView.visibility = if (detailView.visibility == View.VISIBLE) View.GONE
-                else View.VISIBLE
-                onGlobalLayoutListener = OnGlobalLayoutListener {
-                    if (detailView.visibility == View.VISIBLE) {
-                        reasonListener.onDetailsOpened(reason.id)
+                if (reasonListener.shouldDisplayDescription()) {
+                    description.text = reason.fullDescription
+                    detailView.visibility = if (detailView.visibility == View.VISIBLE) View.GONE
+                    else View.VISIBLE
+                    onGlobalLayoutListener = OnGlobalLayoutListener {
+                        if (detailView.visibility == View.VISIBLE) {
+                            reasonListener.onDetailsOpened(reason.id)
+                        }
+                        detailView.viewTreeObserver.removeOnGlobalLayoutListener(
+                            onGlobalLayoutListener
+                        )
                     }
-                    detailView.viewTreeObserver.removeOnGlobalLayoutListener(onGlobalLayoutListener)
-                }
-                detailView.viewTreeObserver.addOnGlobalLayoutListener(onGlobalLayoutListener)
+                    detailView.viewTreeObserver.addOnGlobalLayoutListener(onGlobalLayoutListener)
+                } else reasonListener.pick(reason)
             }
         }
 

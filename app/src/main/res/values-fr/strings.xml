@@ -7,6 +7,7 @@
     <string name="menu_profile">Profil</string>
     <string name="menu_eula">CGU</string>
     <string name="menu_contribute">Aider</string>
+    <string name="no_description">Ne pas afficher la description des motifs</string>
     <string name="credits">Crédits</string>
     <string name="header_sub_title">de déplacement dérogatoire</string>
     <string name="profile_saved">Profil sauvegardé</string>

@@ -1,5 +1,6 @@
 package com.pi.fcertif.ui.creator.filler
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,5 +45,15 @@ class ReasonPickerFragment : Fragment(), ReasonListener {
             val reasonsRecyclerView = view.findViewById<RecyclerView>(R.id.reasonsRecyclerView)
             reasonsRecyclerView.smoothScrollToPosition(position)
         }
+    }
+
+    override fun shouldDisplayDescription(): Boolean {
+        context?.let {
+            return !it.getSharedPreferences(
+                it.resources.getString(R.string.shared_pref),
+                Context.MODE_PRIVATE
+            ).getBoolean(it.resources.getString(R.string.no_description_pref), false)
+        }
+        return true
     }
 }

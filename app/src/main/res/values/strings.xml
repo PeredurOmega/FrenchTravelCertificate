@@ -7,6 +7,7 @@
     <string name="menu_profile">Profile</string>
     <string name="menu_eula">EULA</string>
     <string name="menu_contribute">Contribute</string>
+    <string name="no_description">Do not display reasons\' descriptions</string>
     <string name="credits">Credits</string>
     <string name="header_sub_title">for france mainland</string>
     <string name="profile_saved">Profile saved</string>
@@ -249,6 +250,7 @@
     <string name="first_name_key" translatable="false">FIRST_NAME</string>
     <string name="last_name_key" translatable="false">LAST_NAME</string>
     <string name="shared_pref" translatable="false">com.pi.fcertif.SHARED_PREFERENCES</string>
+    <string name="no_description_pref" translatable="false">NO_DESCRIPTION</string>
     <string name="email" translatable="false">"paul.souteyrat@insa-lyon.com"</string>
     <string name="birth_date_key" translatable="false">BIRTH_DATE</string>
     <string name="birth_place_key" translatable="false">BIRTH_PLACE</string>

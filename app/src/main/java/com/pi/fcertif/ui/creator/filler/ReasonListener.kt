@@ -19,4 +19,11 @@ interface ReasonListener {
      * opened / shown.
      */
     fun onDetailsOpened(position: Int)
+
+    /**
+     * Called to ask whether or not the description of a reason should be displayed.
+     * @return True if the description should be displayed according to the
+     * [android.content.SharedPreferences] and false otherwise.
+     */
+    fun shouldDisplayDescription(): Boolean
 }
