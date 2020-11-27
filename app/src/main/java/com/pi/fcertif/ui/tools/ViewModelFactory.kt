@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException
  */
 class ViewModelFactory(private val cacheFile: File) : ViewModelProvider.NewInstanceFactory() {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return if (ViewModel::class.java.isAssignableFrom(modelClass)) {
             try {
                 modelClass.getConstructor(File::class.java).newInstance(cacheFile)

@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException
  */
 class ViewModelProfilesFactory(private val infoManager: InfoManager) : ViewModelProvider.NewInstanceFactory() {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return if (ViewModel::class.java.isAssignableFrom(modelClass)) {
             try {
                 modelClass.getConstructor(InfoManager::class.java).newInstance(infoManager)
