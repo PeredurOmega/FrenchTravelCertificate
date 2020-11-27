@@ -129,6 +129,7 @@
     <string name="discard">Discard</string>
     <string name="certificate">Certificate</string>
     <string name="qr_code">QR Code</string>
+    <string name="no_app_to_open_the_link">No app to open the link</string>
     <string name="icon_description">Image view containing an icon to easily identificate the reason
         to exit</string>
     <string name="pdf_view_description">Image view used to display a pdf file (in our case the

@@ -141,6 +141,7 @@
     <string name="discard">Oublier</string>
     <string name="certificate">Attestation</string>
     <string name="qr_code">QR Code</string>
+    <string name="no_app_to_open_the_link">Aucune application pour ouvrir le lien</string>
     <string name="icon_description">Image contenant une icône pour facilement identifier les raisons
         d\'une sortie ou d\'un déplacement.</string>
     <string name="pdf_view_description">Image utilisée pour afficher un pdf (dans notre cas une
