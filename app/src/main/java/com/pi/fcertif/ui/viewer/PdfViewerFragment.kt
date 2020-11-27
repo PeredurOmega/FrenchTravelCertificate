@@ -1,5 +1,6 @@
 package com.pi.fcertif.ui.viewer
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -19,6 +20,7 @@ import com.pi.fcertif.tools.CertificatesManager
 import com.pi.fcertif.ui.viewer.CertificateViewerActivity.Companion.FILE_PATH
 import java.io.File
 import java.io.FileNotFoundException
+import java.io.IOException
 
 
 /**
@@ -111,13 +113,19 @@ class PdfViewerFragment : Fragment() {
                     }
                 fileDescriptor.close()
             } catch (e: FileNotFoundException) {
-                val certificate = CertificatesManager(context.filesDir).getCertificate(filePath)
-                if (certificate != null) CertificateGenerator(context, certificate, false).execute()
-                else {
-                    Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show()
-                    activity?.onBackPressed()
-                }
+                regenerateCertificate(context)
+            } catch (e: IOException) {
+                regenerateCertificate(context)
             }
+        }
+    }
+
+    private fun regenerateCertificate(context: Context){
+        val certificate = CertificatesManager(context.filesDir).getCertificate(filePath)
+        if (certificate != null) CertificateGenerator(context, certificate, false).execute()
+        else {
+            Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show()
+            activity?.onBackPressed()
         }
     }
 }
