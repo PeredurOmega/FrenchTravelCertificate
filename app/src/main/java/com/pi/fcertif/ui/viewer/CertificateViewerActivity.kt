@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.pi.fcertif.MainActivity
 import com.pi.fcertif.R
+import java.lang.Exception
 
 /**
  * [AppCompatActivity] used to display the two pages of a
@@ -96,8 +97,12 @@ class CertificateViewerActivity : AppCompatActivity() {
      * going back to edition once the certificate is generated).
      */
     override fun onBackPressed() {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
+        try {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        } catch (e: Exception) {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
     }
 }
