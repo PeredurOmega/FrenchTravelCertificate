@@ -36,7 +36,7 @@ class Reasons(private val resources: Resources) {
             1 -> Reason(
                 resources.getString(R.string.purchase_of_necessities_reason_short_name),
                 resources.getString(R.string.purchase_of_necessities_reason_description),
-                "buy_96px", -0xa5fa, 1, "achats"
+                "buy_96px", -0xa5fa, 1, "achats_culturel_cultuel"
             )
             2 -> Reason(
                 resources.getString(R.string.sports_or_animals_reason_short_name),

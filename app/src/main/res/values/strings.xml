@@ -72,11 +72,10 @@
     <string name="fill_profile">Fill profile</string>
     <string name="unknown_error">An unknown error occurred.</string>
     <string name="work_reason_short_name">Commuting to and from work</string>
-    <string name="purchase_of_necessities_reason_short_name">Travel to purchase essential goods
-    </string>
+    <string name="purchase_of_necessities_reason_short_name">Travel to purchase goods</string>
     <string name="health_reason_short_name">Medical consultations and care</string>
     <string name="family_reason_short_name">Travel for family reason</string>
-    <string name="sports_or_animals_reason_short_name">Short travel for exercising or animals
+    <string name="sports_or_animals_reason_short_name">Travel for exercising or animals
         walking</string>
     <string name="judicial_or_administrative_reason_short_name">Judicial or administrative
         convocation</string>
@@ -86,19 +85,15 @@
     <string name="work_reason_description">Commuting to and from work or university and training
         places; business trips that can not be delayed (to be used by self-employed workers, when
         they cannot get a travel document from their employer).</string>
-    <string name="purchase_of_necessities_reason_description">Running necessary errands to purchase
-        items for professional activity, or basic commodities (including the acquisition of free
-        commodities (food distribution, etc.) and trips related to the receipt of social benefits
-        and cash withdrawals) available in the businesses allowed to provide service, order
-        withdrawal or home deliveries.</string>
+    <string name="purchase_of_necessities_reason_description">Travelling to shop for authorized goods, to receive a package or to go to an authorized cultural place or a place of worship.</string>
     <string name="health_reason_description">Consults and provision of care that cannot be done
         remotely; medication purchase.</string>
     <string name="family_reason_description">Imperative family reasons, assisting vulnerable
         persons, persons in a precarious situation or taking care of children.</string>
     <string name="sports_or_animals_reason_description">Individual outdoor exercise (collective
         physical activity is not allowed), walking out with only the people living in the same
-        household or walking out a pet, within 1km of one\'s place of residence and for one
-        hour.</string>
+        household or walking out a pet, within 3km of one\'s place of residence and for three
+        hours.</string>
     <string name="judicial_or_administrative_reason_description">Judicial or administrative
         summons; appointment to public service offices.</string>
     <string name="general_interest_task_reason_description">Participating in a mission of general
