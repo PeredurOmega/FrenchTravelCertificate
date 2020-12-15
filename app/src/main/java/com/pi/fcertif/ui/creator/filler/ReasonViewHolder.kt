@@ -70,7 +70,7 @@ class ReasonViewHolder(itemView: View, private val reasonListener: ReasonListene
      * Binds the provided reason to this [ReasonViewHolder].
      * @param reason [Reason] to bind to this [ReasonViewHolder].
      */
-    fun bindReason(reason: Reason) {
+    fun bindReason(reason: Reason, position: Int) {
         shortName.text = reason.shortName
 
         val context = itemView.context
@@ -95,7 +95,7 @@ class ReasonViewHolder(itemView: View, private val reasonListener: ReasonListene
                     else View.VISIBLE
                     onGlobalLayoutListener = OnGlobalLayoutListener {
                         if (detailView.visibility == View.VISIBLE) {
-                            reasonListener.onDetailsOpened(reason.id)
+                            reasonListener.onDetailsOpened(position)
                         }
                         detailView.viewTreeObserver.removeOnGlobalLayoutListener(
                             onGlobalLayoutListener

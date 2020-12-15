@@ -123,8 +123,6 @@ class MainActivity : AppCompatActivity() {
             val appUpdateInfo = appUpdateManager.appUpdateInfo
             appUpdateInfo.addOnSuccessListener {
                 if (it.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                    && it.clientVersionStalenessDays() != null
-                    && it.clientVersionStalenessDays() >= 1
                     && it.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
                 ) {
                     activity.runOnUiThread {

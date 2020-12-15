@@ -72,36 +72,31 @@
     <string name="fill_profile">Fill profile</string>
     <string name="unknown_error">An unknown error occurred.</string>
     <string name="work_reason_short_name">Commuting to and from work</string>
-    <string name="purchase_of_necessities_reason_short_name">Travel to purchase goods</string>
     <string name="health_reason_short_name">Medical consultations and care</string>
     <string name="family_reason_short_name">Travel for family reason</string>
-    <string name="sports_or_animals_reason_short_name">Travel for exercising or animals
-        walking</string>
+    <string name="animals_reason_short_name">Travel for animals walking</string>
     <string name="judicial_or_administrative_reason_short_name">Judicial or administrative
         convocation</string>
     <string name="general_interest_task_reason_short_name">General interest task</string>
     <string name="handicap_reason_short_name">Disability</string>
-    <string name="school_reason_short_name">School and extracurricular activities</string>
+    <string name="transit_reason_short_name">Trains or planes transits</string>
     <string name="work_reason_description">Commuting to and from work or university and training
         places; business trips that can not be delayed (to be used by self-employed workers, when
         they cannot get a travel document from their employer).</string>
-    <string name="purchase_of_necessities_reason_description">Travelling to shop for authorized goods, to receive a package or to go to an authorized cultural place or a place of worship.</string>
     <string name="health_reason_description">Consults and provision of care that cannot be done
         remotely; medication purchase.</string>
     <string name="family_reason_description">Imperative family reasons, assisting vulnerable
         persons, persons in a precarious situation or taking care of children.</string>
-    <string name="sports_or_animals_reason_description">Individual outdoor exercise (collective
-        physical activity is not allowed), walking out with only the people living in the same
-        household or walking out a pet, within 3km of one\'s place of residence and for three
-        hours.</string>
+    <string name="animals_reason_description">Short walk for walking out a pet, within 1km of one\'s
+        place of residence.</string>
     <string name="judicial_or_administrative_reason_description">Judicial or administrative
         summons; appointment to public service offices.</string>
     <string name="general_interest_task_reason_description">Participating in a mission of general
         interest upon request from an administrative authority.</string>
     <string name="handicap_reason_description">Persons with a disability and their accompanying
         person.</string>
-    <string name="school_reason_description">Taking children to and picking them up from school or
-        after-school activity.</string>
+    <string name="transit_reason_description">Transiting through trains or plains for long
+        distances.</string>
     <string name="create_certificate">Create certificate</string>
     <string name="select_a_profile">Select a profile</string>
     <string name="create_a_certificate">Create a certificate</string>

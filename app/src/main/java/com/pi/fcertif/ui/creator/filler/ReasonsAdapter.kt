@@ -28,7 +28,7 @@ class ReasonsAdapter(resources: Resources, private val reasonListener: ReasonLis
     }
 
     override fun onBindViewHolder(holder: ReasonViewHolder, position: Int) {
-        holder.bindReason(reasons[position])
+        holder.bindReason(reasons[position], position)
     }
 
     override fun getItemCount(): Int {

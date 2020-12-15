@@ -50,7 +50,7 @@ class CertificateGenerator(
     override fun doInBackground(vararg params: Void): String? {
         val context = context.get() ?: return null
 
-        val originalCertificateName = "french_certificate_2.pdf"
+        val originalCertificateName = "french_certificate_3.pdf"
         val cacheDir = context.cacheDir
         val originalCertificate = File(cacheDir, originalCertificateName)
 
@@ -58,6 +58,7 @@ class CertificateGenerator(
             context.assets.open(originalCertificateName).use { asset ->
                 originalCertificate.writeBytes(asset.readBytes())
             }
+            Thread.sleep(500)
         }
 
         val newFileName = PdfCreator(cacheDir, originalCertificate).generatePdf(certificate)
