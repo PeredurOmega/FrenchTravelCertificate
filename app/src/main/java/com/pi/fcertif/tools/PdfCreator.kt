@@ -33,9 +33,6 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
         val pdfStamper = PdfStamper(pdfReader, FileOutputStream(fileNew.path))
 
         val form = pdfStamper.acroFields
-        for (field in form.fields) {
-            println("KEY " + field.key)
-        }
         form.isGenerateAppearances = true
         form.setField("Nom Prénom", userInfo.lastName!!.plus(" ").plus(userInfo.firstName))
         form.setField("Date de naissance", userInfo.birthDate!!)
