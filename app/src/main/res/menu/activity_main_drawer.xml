@@ -14,6 +14,10 @@
             android:id="@+id/nav_profiles"
             android:icon="@drawable/profile_icon"
             android:title="@string/menu_profiles" />
+        <item
+            android:id="@+id/nav_documents"
+            android:icon="@drawable/document_96px"
+            android:title="@string/menu_documents" />
     </group>
 
     <group

@@ -4,6 +4,7 @@
     <string name="action_share">Partager</string>
     <string name="menu_certificates">Attestations</string>
     <string name="menu_profiles">Profils</string>
+    <string name="menu_documents">Documents</string>
     <string name="menu_profile">Profil</string>
     <string name="menu_eula">CGU</string>
     <string name="menu_contribute">Aider</string>
@@ -13,6 +14,7 @@
     <string name="profile_saved">Profil sauvegardé</string>
     <string name="create">Créer</string>
     <string name="create_a_new_profile">Créer un nouveau profil</string>
+    <string name="import_a_new_document">Importer un nouveau document</string>
     <string name="ok">Ok</string>
     <string name="email_feedback_subject">Pistes d\'amélioration - Attestation numérique</string>
     <string name="email_feedback_body">N\'hésitez pas à partager vos pistes d\'amélioration avec
@@ -28,6 +30,8 @@
     <string name="review_the_app">Donner nous votre avis</string>
     <string name="help_us_by_reviewing">Le meilleur moyen d\'aider l\'application et de remercier
         ses créateurs est de la noter sur Google Play.</string>
+    <string name="document_path">Localisation du document</string>
+    <string name="custom_name">Nom personnalisé</string>
     <string name="very_satisfied">Très satisfait</string>
     <string name="satisfied">Satisfait</string>
     <string name="moderately_satisfied">Moyennement satisfait</string>
@@ -123,6 +127,7 @@
     <string name="ask_save_changes">Souhaitez vous sauvegarder les changements ?</string>
     <string name="save">Sauvegarder</string>
     <string name="discard">Oublier</string>
+    <string name="page">Page %d</string>
     <string name="certificate">Attestation</string>
     <string name="qr_code">QR Code</string>
     <string name="no_app_to_open_the_link">Aucune application pour ouvrir le lien</string>
@@ -150,6 +155,8 @@
     <string name="certificates_deleted">Attestations supprimées</string>
     <string name="profile_deleted">Profil supprimé</string>
     <string name="profiles_deleted">Profils supprimés</string>
+    <string name="document_deleted">Document supprimé</string>
+    <string name="documents_deleted">Documents supprimés</string>
     <string name="undo">Annuler</string>
     <string name="postal_code">Code postal actuel</string>
     <string name="no_certificate">Vous n\'avez aucune attestation</string>

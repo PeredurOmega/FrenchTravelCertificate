@@ -11,7 +11,7 @@ import com.pi.fcertif.ui.home.SelectedListener
 import kotlin.collections.ArrayList
 
 /**
- * [RecyclerView.Adapter] used to populate the [RecyclerView] containing certificates.
+ * [RecyclerView.Adapter] used to populate the [RecyclerView] containing profiles.
  * @param actionModeListener [ActionModeListener] used to interact with the [ActionMode].
  */
 class ProfilesAdapter(private val actionModeListener: ActionModeListener) :

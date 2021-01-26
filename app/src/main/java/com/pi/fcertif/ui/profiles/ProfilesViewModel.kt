@@ -3,7 +3,6 @@ package com.pi.fcertif.ui.profiles
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.pi.fcertif.objects.Certificate
 import com.pi.fcertif.objects.UserInfo
 import com.pi.fcertif.ui.profile.InfoManager
 import java.lang.IndexOutOfBoundsException
@@ -17,7 +16,7 @@ import kotlin.collections.ArrayList
 class ProfilesViewModel(private val infoManager: InfoManager) : ViewModel() {
 
     /**
-     * [MutableLiveData] with an [ArrayList] of all the currently available [Certificate].
+     * [MutableLiveData] with an [ArrayList] of all the currently available [UserInfo].
      */
     private val _profiles = MutableLiveData<ArrayList<UserInfo>>().apply {
         val profiles = infoManager.retrieveUsersInfo()
@@ -25,7 +24,7 @@ class ProfilesViewModel(private val infoManager: InfoManager) : ViewModel() {
     }
 
     /**
-     * Returns [HomeViewModel#_certificates]. To be used by an observer.
+     * Returns [ProfilesViewModel#_profiles]. To be used by an observer.
      */
     val profiles: LiveData<ArrayList<UserInfo>> = _profiles
 
@@ -108,7 +107,7 @@ class ProfilesViewModel(private val infoManager: InfoManager) : ViewModel() {
      * be notified of this change.
      * @param profilesToAdd [ArrayList] of [UserInfo] to add.
      * @param adapterPositions [ArrayList] of [Int] containing the positions where to add each
-     * provided [Certificate] in the [ArrayList].
+     * provided [UserInfo] in the [ArrayList].
      */
     fun addItems(profilesToAdd: ArrayList<UserInfo>, adapterPositions: ArrayList<Int>) {
         val profiles = _profiles.value

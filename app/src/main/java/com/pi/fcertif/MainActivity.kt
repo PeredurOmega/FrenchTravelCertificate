@@ -6,6 +6,7 @@ import android.content.IntentSender
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -22,6 +23,7 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.pi.fcertif.ui.creator.CertificateCreatorActivity
+import com.pi.fcertif.ui.documents.DocumentsManager
 import com.pi.fcertif.ui.profile.InfoManager
 import com.pi.fcertif.ui.tools.Leaver
 import com.pi.fcertif.ui.tools.SaverFragment
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_profiles,
+                R.id.nav_home, R.id.nav_profiles, R.id.nav_documents,
                 R.id.nav_eula, R.id.nav_settings, R.id.nav_contribute, R.id.nav_profile
             ), drawerLayout
         )
@@ -211,5 +213,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_FILE && resultCode == RESULT_OK && data != null) {
+            val uri = data.data
+            if (uri != null) {
+                DocumentsManager(this).createDocument(uri)
+                val navController = findNavController()
+                navController.navigate(R.id.nav_documents)
+            } else Toast.makeText(this, R.string.unknown_error, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    companion object {
+        const val REQUEST_FILE = 123
     }
 }

@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_profiles" />
 
     <fragment
+        android:id="@+id/nav_documents"
+        android:name="com.pi.fcertif.ui.documents.DocumentsFragment"
+        android:label="@string/menu_documents"
+        tools:layout="@layout/fragment_documents" />
+
+    <fragment
         android:id="@+id/nav_profile"
         android:name="com.pi.fcertif.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"

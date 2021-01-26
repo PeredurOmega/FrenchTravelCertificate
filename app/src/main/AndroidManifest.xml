@@ -6,11 +6,11 @@
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
         <activity
             android:name="com.pi.fcertif.MainActivity"
@@ -21,10 +21,27 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+
+                <data android:mimeType="image/*application/pdf" />
+                <data android:mimeType="application/pdf" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- The OPENABLE category declares that the returned file is accessible
+                     from a content provider that supports OpenableColumns
+                     and ContentResolver.openFileDescriptor() -->
+                <category android:name="android.intent.category.OPENABLE" />
+            </intent-filter>
         </activity>
-        <activity android:name="com.pi.fcertif.ui.creator.CertificateCreatorActivity"/>
-        <activity android:name="com.pi.fcertif.ui.viewer.CertificateViewerActivity"
-            android:parentActivityName="com.pi.fcertif.MainActivity"/>
+        <activity android:name="com.pi.fcertif.ui.creator.CertificateCreatorActivity" />
+        <activity
+            android:name="com.pi.fcertif.ui.viewer.CertificateViewerActivity"
+            android:parentActivityName="com.pi.fcertif.MainActivity" />
+        <activity
+            android:name="com.pi.fcertif.ui.documents.viewer.DocumentViewerActivity"
+            android:parentActivityName="com.pi.fcertif.MainActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}"
@@ -32,7 +49,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 

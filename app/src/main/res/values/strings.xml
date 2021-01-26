@@ -4,6 +4,7 @@
     <string name="action_share">Share</string>
     <string name="menu_certificates">Certificates</string>
     <string name="menu_profiles">Profiles</string>
+    <string name="menu_documents">Documents</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_eula">EULA</string>
     <string name="menu_contribute">Contribute</string>
@@ -13,6 +14,7 @@
     <string name="profile_saved">Profile saved</string>
     <string name="create">Create</string>
     <string name="create_a_new_profile">Create a new profile</string>
+    <string name="import_a_new_document">Import a new document</string>
     <string name="ok">OK</string>
     <string name="email_feedback_subject">Feedback - French travel certificate</string>
     <string name="email_feedback_body">Feel free to share your ideas with us…</string>
@@ -27,6 +29,8 @@
     <string name="review_the_app">Please give us a review</string>
     <string name="help_us_by_reviewing">The best way to help the app and to thank its creators is
         to rate the app on Google Play and to leave a good review.</string>
+    <string name="document_path">Document\'s path</string>
+    <string name="custom_name">Custom name</string>
     <string name="very_satisfied">Very satisfied</string>
     <string name="satisfied">Satisfied</string>
     <string name="moderately_satisfied">Moderately satisfied</string>
@@ -114,6 +118,7 @@
     <string name="ask_save_changes">Do you want to save changes ?</string>
     <string name="save">Save</string>
     <string name="discard">Discard</string>
+    <string name="page">Page %d</string>
     <string name="certificate">Certificate</string>
     <string name="qr_code">QR Code</string>
     <string name="no_app_to_open_the_link">No app to open the link</string>
@@ -144,6 +149,8 @@
     <string name="certificates_deleted">Certificates deleted</string>
     <string name="profile_deleted">Profile deleted</string>
     <string name="profiles_deleted">Profiles deleted</string>
+    <string name="document_deleted">Document deleted</string>
+    <string name="documents_deleted">Documents deleted</string>
     <string name="undo">Undo</string>
     <string name="postal_code">Current postal code</string>
     <string name="no_certificate">You have no certificate</string>
@@ -237,6 +244,7 @@
 
     <string name="profile_key" translatable="false">PROFILE_%s</string>
     <string name="profiles_ids_key" translatable="false">PROFILES_IDS</string>
+    <string name="documents_key" translatable="false">DOCUMENTS</string>
     <string name="first_name_key" translatable="false">FIRST_NAME</string>
     <string name="last_name_key" translatable="false">LAST_NAME</string>
     <string name="shared_pref" translatable="false">com.pi.fcertif.SHARED_PREFERENCES</string>

@@ -36,6 +36,8 @@ class InfoManager(private val context: Context) {
             val sortedIds = ids.sorted()
             for (id in sortedIds) users.add(retrieveUserInfo(sharedPref, id))
         }
+
+        //TODO CHECK THE CODE BELOW
         val shortNames = ArrayList<String>()
         users.forEach {
             while (shortNames.contains(it.shortName())) {
