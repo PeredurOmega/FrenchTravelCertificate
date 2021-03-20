@@ -74,15 +74,15 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
         )
         val image = barcodeQRCode.image ?: return null
         image.scalePercent((100f / width) * 100f)
-        image.setAbsolutePosition(width - 160f, 40f)
+        image.setAbsolutePosition(width - 160f, 90f)
 
         val overContent = pdfStamper.getOverContent(1)
         overContent.addImage(image)
         overContent.beginText()
         overContent.setFontAndSize(BaseFont.createFont(), 7.5f)
-        overContent.setTextMatrix(width - 150f, 38f)
+        overContent.setTextMatrix(width - 150f, 88f)
         overContent.showText("Date de création:")
-        overContent.setTextMatrix(width - 150f, 30f)
+        overContent.setTextMatrix(width - 150f, 80f)
         overContent.showText(
             certificate.creationDateTime.date + " à "
                     + certificate.creationDateTime.time.replace(":", "h")

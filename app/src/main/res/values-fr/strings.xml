@@ -81,7 +81,8 @@
     <string name="no_profile_info">Compléter votre profil pour créer une attestation.</string>
     <string name="fill_profile">Compléter le profil</string>
     <string name="unknown_error">Une erreur inconnue s\'est produite.</string>
-    <string name="work_reason_short_name">Déplacements entre le domicile et le travail</string>
+    <string name="curfew_reasons">Motifs pendant le couvre-feu</string>
+    <string name="work_reason_short_name">Activité professionnelle, enseignement et formation</string>
     <string name="health_reason_short_name">Consultations et soins</string>
     <string name="family_reason_short_name">Déplacements pour motif familial</string>
     <string name="animals_reason_short_name">Déplacements pour les besoins des animaux</string>
@@ -89,26 +90,52 @@
         administrative</string>
     <string name="general_interest_task_reason_short_name">Mission d\'intérêt général</string>
     <string name="handicap_reason_short_name">Handicap</string>
-    <string name="transit_reason_short_name">Transits en train ou en avion</string>
+    <string name="transit_reason_short_name">Transits et longue distance</string>
+    <string name="lockdown_reasons">>Motifs pendant le confinement</string>
+    <string name="pro_purchase_reason_short_name">Achats professionnels et livraisons à domicile</string>
+    <string name="purchase_reason_short_name">Achats</string>
+    <string name="move_reason_short_name">Déménagement</string>
+    <string name="sport_reason_short_name">Activités physiques et promenade</string>
+    <string name="administrative_reason_short_name">Démarches administratives ou juridiques</string>
+    <string name="church_reason_short_name">Culte</string>
+    <string name="meeting_reason_short_name">Participation à des rassemblements autorisés</string>
     <string name="work_reason_description">Déplacements entre le domicile et le lieu d’exercice de
-        l’activité professionnelle ou un établissement d’enseignement ou de formation, déplacements
-        professionnels ne pouvant être différés (à utiliser par les travailleurs non-salariés,
-        lorsqu\'ils ne peuvent disposer d\'un justificatif de déplacement établi par leur
-        employeur) et déplacements pour un concours ou un examen.</string>
-    <string name="health_reason_description">Consultations, examens et soins ne pouvant être
-        assurés à distance et l\'achat de médicaments.</string>
+        l\'activité professionnelle ou le lieu d\'enseignement et de formation, déplacements
+        professionnels ne pouvant être différés.</string>
+    <string name="health_reason_description"> Déplacements pour des consultations, examens, actes
+        de prévention (dont vaccination) et soins ne pouvant être assurés à distance ou pour
+        l\'achat de produits de santé.</string>
     <string name="family_reason_description">Déplacements pour motif familial impérieux, pour
-        l\'assistance aux personnes vulnérables et précaires ou la garde d\'enfant.</string>
-    <string name="animals_reason_description">Déplacements brefs, dans un rayon maximal d\'un
+        l\'assistance aux personnes vulnérables ou précaires ou pour la garde d’enfants.</string>
+    <string name="animals_reason_description">Déplacements brefs dans un rayon maximal d\'un
         kilomètre autour du domicile pour les besoins des animaux de compagnie.</string>
-    <string name="judicial_or_administrative_reason_description">Convocation judiciaire ou
-        administrative et pour se rendre dans un service public.</string>
-    <string name="general_interest_task_reason_description">Participation à des missions d\'intérêt
-        général sur demande de l\'autorité administrative.</string>
+    <string name="judicial_or_administrative_reason_description">Déplacements pour répondre à une
+        convocation judiciaire ou administrative, déplacements pour se rendre chez un professionnel
+        du droit, pour un acte ou une démarche qui ne peuvent être réalisés à distance.</string>
+    <string name="general_interest_task_reason_description"> Déplacements pour participer à des
+        missions d\'intérêt général sur demande de l\'autorité administrative.</string>
     <string name="handicap_reason_description">Déplacements des personnes en situation de handicap
-        et leur accompagnant.</string>
-    <string name="transit_reason_description">Déplacements liés à des transits ferroviaires ou
-        aériens pour des déplacements de longues distances.</string>
+        et de leur accompagnant.</string>
+    <string name="transit_reason_description">Déplacements liés à des transits ferroviaires,
+        aériens ou en bus pour des déplacements de longues distances.</string>
+    <string name="pro_purchase_reason_description">Déplacements pour effectuer des achats de
+        fournitures nécessaires à l\'activité professionnelle, ou pour des livraisons à domicile.</string>
+    <string name="purchase_reason_description">Déplacements pour effectuer des achats de première
+        nécessité ou des retraits de commandes.</string>
+    <string name="move_reason_description">Déplacements liés à un déménagement résultant d\'un
+        changement de domicile et déplacements indispensables à l\'acquisition ou à la location
+        d\'une résidence principale, insusceptibles d\'être différés.</string>
+    <string name="sport_reason_description">Déplacements dans un rayon maximal de dix kilomètres
+        autour du domicile, liés soit à l\'activité physique individuelle des personnes, à
+        l\'exclusion de toute pratique sportive collective, soit à la promenade avec les seules
+        personnes regroupées dans un même domicile.</string>
+    <string name="administrative_reason_description">Déplacements pour se rendre dans un service
+        public pour un acte ou une démarche qui ne peuvent être réalisés à distance.</string>
+    <string name="church_reason_description">Déplacements à destination ou en provenance d\'un lieu
+        de culte.</string>
+    <string name="meeting_reason_description">Participation à des rassemblements, réunions ou
+        activités sur la voie publique ou dans un lieu ouvert au public qui ne sont pas interdits
+        en application de l\'article 3.</string>
     <string name="people_to_credit">Créateur : Paul SOUTEYRAT. Basé sur le travail réalisé par le
         Ministère de l\'intérieur ici :</string>
     <string name="create_certificate">Créer l\'attestation</string>

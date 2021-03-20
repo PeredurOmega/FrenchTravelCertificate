@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.size
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -83,11 +84,12 @@ class CertificateViewerActivity : AppCompatActivity() {
             val stateAdapter = CertificateStateAdapter(this, fileName)
             viewPager.adapter = stateAdapter
             TabLayoutMediator(tabLayout, viewPager) { tab: TabLayout.Tab, position: Int ->
-                if (position == 0) {
-                    tab.text = getString(R.string.certificate)
-                } else {
-                    tab.text = getString(R.string.qr_code)
-                }
+                tab.text = if (tabLayout.size == 3) {
+                    when (position) {
+                        0, 1 -> getString(R.string.page, position + 1)
+                        else -> getString(R.string.qr_code)
+                    }
+                } else getString(if (position == 0) R.string.certificate else R.string.qr_code)
             }.attach()
         }
     }
