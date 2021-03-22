@@ -85,14 +85,14 @@
     <string name="general_interest_task_reason_short_name">General interest task</string>
     <string name="handicap_reason_short_name">Disability</string>
     <string name="transit_reason_short_name">Trains or planes transits</string>
-    <string name="lockdown_reasons">Reasons during lockdown</string>
-    <string name="pro_purchase_reason_short_name">Professional purchases and home deliveries</string>
+    <string name="lockdown_reasons">Additional reasons during lockdown</string>
     <string name="purchase_reason_short_name">Purchases</string>
     <string name="move_reason_short_name">Move</string>
     <string name="sport_reason_short_name">Physical activities and walking</string>
     <string name="administrative_reason_short_name">Administrative or legal procedures</string>
-    <string name="church_reason_short_name">Worship</string>
+    <string name="church_reason_short_name">Worship and culture</string>
     <string name="meeting_reason_short_name">Participation in authorized gatherings</string>
+    <string name="school_reason_short_name">Bringing kids to school</string>
     <string name="work_reason_description">Commuting to and from work or university and training
         places; business trips that can not be delayed (to be used by self-employed workers, when
         they cannot get a travel document from their employer).</string>
@@ -110,8 +110,6 @@
         person.</string>
     <string name="transit_reason_description">Transiting through trains or plains for long
         distances.</string>
-    <string name="pro_purchase_reason_description">Travel to purchase supplies needed for
-        professional activity, or for home deliveries.</string>
     <string name="purchase_reason_description">Travel to make essential purchases or order
         withdrawals.</string>
     <string name="move_reason_description">Travel related to a move resulting from a change of
@@ -126,6 +124,8 @@
     <string name="church_reason_description">Travel to or from a place of worship.</string>
     <string name="meeting_reason_description">Participation in rallies, meetings or activities on
         public roads or in a place open to the public which are not prohibited under Article 3.</string>
+    <string name="school_reason_description">Travel to take and pick up children to / from school or
+        their extracurricular activities.</string>
     <string name="create_certificate">Create certificate</string>
     <string name="select_a_profile">Select a profile</string>
     <string name="create_a_certificate">Create a certificate</string>

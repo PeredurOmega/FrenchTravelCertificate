@@ -91,14 +91,14 @@
     <string name="general_interest_task_reason_short_name">Mission d\'intérêt général</string>
     <string name="handicap_reason_short_name">Handicap</string>
     <string name="transit_reason_short_name">Transits et longue distance</string>
-    <string name="lockdown_reasons">>Motifs pendant le confinement</string>
-    <string name="pro_purchase_reason_short_name">Achats professionnels et livraisons à domicile</string>
+    <string name="lockdown_reasons">Motifs supplémentaires pendant le confinement</string>
     <string name="purchase_reason_short_name">Achats</string>
     <string name="move_reason_short_name">Déménagement</string>
     <string name="sport_reason_short_name">Activités physiques et promenade</string>
     <string name="administrative_reason_short_name">Démarches administratives ou juridiques</string>
-    <string name="church_reason_short_name">Culte</string>
+    <string name="church_reason_short_name">Culte et culture</string>
     <string name="meeting_reason_short_name">Participation à des rassemblements autorisés</string>
+    <string name="school_reason_short_name">Accompagnement des enfants à l\'école</string>
     <string name="work_reason_description">Déplacements entre le domicile et le lieu d’exercice de
         l\'activité professionnelle ou le lieu d\'enseignement et de formation, déplacements
         professionnels ne pouvant être différés.</string>
@@ -118,8 +118,6 @@
         et de leur accompagnant.</string>
     <string name="transit_reason_description">Déplacements liés à des transits ferroviaires,
         aériens ou en bus pour des déplacements de longues distances.</string>
-    <string name="pro_purchase_reason_description">Déplacements pour effectuer des achats de
-        fournitures nécessaires à l\'activité professionnelle, ou pour des livraisons à domicile.</string>
     <string name="purchase_reason_description">Déplacements pour effectuer des achats de première
         nécessité ou des retraits de commandes.</string>
     <string name="move_reason_description">Déplacements liés à un déménagement résultant d\'un
@@ -136,6 +134,8 @@
     <string name="meeting_reason_description">Participation à des rassemblements, réunions ou
         activités sur la voie publique ou dans un lieu ouvert au public qui ne sont pas interdits
         en application de l\'article 3.</string>
+    <string name="school_reason_description">Déplacements pour emmener et aller chercher les
+        enfants à l\'école et à l\'occasion de leurs activités périscolaires.</string>
     <string name="people_to_credit">Créateur : Paul SOUTEYRAT. Basé sur le travail réalisé par le
         Ministère de l\'intérieur ici :</string>
     <string name="create_certificate">Créer l\'attestation</string>

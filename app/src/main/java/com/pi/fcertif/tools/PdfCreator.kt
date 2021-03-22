@@ -42,7 +42,7 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
             userInfo.address!!.plus(" ").plus(userInfo.postalCode!!).plus(" ").plus(userInfo.city!!)
         )
 
-        form.setField("distinction Motif ${certificate.reason.id + 1}", "Oui")
+        form.setField("Motif ${certificate.reason.id + 1}", "Yes")
 
         form.setField("Lieu d'établissement du justificatif", userInfo.city)
         form.setField("Date", certificate.exitDateTime.date)
@@ -74,15 +74,15 @@ class PdfCreator(private val cacheDir: File, private val originalCertificate: Fi
         )
         val image = barcodeQRCode.image ?: return null
         image.scalePercent((100f / width) * 100f)
-        image.setAbsolutePosition(width - 160f, 90f)
+        image.setAbsolutePosition(width - 160f, 87f)
 
         val overContent = pdfStamper.getOverContent(1)
         overContent.addImage(image)
         overContent.beginText()
         overContent.setFontAndSize(BaseFont.createFont(), 7.5f)
-        overContent.setTextMatrix(width - 150f, 88f)
+        overContent.setTextMatrix(width - 150f, 85f)
         overContent.showText("Date de création:")
-        overContent.setTextMatrix(width - 150f, 80f)
+        overContent.setTextMatrix(width - 150f, 77f)
         overContent.showText(
             certificate.creationDateTime.date + " à "
                     + certificate.creationDateTime.time.replace(":", "h")
