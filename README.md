@@ -6,7 +6,7 @@ The app is currently available at: https://play.google.com/store/apps/details?id
 
 It's only available for Android devices (with Android version greater than 6.0).
 
-## Pull Requests
+## Pull Request
 
 This Android app is open-source and you are welcome to make pull requests especially for adding
 translations, proposing new designs, adding new features or fixing bugs.
